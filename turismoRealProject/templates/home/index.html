@@ -7,11 +7,15 @@
     <title>Document</title>
 </head>
 <body>
-    registrar nuevo usuario
-    <form method="POST">
-        {%csrf_token%}
-        {{form.as_p}}
-        <button type="submit">Registrar</button>
-    </form>
+    <h1>Panel de usuario</h1>
+    <h1>Bienvenido</h1>
+    <ul>
+        <li>
+            <a href="{% url 'users-logout''}'">Cerrar sesion</a>
+            <a href="#">Actualizar datos</a>
+
+        </li>
+    </ul>
+
 </body>
 </html>

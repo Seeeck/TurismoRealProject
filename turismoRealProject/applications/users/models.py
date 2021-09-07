@@ -6,7 +6,6 @@ from django.contrib.auth.models import AbstractBaseUser , PermissionsMixin
 from .managers import UserManager
 
 class User(AbstractBaseUser,PermissionsMixin):
-    username = models.CharField(max_length=50)
     email=models.EmailField(unique=True)
     #
     is_staff = models.BooleanField(default=False)
@@ -15,8 +14,6 @@ class User(AbstractBaseUser,PermissionsMixin):
     REQUIRED_FIELDS=[]
     #Se usa el manager de userManager
     objects=UserManager()
-    def get_shor_name(self):
-        return self.username
-    
-    def get_full_name(self):
-        return self.username+' '+self.apellidos
+     
+    def get_email(self):
+        return self.email
