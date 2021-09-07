@@ -12,7 +12,7 @@ class User(AbstractBaseUser,PermissionsMixin):
     is_staff = models.BooleanField(default=False)
 #se aplica aca el email como username
     USERNAME_FIELD='email'
-    REQUIRED_FIELDS=['username']
+    REQUIRED_FIELDS=[]
     #Se usa el manager de userManager
     objects=UserManager()
     def get_shor_name(self):

@@ -7,9 +7,8 @@ from django.contrib.auth.models import BaseUserManager
 class UserManager(BaseUserManager,models.Manager):
 
     #Se especifica que obligatoriamente necesitamos un email
-    def _create_user(self,username,email,password,is_staff,is_superuser,**extra_fields):
+    def _create_user(self,email,password,is_staff,is_superuser,**extra_fields):
         user=self.model(
-            username=username,
             email=email,
             is_staff=is_staff,
             is_superuser=is_superuser,
@@ -19,8 +18,8 @@ class UserManager(BaseUserManager,models.Manager):
         user.save(using=self.db)
         return user
     #Para que no sea un staff false y no super usuario false
-    def create_user(self,username,email,password=None,**extra_fields):
-        return self._create_user(username,email,password,False,False,**extra_fields)
+    def create_user(self,username,password=None,**extra_fields):
+        return self._create_user(username,password,False,False,**extra_fields)
 #Esto es de administrador
-    def create_superuser(self,username,email,password=None,**extra_fields):
-        return self._create_user(username,email,password,True,True,**extra_fields)
+    def create_superuser(self,email,password=None,**extra_fields):
+        return self._create_user(email,password,True,True,**extra_fields)
