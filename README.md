@@ -1,14 +1,22 @@
-1. Clonar proyecto
+# Proyecto: Turismo Real
+Desarrollado por:
+- Franco Zambelli ( @Seeeck )
+- Kevin Peréz ( )
+Pruebas por:
+- Celso Villagra 
+- Juan Pablo Polanco ( @bluu124 )
 
-2. Iniciar entorno
+
+## Como ejecutar
+1. Iniciar entorno
 
 ````bash
    pip install -r 		requirements/requirements.txt
 ````
-3. Pedir secret.json al creador del proyecto.
-4. Pegar secret.json en turismorealproyect/turismorealproject/
-5. iniciar proyecto
-6. En Oracle SQL
+2. Pedir secret.json al creador del proyecto.
+3. Pegar secret.json en turismorealproyect/turismorealproject/
+4. iniciar proyecto
+5. En Oracle SQL:
 
 ````sql
 
@@ -19,3 +27,4 @@ grant connect,resource to admin_turismo;
 
 alter user admin_turismo default tablespace users quota unlimited on users;
 ````
+
