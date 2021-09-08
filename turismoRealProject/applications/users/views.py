@@ -7,11 +7,11 @@ from .models import User
 from django.views.generic.edit import(FormView)
 from django.views.generic import(CreateView,View)
 #para la autenticacion
-from django.contrib.auth import authenticate,login, logout,logouts
+from django.contrib.auth import authenticate,login, logout
 from django.http import HttpResponseRedirect
 
 class UserRegisterView(FormView):
-    template_name='users/register.html'
+    template_name='cliente/register.html'
 
     form_class=UserRegisterForm
     success_url='/'
@@ -29,7 +29,7 @@ class UserRegisterView(FormView):
 
 
 class LoginUser(FormView):
-    template_name='users/login.html'
+    template_name='cliente/login.html'
     form_class=LoginForm
     success_url=reverse_lazy('home_app:inicio')
 
