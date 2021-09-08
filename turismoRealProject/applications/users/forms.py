@@ -39,7 +39,8 @@ class LoginForm(forms.Form):
         required=True,
         widget=forms.TextInput(
             attrs={
-                'placeholder':'Email'
+                'placeholder':'Email',
+                'class':'form-control'
             }
         )
     )
@@ -49,8 +50,11 @@ class LoginForm(forms.Form):
         required=True,
         widget=forms.PasswordInput(
             attrs={
-                'placeholder':'Clave'
+                'placeholder':'Clave',
+                'class':'form-control'
             }
         )
     )
+
+
    
