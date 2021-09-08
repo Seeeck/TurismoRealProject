@@ -26,7 +26,12 @@ create user admin_turismo identified by "1234";
 grant connect,resource to admin_turismo;
 
 alter user admin_turismo default tablespace users quota unlimited on users;
+<<<<<<< Updated upstream
 ````
 
 prueba con sourcetree
 
+=======
+""""""""""""""
+hola prueba git desktop
+>>>>>>> Stashed changes
