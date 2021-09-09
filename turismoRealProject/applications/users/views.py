@@ -10,11 +10,13 @@ from django.views.generic import(CreateView,View)
 from django.contrib.auth import authenticate,login, logout
 from django.http import HttpResponseRedirect
 
+
+######Cliente########
 class UserRegisterView(FormView):
     template_name='users/cliente/register.html'
 
     form_class=UserRegisterForm
-    success_url='/'
+    
 
     def form_valid(self,form):
         #Recupero los valores del formulario que esta en el template del propio form
@@ -31,7 +33,7 @@ class UserRegisterView(FormView):
 class LoginUser(FormView):
     template_name='users/cliente/login.html'
     form_class=LoginForm
-    success_url=reverse_lazy('home_app:inicio')
+    success_url=reverse_lazy('cliente_app:inicio-cliente')
 
     def form_valid(self,form):
         #verificacion con authenticate
@@ -53,3 +55,4 @@ class LogoutView(View):
                 'users_app:user-login'
             )
         )
+
