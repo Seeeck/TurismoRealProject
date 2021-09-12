@@ -14,9 +14,12 @@ Pruebas por:
    pip install -r requirements/requirements.txt
 ````
 2. Pedir secret.json al creador del proyecto.
-3. Pegar secret.json en turismorealproyect/turismorealproject/
-4. iniciar proyecto
-5. En Oracle SQL:
+3. Pegar secret.json en Turismorealproyect/turismorealproject/
+4. Abrir proyecto
+5. Ejecutar "python manage.py makemigrations" a la altura de TurismoRealProject/turismoRealProject
+6. Ejecutar python manage.py migrate
+7. iniciar proyecto
+8. En Oracle SQL:
 
 ````sql
 
