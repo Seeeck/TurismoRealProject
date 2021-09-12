@@ -17,9 +17,10 @@ Pruebas por:
 3. Pegar secret.json en Turismorealproyect/turismorealproject/
 4. Abrir proyecto
 5. Ejecutar "python manage.py makemigrations" a la altura de TurismoRealProject/turismoRealProject
-6. Ejecutar python manage.py migrate
-7. iniciar proyecto
-8. En Oracle SQL:
+6. Ejecutar "python manage.py migrate"
+7. Ejecutar "python manage.py runserver"
+8. iniciar proyecto
+9. En Oracle SQL:
 
 ````sql
 
