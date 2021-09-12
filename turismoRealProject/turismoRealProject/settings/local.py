@@ -20,8 +20,10 @@ DATABASES = {
     }
 }
 
-
+#url de los archivos staticos
+#Para cargar los archivos estaticos se usa {% load static %} en el html
 STATIC_URL = '/static/'
+#Donde estan ubicados los archivos
 STATICFILES_DIRS=[BASE_DIR.child('static')]
 
 MEDIA_URL ='/media/'

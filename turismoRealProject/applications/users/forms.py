@@ -1,14 +1,66 @@
 from django import forms
 
-from .models import User
+from .models import User,Cliente
 
-class UserRegisterForm(forms.ModelForm):
+
+class UserClienteRegisterForm(forms.ModelForm):
+    
+    email=forms.CharField(
+        label='Email',
+        required=True,
+        widget=forms.TextInput(
+            attrs={
+                'placeholder':'Ingrese su correo',
+                'class':'form-control'
+            }
+        )
+    )
+
+    rut_cliente=forms.CharField(
+        label='Rut',
+        required=True,
+        widget=forms.TextInput(
+            attrs={
+                'placeholder':'Ingrese su rut',
+                'class':'form-control'
+            }
+        )
+    )
+
+    nombre_cliente=forms.CharField(
+        label='Nombre',
+        required=True,
+        widget=forms.TextInput(
+            attrs={
+                'placeholder':'Ingrese su nombre',
+                'class':'form-control'
+            }
+        )
+    )
+
+    apellido_cliente=forms.CharField(
+        label='Apellido ',
+        required=True,
+        widget=forms.TextInput(
+            attrs={
+                'placeholder':'Ingrese su apellido ',
+                'class':'form-control'
+            }
+        )
+    )
+
+    fecha_nacimiento=forms.DateField(
+ 
+        
+    )
+ 
     password1=forms.CharField(
         label='Clave',
         required=True,
         widget=forms.PasswordInput(
             attrs={
-                'placeholder':'Clave'
+                'placeholder':'Ingrese su nueva clave',
+                'class':'form-control'
             }
         )
     )
@@ -18,7 +70,8 @@ class UserRegisterForm(forms.ModelForm):
         required=True,
         widget=forms.PasswordInput(
             attrs={
-                'placeholder':'Repetir Clave'
+                'placeholder':'Repetir la Clave',
+                'class':'form-control'
             }
         )
     )
@@ -39,7 +92,8 @@ class LoginForm(forms.Form):
         required=True,
         widget=forms.TextInput(
             attrs={
-                'placeholder':'Email'
+                'placeholder':'Email',
+                'class':'form-control'
             }
         )
     )
@@ -49,8 +103,10 @@ class LoginForm(forms.Form):
         required=True,
         widget=forms.PasswordInput(
             attrs={
-                'placeholder':'Clave'
+                'placeholder':'Clave',
+                'class':'form-control'
             }
         )
     )
-   
+
+
