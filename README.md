@@ -11,7 +11,7 @@ Pruebas por:
 1. Iniciar entorno
 
 ````bash
-   pip install -r 		requirements/requirements.txt
+   pip install -r requirements/requirements.txt
 ````
 2. Pedir secret.json al creador del proyecto.
 3. Pegar secret.json en turismorealproyect/turismorealproject/
@@ -26,6 +26,4 @@ create user admin_turismo identified by "1234";
 grant connect,resource to admin_turismo;
 
 alter user admin_turismo default tablespace users quota unlimited on users;
-
-prueba con sourcetree
-
+````
