@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-lg navbar-dark  bg-dark">
+    <a class="navbar-brand" href="{% url 'cliente_app:inicio-principal' %}">Turismo real reservas </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="row collapse navbar-collapse navbar-nav" id="navbarNav">
+
+
+
+
+        <div class="col-md-6">
+            <div class="row">
+                <li class=" col-md-2 nav-item ">
+                    <a class="nav-link" href="#"><span>Nostros</span></a>
+                </li>
+
+                <li class="col-md-2 nav-item">
+                    <a class="nav-link" href="#">Precios</a>
+                </li>
+                <li class="col-md-2 nav-item">
+                    <a class="nav-link" href="#">Contacto</a>
+                </li>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row justify-content-end">
+                {% if not user.is_anonymous %}
+                <div class="col-md-2">
+                    <li class="nav-item"><a class="btn ml-4 btn-primary nav-link"
+                            href="{% url 'users_app:user-logout' %}">Cerrar sesion</a></li>
+                </div>
+                {%else%}
+                <div class="col-md-2">
+                    <li class="nav-item"><a class="btn ml-4 btn-primary nav-link"
+                            href="{% url 'users_app:user-login' %}">Iniciar sesion</a></li>
+                </div>
+                <div class="col-md-2">
+                    <li class="nav-item"><a class="btn ml-4 btn-primary nav-link "
+                            href="{% url 'users_app:user-register'%}">Crear Cuenta</a></li>
+                </div>
+                {%endif%}
+                
+            </div>
+        </div>
+
+
+    </div>
+</nav>

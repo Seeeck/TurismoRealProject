@@ -2,8 +2,10 @@ from django.forms.forms import Form
 from django.shortcuts import render
 from django.urls import reverse_lazy,reverse
 
-from .forms import UserRegisterForm,LoginForm
-from .models import User
+
+from .models import User,Cliente
+#importacion de vistas
+from .forms import LoginForm, UserClienteRegisterForm
 from django.views.generic.edit import(FormView)
 from django.views.generic import(CreateView,View)
 #para la autenticacion
@@ -12,22 +14,44 @@ from django.http import HttpResponseRedirect
 
 
 ######Cliente########
-class UserRegisterView(FormView):
-    template_name='users/cliente/register.html'
+class UserClienteRegisterView(FormView):
+    template_name='users/cliente/registro.html'
 
-    form_class=UserRegisterForm
+    form_class=UserClienteRegisterForm
     
-
+    success_url=reverse_lazy('cliente_app:inicio-principal')
     def form_valid(self,form):
         #Recupero los valores del formulario que esta en el template del propio form
         #para insertarlos en la funcion de createuser
-        User.objects.create_user(
-            form.cleaned_data['email'],
-            form.cleaned_data['password1'],
-            #se pueden agregar otros atributos extras del model que no correspondan 
-            #a los valores por defecto de la funcion create_user
+
+        user=User(
+            email=form.cleaned_data['email'],
+            is_staff=False,
+            is_superuser=False
+            )
+        user.set_password(form.cleaned_data['password1'])
+        user.save()
+        # User.objects.create_user(
+        #     user.email,
+        #     user.password,
+        # )
+
+        rut=form.cleaned_data['rut_cliente']
+        nombre=form.cleaned_data['nombre_cliente']
+        apellido=form.cleaned_data['apellido_cliente']
+        fecha_nacimiento=form.cleaned_data['fecha_nacimiento']
+  
+        Cliente.objects.create(
+            rut=rut,
+            nombre=nombre,
+            apellido=apellido,
+            fecha_nacimiento=fecha_nacimiento,
+            user_cliente=user
         )
-        return super(UserRegisterView,self).form_valid(form)
+
+        
+
+        return super(UserClienteRegisterView,self).form_valid(form)
 
 
 class LoginUser(FormView):
@@ -37,12 +61,17 @@ class LoginUser(FormView):
 
     def form_valid(self,form):
         #verificacion con authenticate
-        user = authenticate(
-            email=form.cleaned_data['email'],
-            password=form.cleaned_data['password']
-        )
+        user_object= User.objects.get(email=form.cleaned_data['email'])
+        if user_object.is_funcionario==False:
+            user = authenticate(
+            username=form.cleaned_data['email'],
+            password=form.cleaned_data['password'] 
+            )
+            login(self.request,user)
+        
+        print('######desdeLoginUser!!!!!!!!')
         #Con esto se realiza el login y el propio request
-        login(self.request,user)
+        
         return super(LoginUser,self).form_valid(form)
 
 class LogoutView(View):
@@ -56,3 +85,55 @@ class LogoutView(View):
             )
         )
 
+class LoginAdmin(FormView):
+    template_name='users/admin/login.html'
+    form_class=LoginForm
+    success_url=reverse_lazy('admin:index')
+    
+    def form_valid(self,form):
+        #verificacion con authenticate
+        print('#########desde view logindmin')
+        user = authenticate(
+            username=form.cleaned_data['email'],
+            password=form.cleaned_data['password']
+        )
+        print(user)
+        
+        #Con esto se realiza el login y el propio request
+        login(self.request,user)
+        return super(LoginAdmin,self).form_valid(form)
+
+        
+
+
+class LoginFuncionario(FormView):
+    template_name='users/funcionario/login.html'
+    form_class=LoginForm
+    success_url=reverse_lazy('funcionario_app:panel-funcionario')
+    
+    def form_valid(self,form):
+        #verificacion con authenticate
+        user_object= User.objects.get(email=form.cleaned_data['email'])
+        print('#######Desde Login Funcionario #########')
+        if user_object.is_funcionario:
+            user = authenticate(
+            username=form.cleaned_data['email'],
+            password=form.cleaned_data['password']
+            )
+        
+
+        
+        #Con esto se realiza el login y el propio request
+        login(self.request,user)
+        return super(LoginFuncionario,self).form_valid(form)
+
+class LogoutFuncionarioView(View):
+    def get(self,request,*args,**kwargs):
+        #funcion para cerrar la sesion actua;
+        logout(request)
+        return HttpResponseRedirect(
+            #reverse sirve para navegar por las url del sistema para buscar una
+            reverse(
+                'users_app:userFuncionario-login'
+            )
+        )

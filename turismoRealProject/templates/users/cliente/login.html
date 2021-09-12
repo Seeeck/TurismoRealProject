@@ -1,18 +1,17 @@
-{%extends 'users/base/base.html'%}
-{%load static%}
-
+{%extends 'base/base.html'%}
 
 {%block titulo%}
 Login cliente
 {%endblock titulo%}
 
-{%block cuerpo%}
+{%block contenido%}
 
-
-
-<div class="container">
-
+<div class="container-fluid">
     <div class="row">
+        {%include 'includes/nav.html' %}
+    </div>
+    
+    <div class="row mt-4">
         <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
             <div class="card border-0 shadow rounded-3 my-5">
                 <div class="card-body p-4 p-sm-5">
@@ -45,4 +44,4 @@ Login cliente
 </div>
 
 
-{%endblock cuerpo%}
+{%endblock contenido%}

@@ -1,0 +1,104 @@
+{%extends 'base/base.html' %}
+{%block titulo%}Registro de cliente{%endblock titulo%}
+
+{%block contenido%}
+{%include 'includes/nav.html'%}
+
+
+<div class="container">
+    <form method="POST" class="mt-4" >
+        {%csrf_token%}
+        <div class="row justify-content-center">
+
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email</label>
+                    
+                    {{form.email}}
+                   
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Rut</label>
+                    
+                    {{form.rut_cliente}}
+                   
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+
+
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Nombre</label>
+                   {{form.nombre_cliente}}
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+
+
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Apellido</label>
+                    {{form.apellido_cliente}}
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+
+
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Fecha de nacimiento</label>
+                    {{form.fecha_nacimiento}}
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+
+
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Clave</label>
+                    {{form.password1}}
+                    
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+
+
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Repetir clave</label>
+                    {{form.password2}}
+                    
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-4">
+            <button type="submit" class="btn col-3 btn-primary">Registrarse</button>
+            
+        </div>
+       
+
+
+    </form>
+
+</div>
+
+
+
+{%endblock contenido%}
