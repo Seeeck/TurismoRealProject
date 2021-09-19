@@ -28,7 +28,7 @@ class Cliente(models.Model):
     fecha_nacimiento=models.DateField()
     user_cliente = models.ForeignKey(User, on_delete=models.CASCADE)
 
-    def get_rut(self):
-        return self.rut
+    def __str__(self):
+        return "rut:"+self.rut+" nombre:"+self.nombre+" "+self.apellido
     class Meta:
         verbose_name='Cliente'

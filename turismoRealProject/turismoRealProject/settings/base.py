@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'applications.users',
     'applications.cliente',
-    'applications.funcionario'
+    'applications.funcionario',
+    'applications.crudModelos'
+
 
 
    

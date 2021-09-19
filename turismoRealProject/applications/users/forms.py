@@ -1,7 +1,11 @@
 from django import forms
+from django.forms.widgets import DateInput
 
 from .models import User,Cliente
 
+
+class DateInput(forms.DateInput):
+    input_type='date'
 
 class UserClienteRegisterForm(forms.ModelForm):
     
@@ -50,8 +54,8 @@ class UserClienteRegisterForm(forms.ModelForm):
     )
 
     fecha_nacimiento=forms.DateField(
- 
-        
+        widget=DateInput
+   
     )
  
     password1=forms.CharField(

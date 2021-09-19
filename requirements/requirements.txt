@@ -1,6 +1,10 @@
-asgiref==3.4.1
-cx-Oracle==8.2.1
-Django==3.2.7
-pytz==2021.1
-sqlparse==0.4.1
-Unipath==1.1
+asgiref            3.4.1
+cx-Oracle          8.2.1
+Django             3.2.7
+django-betterforms 1.2
+pip                21.2.3
+pytz               2021.1
+setuptools         57.4.0
+six                1.16.0
+sqlparse           0.4.1
+Unipath            1.1
