@@ -1,3 +1,5 @@
+pip==21.2.3
+setuptools==57.4.0
 asgiref==3.4.1
 cx-Oracle==8.2.1
 Django==3.2.7
