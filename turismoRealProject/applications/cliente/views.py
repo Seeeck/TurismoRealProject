@@ -10,6 +10,11 @@ from django.views.generic import CreateView
 from django.views.generic.base import View
 from django.views.generic.edit import FormView
 from applications.users.models import User
+from django.views.generic  import ListView
+#Modelos
+from applications.crudModelos.models import Departamento
+# Create your views here.
+
 from django.http import request
 
 
@@ -18,10 +23,12 @@ class Inicio(TemplateView):
     template_name="sistemaCliente/inicio.html"
     
 
-class InicioCliente(LoginRequiredMixin,TemplateView):
+class InicioCliente(LoginRequiredMixin,ListView):
     
     template_name = "sistemaCliente/inicio_cliente.html"
     login_url=reverse_lazy('users_app:user-login') 
+    paginate_by=4
+    model=Departamento
 
     def dispatch(self,request,*args,**kwargs):
         if self.request.user.is_funcionario:
@@ -29,5 +36,5 @@ class InicioCliente(LoginRequiredMixin,TemplateView):
         return super(InicioCliente,self).dispatch(request,*args,**kwargs)
         
     
-    
+
 
