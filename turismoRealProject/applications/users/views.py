@@ -30,6 +30,7 @@ class UserClienteRegisterView(FormView):
             is_superuser=False
             )
         user.set_password(form.cleaned_data['password1'])
+        print(user.password)
         user.save()
         # User.objects.create_user(
         #     user.email,
