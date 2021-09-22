@@ -1,2 +1,27 @@
 # secret key
 turismoRealProject/secret.json
+#Entornos
+EntornoJP/
+Entorno/
+pyvenv.cfg
+pip-selfcheck.json
+#Temporal vscode
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+.history/
+.history
+.ionide
+### Django ###
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+
