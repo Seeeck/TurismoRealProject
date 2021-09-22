@@ -22,11 +22,7 @@ class User(AbstractBaseUser,PermissionsMixin):
     USERNAME_FIELD='email'
     REQUIRED_FIELDS=[]
     #Se usa el manager de userManager
-    
-    def set_password(self, password):
-        self.password = make_password(password)
-        self._password = password
-
+    objects=UserManager()
     def get_email(self):
         return self.email
     class Meta:

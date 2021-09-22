@@ -12,9 +12,9 @@ class UserManager(BaseUserManager,models.Manager):
             email=email,
             is_staff=is_staff,
             is_superuser=is_superuser,
-            password=make_password(password)
             **extra_fields
         )
+        user.set_password(password)
         user.save(using=self.db)
         return user
     #Para que no sea un staff false y no super usuario false
