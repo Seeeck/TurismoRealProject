@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'applications.users',
     'applications.cliente',
     'applications.funcionario',
-    'applications.crudModelos'
+    'applications.crudModelos',
 
 
 

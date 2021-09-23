@@ -9,10 +9,6 @@
 <div class="container">
     <form method="POST" class="mt-4">
         {%csrf_token%}
-        
-        <div class="input-group date">
-            <input type="text" class="form-control"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
-          </div>
 
         <div class="row justify-content-center">
             <div class="col-md-3">
@@ -20,6 +16,7 @@
                     <label for="exampleInputEmail1">Email</label>
 
                     {{form.email}}
+                    {{form.errors.email}}
 
                 </div>
             </div>
@@ -31,6 +28,7 @@
                     <label for="exampleInputEmail1">Rut</label>
 
                     {{form.rut_cliente}}
+                    {{form.errors.rut_cliente}}
 
                 </div>
             </div>
@@ -42,6 +40,8 @@
                 <div class="form-group">
                     <label for="exampleInputEmail1">Nombre</label>
                     {{form.nombre_cliente}}
+                    {{form.errors.nombre_cliente}}
+                    
 
                 </div>
             </div>
@@ -54,7 +54,7 @@
                 <div class="form-group">
                     <label for="exampleInputEmail1">Apellido</label>
                     {{form.apellido_cliente}}
-
+                    {{form.errors.apellido_cliente}}
                 </div>
             </div>
         </div>
@@ -65,7 +65,11 @@
             <div class="col-md-3">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Fecha de nacimiento</label>
-                    {{form.fecha_nacimiento}}
+                    <div class="input-group date">
+                        {{form.fecha_nacimiento}}
+                        
+                    </div>
+                    {{form.errors.fecha_nacimiento}}
 
                 </div>
             </div>
@@ -78,6 +82,7 @@
                 <div class="form-group">
                     <label for="exampleInputEmail1">Clave</label>
                     {{form.password1}}
+                    
 
                 </div>
             </div>
@@ -89,6 +94,7 @@
                 <div class="form-group">
                     <label for="exampleInputEmail1">Repetir clave</label>
                     {{form.password2}}
+                    {{form.errors.password2}}
 
                 </div>
             </div>

@@ -1,15 +1,18 @@
+import datetime
 from django import forms
 from django.forms.widgets import DateInput
+from itertools import cycle
 
 from .models import User,Cliente
-
+from rut_chile import rut_chile
+from datetime import time
 
 class DateInput(forms.DateInput):
     input_type='date'
 
 class UserClienteRegisterForm(forms.ModelForm):
     
-    email=forms.CharField(
+    email=forms.EmailField(
         label='Email',
         required=True,
         widget=forms.TextInput(
@@ -54,7 +57,9 @@ class UserClienteRegisterForm(forms.ModelForm):
     )
 
     fecha_nacimiento=forms.DateField(
-        widget=DateInput
+        widget=DateInput(attrs={
+            'class':'form-control'
+        })
    
     )
  
@@ -85,10 +90,38 @@ class UserClienteRegisterForm(forms.ModelForm):
         model=User
         fields=('email',)
 
+
+    def clean_nombre_cliente(self):
+        if len(str(self.cleaned_data['nombre_cliente']))<3:
+            raise forms.ValidationError('El nombre debe ser mayor a 2 caracteres')
+        return self.cleaned_data['nombre_cliente']
+    
+    def clean_apellido_cliente(self):
+        if len(str(self.cleaned_data['apellido_cliente']))<3:
+            raise forms.ValidationError('El apellido debe ser mayor a 2 caracteres')
+        return self.cleaned_data['apellido_cliente']
+        
     def clean_password2(self):
         if self.cleaned_data['password1'] != self.cleaned_data['password2']:
-            self.add_error('password2','Las claves no son iguales')
+            raise forms.ValidationError('Las claves deben coincidir')
+        return self.cleaned_data['password2']
+    
+    def clean_rut_cliente(self):
+        if rut_chile.is_valid_rut(str(self.cleaned_data['rut_cliente'])):
+            return self.cleaned_data['rut_cliente']
+        else:
+            raise forms.ValidationError('Rut invalido')
+        
+    def clean_fecha_nacimiento(self):
+        print(int(datetime.date.today().year)-(int(self.cleaned_data['fecha_nacimiento'].year)))
+        if int(datetime.date.today().year)-(int(self.cleaned_data['fecha_nacimiento'].year))>=18 :
+            return self.cleaned_data['fecha_nacimiento']
+        else:
+            raise forms.ValidationError('Debe ser mayor de edad')
 
+            
+
+     
 
 class LoginForm(forms.Form):
     email=forms.CharField(
