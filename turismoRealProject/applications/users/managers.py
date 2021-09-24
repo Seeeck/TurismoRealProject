@@ -18,8 +18,8 @@ class UserManager(BaseUserManager,models.Manager):
         user.save(using=self.db)
         return user
     #Para que no sea un staff false y no super usuario false
-    def create_user(self,username,password=None,**extra_fields):
-        return self._create_user(username,password,False,False,**extra_fields)
+    def create_user(self,email,password=None,**extra_fields):
+        return self._create_user(email,password,False,False,**extra_fields)
 #Esto es de administrador
     def create_superuser(self,email,password=None,**extra_fields):
         return self._create_user(email,password,True,True,**extra_fields)
