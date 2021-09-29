@@ -4,7 +4,7 @@
     "pk": 646,
     "fields": {
       "id_departamento": 0,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Kuwait",
       "numero_departamento": 2,
       "numero_personas": 3,
@@ -19,7 +19,7 @@
     "pk": 583,
     "fields": {
       "id_departamento": 1,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Mongolia",
       "numero_departamento": 4,
       "numero_personas": 4,
@@ -34,7 +34,7 @@
     "pk": 356,
     "fields": {
       "id_departamento": 2,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Spain",
       "numero_departamento": 9,
       "numero_personas": 4,
@@ -49,7 +49,7 @@
     "pk": 250,
     "fields": {
       "id_departamento": 3,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Malawi",
       "numero_departamento": 3,
       "numero_personas": 3,
@@ -64,7 +64,7 @@
     "pk": 729,
     "fields": {
       "id_departamento": 4,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Madagascar",
       "numero_departamento": 7,
       "numero_personas": 3,
@@ -79,7 +79,7 @@
     "pk": 739,
     "fields": {
       "id_departamento": 5,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Costa Rica",
       "numero_departamento": 0,
       "numero_personas": 4,
@@ -94,7 +94,7 @@
     "pk": 778,
     "fields": {
       "id_departamento": 6,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Micronesia",
       "numero_departamento": 4,
       "numero_personas": 3,
@@ -109,7 +109,7 @@
     "pk": 6,
     "fields": {
       "id_departamento": 7,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Puerto Rico",
       "numero_departamento": 10,
       "numero_personas": 3,
@@ -124,7 +124,7 @@
     "pk": 8,
     "fields": {
       "id_departamento": 8,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Germany",
       "numero_departamento": 6,
       "numero_personas": 3,
@@ -139,7 +139,7 @@
     "pk": 935,
     "fields": {
       "id_departamento": 9,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Mauritania",
       "numero_departamento": 2,
       "numero_personas": 2,
@@ -154,7 +154,7 @@
     "pk": 730,
     "fields": {
       "id_departamento": 10,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Macau",
       "numero_departamento": 5,
       "numero_personas": 2,
@@ -169,7 +169,7 @@
     "pk": 787,
     "fields": {
       "id_departamento": 11,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Mali",
       "numero_departamento": 0,
       "numero_personas": 3,
@@ -184,7 +184,7 @@
     "pk": 876,
     "fields": {
       "id_departamento": 12,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "United States",
       "numero_departamento": 8,
       "numero_personas": 3,
@@ -199,7 +199,7 @@
     "pk": 545,
     "fields": {
       "id_departamento": 13,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Bouvet Island",
       "numero_departamento": 3,
       "numero_personas": 4,
@@ -214,7 +214,7 @@
     "pk": 409,
     "fields": {
       "id_departamento": 14,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Tanzania",
       "numero_departamento": 10,
       "numero_personas": 4,
@@ -229,7 +229,7 @@
     "pk": 259,
     "fields": {
       "id_departamento": 15,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Bermuda",
       "numero_departamento": 0,
       "numero_personas": 3,
@@ -244,7 +244,7 @@
     "pk": 421,
     "fields": {
       "id_departamento": 16,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Algeria",
       "numero_departamento": 0,
       "numero_personas": 3,
@@ -259,7 +259,7 @@
     "pk": 944,
     "fields": {
       "id_departamento": 17,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "East Timor",
       "numero_departamento": 4,
       "numero_personas": 3,
@@ -274,7 +274,7 @@
     "pk": 928,
     "fields": {
       "id_departamento": 18,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Oman",
       "numero_departamento": 10,
       "numero_personas": 4,
@@ -289,7 +289,7 @@
     "pk": 619,
     "fields": {
       "id_departamento": 19,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Papua New Guinea",
       "numero_departamento": 0,
       "numero_personas": 4,
@@ -304,7 +304,7 @@
     "pk": 607,
     "fields": {
       "id_departamento": 20,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Bahamas",
       "numero_departamento": 6,
       "numero_personas": 2,
@@ -319,7 +319,7 @@
     "pk": 435,
     "fields": {
       "id_departamento": 21,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Uganda",
       "numero_departamento": 10,
       "numero_personas": 4,
@@ -334,7 +334,7 @@
     "pk": 953,
     "fields": {
       "id_departamento": 22,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Congo",
       "numero_departamento": 0,
       "numero_personas": 3,
@@ -349,7 +349,7 @@
     "pk": 17,
     "fields": {
       "id_departamento": 23,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Australia",
       "numero_departamento": 0,
       "numero_personas": 2,
@@ -364,7 +364,7 @@
     "pk": 723,
     "fields": {
       "id_departamento": 24,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Finland",
       "numero_departamento": 1,
       "numero_personas": 4,
@@ -379,7 +379,7 @@
     "pk": 809,
     "fields": {
       "id_departamento": 25,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Suriname",
       "numero_departamento": 3,
       "numero_personas": 3,
@@ -394,7 +394,7 @@
     "pk": 883,
     "fields": {
       "id_departamento": 26,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Switzerland",
       "numero_departamento": 1,
       "numero_personas": 3,
@@ -409,7 +409,7 @@
     "pk": 9,
     "fields": {
       "id_departamento": 27,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "French Southern Territories",
       "numero_departamento": 0,
       "numero_personas": 2,
@@ -424,7 +424,7 @@
     "pk": 694,
     "fields": {
       "id_departamento": 28,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Hong Kong",
       "numero_departamento": 8,
       "numero_personas": 3,
@@ -439,7 +439,7 @@
     "pk": 514,
     "fields": {
       "id_departamento": 29,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Grenada",
       "numero_departamento": 3,
       "numero_personas": 4,
@@ -454,7 +454,7 @@
     "pk": 284,
     "fields": {
       "id_departamento": 30,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "China",
       "numero_departamento": 8,
       "numero_personas": 3,
@@ -469,7 +469,7 @@
     "pk": 681,
     "fields": {
       "id_departamento": 31,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Cameroon",
       "numero_departamento": 3,
       "numero_personas": 3,
@@ -484,7 +484,7 @@
     "pk": 451,
     "fields": {
       "id_departamento": 32,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Gambia",
       "numero_departamento": 6,
       "numero_personas": 4,
@@ -499,7 +499,7 @@
     "pk": 473,
     "fields": {
       "id_departamento": 33,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "American Samoa",
       "numero_departamento": 9,
       "numero_personas": 3,
@@ -514,7 +514,7 @@
     "pk": 475,
     "fields": {
       "id_departamento": 34,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Zimbabwe",
       "numero_departamento": 7,
       "numero_personas": 2,
@@ -529,7 +529,7 @@
     "pk": 388,
     "fields": {
       "id_departamento": 35,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Colombia",
       "numero_departamento": 6,
       "numero_personas": 3,
@@ -544,7 +544,7 @@
     "pk": 872,
     "fields": {
       "id_departamento": 36,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Cote D'Ivoire (Ivory Coast)",
       "numero_departamento": 2,
       "numero_personas": 2,
@@ -559,7 +559,7 @@
     "pk": 599,
     "fields": {
       "id_departamento": 37,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Czech Republic",
       "numero_departamento": 4,
       "numero_personas": 3,
@@ -574,7 +574,7 @@
     "pk": 187,
     "fields": {
       "id_departamento": 38,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Turks and Caicos Islands",
       "numero_departamento": 7,
       "numero_personas": 3,
@@ -589,7 +589,7 @@
     "pk": 796,
     "fields": {
       "id_departamento": 39,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Barbados",
       "numero_departamento": 6,
       "numero_personas": 4,
@@ -604,7 +604,7 @@
     "pk": 332,
     "fields": {
       "id_departamento": 40,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Panama",
       "numero_departamento": 8,
       "numero_personas": 2,
@@ -619,7 +619,7 @@
     "pk": 596,
     "fields": {
       "id_departamento": 41,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Syria",
       "numero_departamento": 7,
       "numero_personas": 4,
@@ -634,7 +634,7 @@
     "pk": 757,
     "fields": {
       "id_departamento": 42,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "St. Helena",
       "numero_departamento": 10,
       "numero_personas": 4,
@@ -649,7 +649,7 @@
     "pk": 49,
     "fields": {
       "id_departamento": 43,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Azerbaijan",
       "numero_departamento": 0,
       "numero_personas": 2,
@@ -664,7 +664,7 @@
     "pk": 286,
     "fields": {
       "id_departamento": 44,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Nicaragua",
       "numero_departamento": 1,
       "numero_personas": 2,
@@ -679,7 +679,7 @@
     "pk": 248,
     "fields": {
       "id_departamento": 45,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Slovenia",
       "numero_departamento": 9,
       "numero_personas": 2,
@@ -694,7 +694,7 @@
     "pk": 990,
     "fields": {
       "id_departamento": 46,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Jordan",
       "numero_departamento": 5,
       "numero_personas": 3,
@@ -709,7 +709,7 @@
     "pk": 586,
     "fields": {
       "id_departamento": 47,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Georgia",
       "numero_departamento": 5,
       "numero_personas": 2,
@@ -724,7 +724,7 @@
     "pk": 559,
     "fields": {
       "id_departamento": 48,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Wallis and Futuna Islands",
       "numero_departamento": 3,
       "numero_personas": 3,
@@ -739,7 +739,7 @@
     "pk": 888,
     "fields": {
       "id_departamento": 49,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Djibouti",
       "numero_departamento": 0,
       "numero_personas": 3,
@@ -754,7 +754,7 @@
     "pk": 447,
     "fields": {
       "id_departamento": 50,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Equatorial Guinea",
       "numero_departamento": 7,
       "numero_personas": 4,
@@ -769,7 +769,7 @@
     "pk": 453,
     "fields": {
       "id_departamento": 51,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Italy",
       "numero_departamento": 4,
       "numero_personas": 2,
@@ -784,7 +784,7 @@
     "pk": 523,
     "fields": {
       "id_departamento": 52,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Ireland",
       "numero_departamento": 0,
       "numero_personas": 3,
@@ -799,7 +799,7 @@
     "pk": 206,
     "fields": {
       "id_departamento": 53,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Qatar",
       "numero_departamento": 9,
       "numero_personas": 4,
@@ -814,7 +814,7 @@
     "pk": 335,
     "fields": {
       "id_departamento": 54,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Afghanistan",
       "numero_departamento": 0,
       "numero_personas": 4,
@@ -829,7 +829,7 @@
     "pk": 109,
     "fields": {
       "id_departamento": 55,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Seychelles",
       "numero_departamento": 6,
       "numero_personas": 4,
@@ -844,7 +844,7 @@
     "pk": 766,
     "fields": {
       "id_departamento": 56,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "New Caledonia",
       "numero_departamento": 8,
       "numero_personas": 2,
@@ -859,7 +859,7 @@
     "pk": 56,
     "fields": {
       "id_departamento": 57,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Haiti",
       "numero_departamento": 2,
       "numero_personas": 3,
@@ -874,7 +874,7 @@
     "pk": 339,
     "fields": {
       "id_departamento": 58,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Gibraltar",
       "numero_departamento": 7,
       "numero_personas": 3,
@@ -889,7 +889,7 @@
     "pk": 202,
     "fields": {
       "id_departamento": 59,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Slovak Republic",
       "numero_departamento": 3,
       "numero_personas": 2,
@@ -904,7 +904,7 @@
     "pk": 988,
     "fields": {
       "id_departamento": 60,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Venezuela",
       "numero_departamento": 9,
       "numero_personas": 2,
@@ -919,7 +919,7 @@
     "pk": 836,
     "fields": {
       "id_departamento": 61,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Cocos (Keeling Islands)",
       "numero_departamento": 7,
       "numero_personas": 3,
@@ -934,7 +934,7 @@
     "pk": 674,
     "fields": {
       "id_departamento": 62,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Peru",
       "numero_departamento": 10,
       "numero_personas": 4,
@@ -949,7 +949,7 @@
     "pk": 969,
     "fields": {
       "id_departamento": 63,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "French Polynesia",
       "numero_departamento": 6,
       "numero_personas": 2,
@@ -964,7 +964,7 @@
     "pk": 7,
     "fields": {
       "id_departamento": 64,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Aruba",
       "numero_departamento": 1,
       "numero_personas": 2,
@@ -979,7 +979,7 @@
     "pk": 83,
     "fields": {
       "id_departamento": 65,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Kazakhstan",
       "numero_departamento": 10,
       "numero_personas": 2,
@@ -994,7 +994,7 @@
     "pk": 529,
     "fields": {
       "id_departamento": 66,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Palau",
       "numero_departamento": 0,
       "numero_personas": 3,
@@ -1009,7 +1009,7 @@
     "pk": 85,
     "fields": {
       "id_departamento": 67,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Nepal",
       "numero_departamento": 3,
       "numero_personas": 2,
@@ -1024,7 +1024,7 @@
     "pk": 49,
     "fields": {
       "id_departamento": 68,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Korea (South)",
       "numero_departamento": 2,
       "numero_personas": 3,
@@ -1039,7 +1039,7 @@
     "pk": 630,
     "fields": {
       "id_departamento": 69,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Angola",
       "numero_departamento": 0,
       "numero_personas": 4,
@@ -1054,7 +1054,7 @@
     "pk": 614,
     "fields": {
       "id_departamento": 70,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Eritrea",
       "numero_departamento": 8,
       "numero_personas": 4,
@@ -1069,7 +1069,7 @@
     "pk": 816,
     "fields": {
       "id_departamento": 71,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Laos",
       "numero_departamento": 0,
       "numero_personas": 3,
@@ -1084,7 +1084,7 @@
     "pk": 996,
     "fields": {
       "id_departamento": 72,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Greenland",
       "numero_departamento": 6,
       "numero_personas": 4,
@@ -1099,7 +1099,7 @@
     "pk": 649,
     "fields": {
       "id_departamento": 73,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Saint Vincent and The Grenadines",
       "numero_departamento": 6,
       "numero_personas": 4,
@@ -1114,7 +1114,7 @@
     "pk": 594,
     "fields": {
       "id_departamento": 74,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Guyana",
       "numero_departamento": 4,
       "numero_personas": 2,
@@ -1129,7 +1129,7 @@
     "pk": 218,
     "fields": {
       "id_departamento": 75,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Kyrgyzstan",
       "numero_departamento": 4,
       "numero_personas": 3,
@@ -1144,7 +1144,7 @@
     "pk": 140,
     "fields": {
       "id_departamento": 76,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Norway",
       "numero_departamento": 8,
       "numero_personas": 4,
@@ -1159,7 +1159,7 @@
     "pk": 950,
     "fields": {
       "id_departamento": 77,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Ecuador",
       "numero_departamento": 5,
       "numero_personas": 4,
@@ -1174,7 +1174,7 @@
     "pk": 479,
     "fields": {
       "id_departamento": 78,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Israel",
       "numero_departamento": 7,
       "numero_personas": 4,
@@ -1189,7 +1189,7 @@
     "pk": 563,
     "fields": {
       "id_departamento": 79,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Lithuania",
       "numero_departamento": 8,
       "numero_personas": 2,
@@ -1204,7 +1204,7 @@
     "pk": 239,
     "fields": {
       "id_departamento": 80,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Antigua and Barbuda",
       "numero_departamento": 2,
       "numero_personas": 4,
@@ -1219,7 +1219,7 @@
     "pk": 599,
     "fields": {
       "id_departamento": 81,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Brazil",
       "numero_departamento": 8,
       "numero_personas": 2,
@@ -1234,7 +1234,7 @@
     "pk": 419,
     "fields": {
       "id_departamento": 82,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Niue",
       "numero_departamento": 10,
       "numero_personas": 4,
@@ -1249,7 +1249,7 @@
     "pk": 243,
     "fields": {
       "id_departamento": 83,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Bulgaria",
       "numero_departamento": 1,
       "numero_personas": 2,
@@ -1264,7 +1264,7 @@
     "pk": 697,
     "fields": {
       "id_departamento": 84,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Benin",
       "numero_departamento": 4,
       "numero_personas": 3,
@@ -1279,7 +1279,7 @@
     "pk": 875,
     "fields": {
       "id_departamento": 85,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Iran",
       "numero_departamento": 7,
       "numero_personas": 4,
@@ -1294,7 +1294,7 @@
     "pk": 398,
     "fields": {
       "id_departamento": 86,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Dominican Republic",
       "numero_departamento": 0,
       "numero_personas": 4,
@@ -1309,7 +1309,7 @@
     "pk": 432,
     "fields": {
       "id_departamento": 87,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Sudan",
       "numero_departamento": 4,
       "numero_personas": 4,
@@ -1324,7 +1324,7 @@
     "pk": 513,
     "fields": {
       "id_departamento": 88,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Honduras",
       "numero_departamento": 3,
       "numero_personas": 2,
@@ -1339,7 +1339,7 @@
     "pk": 61,
     "fields": {
       "id_departamento": 89,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Anguilla",
       "numero_departamento": 5,
       "numero_personas": 4,
@@ -1354,7 +1354,7 @@
     "pk": 878,
     "fields": {
       "id_departamento": 90,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Denmark",
       "numero_departamento": 5,
       "numero_personas": 2,
@@ -1369,7 +1369,7 @@
     "pk": 178,
     "fields": {
       "id_departamento": 91,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Zambia",
       "numero_departamento": 9,
       "numero_personas": 2,
@@ -1384,7 +1384,7 @@
     "pk": 417,
     "fields": {
       "id_departamento": 92,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "South Africa",
       "numero_departamento": 2,
       "numero_personas": 2,
@@ -1399,7 +1399,7 @@
     "pk": 662,
     "fields": {
       "id_departamento": 93,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Vatican City State (Holy See)",
       "numero_departamento": 6,
       "numero_personas": 2,
@@ -1414,7 +1414,7 @@
     "pk": 241,
     "fields": {
       "id_departamento": 94,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Bosnia and Herzegovina",
       "numero_departamento": 9,
       "numero_personas": 4,
@@ -1429,7 +1429,7 @@
     "pk": 330,
     "fields": {
       "id_departamento": 95,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Svalbard and Jan Mayen Islands",
       "numero_departamento": 5,
       "numero_personas": 4,
@@ -1444,7 +1444,7 @@
     "pk": 591,
     "fields": {
       "id_departamento": 96,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "India",
       "numero_departamento": 2,
       "numero_personas": 3,
@@ -1459,7 +1459,7 @@
     "pk": 114,
     "fields": {
       "id_departamento": 97,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Central African Republic",
       "numero_departamento": 6,
       "numero_personas": 2,
@@ -1474,7 +1474,7 @@
     "pk": 877,
     "fields": {
       "id_departamento": 98,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Kenya",
       "numero_departamento": 0,
       "numero_personas": 3,
@@ -1489,7 +1489,7 @@
     "pk": 483,
     "fields": {
       "id_departamento": 99,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "United Arab Emirates",
       "numero_departamento": 1,
       "numero_personas": 4,
@@ -1504,7 +1504,7 @@
     "pk": 927,
     "fields": {
       "id_departamento": 100,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "United Kingdom",
       "numero_departamento": 7,
       "numero_personas": 4,
@@ -1519,7 +1519,7 @@
     "pk": 622,
     "fields": {
       "id_departamento": 101,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Togo",
       "numero_departamento": 9,
       "numero_personas": 2,
@@ -1534,7 +1534,7 @@
     "pk": 956,
     "fields": {
       "id_departamento": 102,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Mozambique",
       "numero_departamento": 8,
       "numero_personas": 2,
@@ -1549,7 +1549,7 @@
     "pk": 136,
     "fields": {
       "id_departamento": 103,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Thailand",
       "numero_departamento": 8,
       "numero_personas": 2,
@@ -1564,7 +1564,7 @@
     "pk": 873,
     "fields": {
       "id_departamento": 104,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Poland",
       "numero_departamento": 6,
       "numero_personas": 2,
@@ -1579,7 +1579,7 @@
     "pk": 218,
     "fields": {
       "id_departamento": 105,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Yemen",
       "numero_departamento": 0,
       "numero_personas": 4,
@@ -1594,7 +1594,7 @@
     "pk": 274,
     "fields": {
       "id_departamento": 106,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Myanmar",
       "numero_departamento": 10,
       "numero_personas": 3,
@@ -1609,7 +1609,7 @@
     "pk": 106,
     "fields": {
       "id_departamento": 107,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "El Salvador",
       "numero_departamento": 5,
       "numero_personas": 4,
@@ -1624,7 +1624,7 @@
     "pk": 231,
     "fields": {
       "id_departamento": 108,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Tonga",
       "numero_departamento": 1,
       "numero_personas": 2,
@@ -1639,7 +1639,7 @@
     "pk": 345,
     "fields": {
       "id_departamento": 109,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Estonia",
       "numero_departamento": 10,
       "numero_personas": 4,
@@ -1654,7 +1654,7 @@
     "pk": 881,
     "fields": {
       "id_departamento": 110,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Sri Lanka",
       "numero_departamento": 3,
       "numero_personas": 4,
@@ -1669,7 +1669,7 @@
     "pk": 583,
     "fields": {
       "id_departamento": 111,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Latvia",
       "numero_departamento": 0,
       "numero_personas": 4,
@@ -1684,7 +1684,7 @@
     "pk": 427,
     "fields": {
       "id_departamento": 112,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Marshall Islands",
       "numero_departamento": 2,
       "numero_personas": 4,
@@ -1699,7 +1699,7 @@
     "pk": 523,
     "fields": {
       "id_departamento": 113,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Montserrat",
       "numero_departamento": 8,
       "numero_personas": 3,
@@ -1714,7 +1714,7 @@
     "pk": 472,
     "fields": {
       "id_departamento": 114,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Viet Nam",
       "numero_departamento": 3,
       "numero_personas": 2,
@@ -1729,7 +1729,7 @@
     "pk": 405,
     "fields": {
       "id_departamento": 115,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Romania",
       "numero_departamento": 3,
       "numero_personas": 2,
@@ -1744,7 +1744,7 @@
     "pk": 315,
     "fields": {
       "id_departamento": 116,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Guadeloupe",
       "numero_departamento": 5,
       "numero_personas": 3,
@@ -1759,7 +1759,7 @@
     "pk": 147,
     "fields": {
       "id_departamento": 117,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Nigeria",
       "numero_departamento": 0,
       "numero_personas": 2,
@@ -1774,7 +1774,7 @@
     "pk": 375,
     "fields": {
       "id_departamento": 118,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Guinea-Bissau",
       "numero_departamento": 6,
       "numero_personas": 4,
@@ -1789,7 +1789,7 @@
     "pk": 309,
     "fields": {
       "id_departamento": 119,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Philippines",
       "numero_departamento": 8,
       "numero_personas": 4,
@@ -1804,7 +1804,7 @@
     "pk": 709,
     "fields": {
       "id_departamento": 120,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Andorra",
       "numero_departamento": 9,
       "numero_personas": 2,
@@ -1819,7 +1819,7 @@
     "pk": 452,
     "fields": {
       "id_departamento": 121,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Gabon",
       "numero_departamento": 5,
       "numero_personas": 3,
@@ -1834,7 +1834,7 @@
     "pk": 448,
     "fields": {
       "id_departamento": 122,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Monaco",
       "numero_departamento": 4,
       "numero_personas": 2,
@@ -1849,7 +1849,7 @@
     "pk": 214,
     "fields": {
       "id_departamento": 123,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Christmas Island",
       "numero_departamento": 10,
       "numero_personas": 3,
@@ -1864,7 +1864,7 @@
     "pk": 486,
     "fields": {
       "id_departamento": 124,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Burundi",
       "numero_departamento": 7,
       "numero_personas": 3,
@@ -1879,7 +1879,7 @@
     "pk": 289,
     "fields": {
       "id_departamento": 125,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Albania",
       "numero_departamento": 1,
       "numero_personas": 2,
@@ -1894,7 +1894,7 @@
     "pk": 686,
     "fields": {
       "id_departamento": 126,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Senegal",
       "numero_departamento": 9,
       "numero_personas": 2,
@@ -1909,7 +1909,7 @@
     "pk": 130,
     "fields": {
       "id_departamento": 127,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Martinique",
       "numero_departamento": 8,
       "numero_personas": 4,
@@ -1924,7 +1924,7 @@
     "pk": 938,
     "fields": {
       "id_departamento": 128,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Zaire",
       "numero_departamento": 1,
       "numero_personas": 2,
@@ -1939,7 +1939,7 @@
     "pk": 878,
     "fields": {
       "id_departamento": 129,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Norfolk Island",
       "numero_departamento": 0,
       "numero_personas": 4,
@@ -1954,7 +1954,7 @@
     "pk": 669,
     "fields": {
       "id_departamento": 130,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Sierra Leone",
       "numero_departamento": 4,
       "numero_personas": 4,
@@ -1969,7 +1969,7 @@
     "pk": 12,
     "fields": {
       "id_departamento": 131,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Niger",
       "numero_departamento": 0,
       "numero_personas": 4,
@@ -1984,7 +1984,7 @@
     "pk": 514,
     "fields": {
       "id_departamento": 132,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "France, Metropolitan",
       "numero_departamento": 7,
       "numero_personas": 2,
@@ -1999,7 +1999,7 @@
     "pk": 72,
     "fields": {
       "id_departamento": 133,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Virgin Islands (British)",
       "numero_departamento": 0,
       "numero_personas": 3,
@@ -2014,7 +2014,7 @@
     "pk": 71,
     "fields": {
       "id_departamento": 134,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Lebanon",
       "numero_departamento": 5,
       "numero_personas": 4,
@@ -2029,7 +2029,7 @@
     "pk": 630,
     "fields": {
       "id_departamento": 135,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Rwanda",
       "numero_departamento": 5,
       "numero_personas": 4,
@@ -2044,7 +2044,7 @@
     "pk": 151,
     "fields": {
       "id_departamento": 136,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Greece",
       "numero_departamento": 2,
       "numero_personas": 3,
@@ -2059,7 +2059,7 @@
     "pk": 974,
     "fields": {
       "id_departamento": 137,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Comoros",
       "numero_departamento": 9,
       "numero_personas": 3,
@@ -2074,7 +2074,7 @@
     "pk": 891,
     "fields": {
       "id_departamento": 138,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Namibia",
       "numero_departamento": 3,
       "numero_personas": 4,
@@ -2089,7 +2089,7 @@
     "pk": 667,
     "fields": {
       "id_departamento": 139,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Morocco",
       "numero_departamento": 4,
       "numero_personas": 4,
@@ -2104,7 +2104,7 @@
     "pk": 386,
     "fields": {
       "id_departamento": 140,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Bangladesh",
       "numero_departamento": 8,
       "numero_personas": 4,
@@ -2119,7 +2119,7 @@
     "pk": 312,
     "fields": {
       "id_departamento": 141,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "New Zealand",
       "numero_departamento": 5,
       "numero_personas": 4,
@@ -2134,7 +2134,7 @@
     "pk": 243,
     "fields": {
       "id_departamento": 142,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Netherlands",
       "numero_departamento": 6,
       "numero_personas": 2,
@@ -2149,7 +2149,7 @@
     "pk": 270,
     "fields": {
       "id_departamento": 143,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Vanuatu",
       "numero_departamento": 9,
       "numero_personas": 2,
@@ -2164,7 +2164,7 @@
     "pk": 442,
     "fields": {
       "id_departamento": 144,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Uzbekistan",
       "numero_departamento": 1,
       "numero_personas": 4,
@@ -2179,7 +2179,7 @@
     "pk": 287,
     "fields": {
       "id_departamento": 145,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Virgin Islands (US)",
       "numero_departamento": 5,
       "numero_personas": 4,
@@ -2194,7 +2194,7 @@
     "pk": 511,
     "fields": {
       "id_departamento": 146,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Turkey",
       "numero_departamento": 2,
       "numero_personas": 4,
@@ -2209,7 +2209,7 @@
     "pk": 92,
     "fields": {
       "id_departamento": 147,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Korea (North)",
       "numero_departamento": 0,
       "numero_personas": 2,
@@ -2224,7 +2224,7 @@
     "pk": 563,
     "fields": {
       "id_departamento": 148,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "US Minor Outlying Islands",
       "numero_departamento": 7,
       "numero_personas": 4,
@@ -2239,7 +2239,7 @@
     "pk": 655,
     "fields": {
       "id_departamento": 149,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Paraguay",
       "numero_departamento": 8,
       "numero_personas": 4,
@@ -2254,7 +2254,7 @@
     "pk": 605,
     "fields": {
       "id_departamento": 150,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Falkland Islands (Malvinas)",
       "numero_departamento": 1,
       "numero_personas": 3,
@@ -2269,7 +2269,7 @@
     "pk": 497,
     "fields": {
       "id_departamento": 151,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Armenia",
       "numero_departamento": 3,
       "numero_personas": 4,
@@ -2284,7 +2284,7 @@
     "pk": 734,
     "fields": {
       "id_departamento": 152,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Cook Islands",
       "numero_departamento": 10,
       "numero_personas": 2,
@@ -2299,7 +2299,7 @@
     "pk": 218,
     "fields": {
       "id_departamento": 153,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Yugoslavia",
       "numero_departamento": 1,
       "numero_personas": 3,
@@ -2314,7 +2314,7 @@
     "pk": 160,
     "fields": {
       "id_departamento": 154,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Russian Federation",
       "numero_departamento": 6,
       "numero_personas": 4,
@@ -2329,7 +2329,7 @@
     "pk": 910,
     "fields": {
       "id_departamento": 155,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "San Marino",
       "numero_departamento": 6,
       "numero_personas": 3,
@@ -2344,7 +2344,7 @@
     "pk": 634,
     "fields": {
       "id_departamento": 156,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Portugal",
       "numero_departamento": 1,
       "numero_personas": 3,
@@ -2359,7 +2359,7 @@
     "pk": 993,
     "fields": {
       "id_departamento": 157,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Canada",
       "numero_departamento": 4,
       "numero_personas": 3,
@@ -2374,7 +2374,7 @@
     "pk": 78,
     "fields": {
       "id_departamento": 158,
-      "imagen_departamento": "aaaa",
+      "imagen_departamento": "images/departamento1.jpg",
       "nombre_departamento": "Cuba",
       "numero_departamento": 3,
       "numero_personas": 2,

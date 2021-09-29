@@ -1,6 +1,4 @@
 
-
-# Create your views here.
 from django.contrib.auth import login
 from django.shortcuts import redirect, render
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -12,7 +10,7 @@ from django.views.generic.edit import FormView
 from applications.users.models import User
 from django.views.generic  import ListView
 #Modelos
-from applications.crudModelos.models import Departamento
+from applications.crudModelos.models import Departamento,Zona
 # Create your views here.
 
 from django.http import request
@@ -35,6 +33,15 @@ class ListaDepartamentos(LoginRequiredMixin,ListView):
         if self.request.user.is_funcionario:
             return redirect('funcionario_app:panel-funcionario')
         return super(ListaDepartamentos,self).dispatch(request,*args,**kwargs)
+    
+    def get_queryset(self):
+        comuna=self.request.GET.get("comuna","")
+        
+        lista=Departamento.objects.filter(id_zona__comuna__icontains=comuna)
+
+        return lista
+        
+        
 
 
         

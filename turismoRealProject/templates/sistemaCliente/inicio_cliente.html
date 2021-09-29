@@ -6,58 +6,61 @@
 {%include 'includes/nav.html' %}
 
 <div class="container-fluid">
-    <div class="row mt-4 justify-content-center">
-        <div class="col-md-2">
-            <div class="row mt-4">
+    <form action="" method="GET">
+        {% csrf_token %}
+        <div class="row mt-4 justify-content-center">
 
-                <input class="form-control me-2" type="search" placeholder="A donde vas?"
-                    aria-label="Buscar departamento">
+            <div class="col-md-2">
+                <div class="row mt-4">
+
+                    <input id="comuna" name="comuna" class="form-control me-2" type="search" placeholder="A donde vas?"
+                        aria-label="Buscar departamento">
+                </div>
+
+
             </div>
 
+            <div class="col-md-1">
+                <div class="row">
+                    <label for="fechaDesde">Check-in</label>
+                    <div id="fechaDesde" class="input-group date">
+                        <input type="text" class="form-control" value="25/01/2022"><span class="input-group-addon"><i
+                                class="glyphicon glyphicon-th"></i></span>
+                    </div>
+                </div>
 
-        </div>
+            </div>
 
-        <div class="col-md-1">
-            <div class="row">
-                <label for="fechaDesde">Check-in</label>
-                <div id="fechaDesde" class="input-group date">
-                    <input type="text" class="form-control" value="25/01/2022"><span class="input-group-addon"><i
-                            class="glyphicon glyphicon-th"></i></span>
+            <div class="col-md-1">
+                <div class="row">
+                    <label for="fechaDesde">Check-out</label>
+                    <div id="fechaDesde" class="input-group date">
+                        <input type="text" class="form-control" value="25/01/2022"><span class="input-group-addon"><i
+                                class="glyphicon glyphicon-th"></i></span>
+                    </div>
                 </div>
             </div>
+            <div class="col-md-2">
+                <div class="row mt-4">
 
-        </div>
-
-        <div class="col-md-1">
-            <div class="row">
-                <label for="fechaDesde">Check-out</label>
-                <div id="fechaDesde" class="input-group date">
-                    <input type="text" class="form-control" value="25/01/2022"><span class="input-group-addon"><i
-                            class="glyphicon glyphicon-th"></i></span>
+                    <input class="form-control me-2" type="search" placeholder="Numero de personas"
+                        aria-label="Buscar departamento">
                 </div>
-            </div>
-        </div>
-        <div class="col-md-2">
-            <div class="row mt-4">
 
-                <input class="form-control me-2" type="search" placeholder="Numero de personas"
-                    aria-label="Buscar departamento">
+
             </div>
 
+            <div class="col-md-1">
+                <div class="row mt-4 ml-4 ">
+                    <button type="submit" class=" btn btn-primary">Buscar</button>
+                </div>
 
-        </div>
-
-        <div class="col-md-1">
-            <div class="row mt-4 ml-4 ">
-                <button type="button" class=" btn btn-primary">Buscar</button>
             </div>
+
 
         </div>
 
-
-    </div>
-
-
+    </form>
 
 
 
@@ -66,35 +69,55 @@
         <div class="col-md-7">
             <table class="table">
                 <thead>
-                    <tr>
-                        <th scope="col">Nombre departamento</th>
-                        <th scope="col">Imagen</th>
-                        <th scope="col">Numero de piezas</th>
-                        <th scope="col">Valor/dia</th>
-                        <th scope="col">Disponibilidad</th>
-                        <th scope="col">Accion</th>
+                    <tr class="row">
+                        <th class="col-md-2" scope="col">Nombre departamento</th>
+                        <th class="col-md-2" scope="col">Imagen</th>
+                        <th class="col-md-2" scope="col">Numero de piezas</th>
+                        <th class="col-md-2" scope="col">Valor/dia</th>
+                        <th class="col-md-2" scope="col">Comuna</th>
+                        <th class="col-md-2" scope="col">Accion</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for d in departamentos %}
-                    <tr>
-                        <td>{{d.nombre_departamento}}</td>
-                        <td>
+                    <tr class="row">
+                        <td class="col-md-2">{{d.nombre_departamento}}</td>
+                        <td class="col-md-2">
+
                             {% if d.imagen_departamento %}
-                            <img class="img-fluid h-25 w-25" src="{{d.imagen_departamento.url}}" alt="">
+                            <img class="img-fluid " src="{{d.imagen_departamento.url}}" alt="">
                             {%else%}
                             <h1>Sin imagen</h1>
                             {%endif%}
                         </td>
-                        <td>{{d.numero_personas}}</td>
-                        <td>{{d.valor_dia}}</td>        
-                        <td>{{d.estado_departamento}}</td>
-                        <td><button type="button" class="btn btn-success">Reservar</button></td>
+                        <td class="col-md-2">{{d.numero_personas}}</td>
+                        <td class="col-md-2">{{d.valor_dia}}</td>
+                        <td class="col-md-2">{{d.id_zona}}</td>
+
+                        <td class="col-md-2"><button type="button" class="btn btn-success">Ver</button></td>
                     </tr>
                     {%endfor%}
 
                 </tbody>
             </table>
+            {% if is_paginated %}
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    {% if page_obj.has_previous %}
+                    <li class="page-item"><a class="page-link" href="?page={{page_obj.previous_page_number}}">Atras</a>
+                    </li>
+                    {% endif%}
+
+                    <li class="page-item"><a class="page-link" href="?page={{page_obj.number}}">{{page_obj.number}}</a>
+                    </li>
+
+                    {% if page_obj.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{page_obj.next_page_number}}">Siguiente</a>
+                    </li>
+                    {%endif%}
+                </ul>
+            </nav>
+            {%endif%}
         </div>
 
     </div>
