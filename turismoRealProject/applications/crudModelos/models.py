@@ -10,7 +10,7 @@ class Zona(models.Model):
     region = models.CharField(max_length=50)
 
     def __str__(self):
-        return self.comuna
+        return str(self.id_zona)+self.comuna
     class Meta:
         verbose_name='Zona'
 

@@ -51,14 +51,14 @@
             <div class="row mt-4 ml-4 ">
                 <button type="button" class=" btn btn-primary">Buscar</button>
             </div>
-           
+
         </div>
 
 
     </div>
 
 
-    
+
 
 
 
@@ -71,15 +71,27 @@
                         <th scope="col">Imagen</th>
                         <th scope="col">Numero de piezas</th>
                         <th scope="col">Valor/dia</th>
+                        <th scope="col">Disponibilidad</th>
                         <th scope="col">Accion</th>
                     </tr>
                 </thead>
                 <tbody>
+                    {% for d in departamentos %}
                     <tr>
-                        <th>
-
-                        </th>
+                        <td>{{d.nombre_departamento}}</td>
+                        <td>
+                            {% if d.imagen_departamento %}
+                            <img class="img-fluid h-25 w-25" src="{{d.imagen_departamento.url}}" alt="">
+                            {%else%}
+                            <h1>Sin imagen</h1>
+                            {%endif%}
+                        </td>
+                        <td>{{d.numero_personas}}</td>
+                        <td>{{d.valor_dia}}</td>        
+                        <td>{{d.estado_departamento}}</td>
+                        <td><button type="button" class="btn btn-success">Reservar</button></td>
                     </tr>
+                    {%endfor%}
 
                 </tbody>
             </table>

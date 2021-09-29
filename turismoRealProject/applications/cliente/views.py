@@ -23,17 +23,20 @@ class Inicio(TemplateView):
     template_name="sistemaCliente/inicio.html"
     
 
-class InicioCliente(LoginRequiredMixin,ListView):
+class ListaDepartamentos(LoginRequiredMixin,ListView):
     
     template_name = "sistemaCliente/inicio_cliente.html"
     login_url=reverse_lazy('users_app:user-login') 
     paginate_by=4
     model=Departamento
+    context_object_name = "departamentos"
 
     def dispatch(self,request,*args,**kwargs):
         if self.request.user.is_funcionario:
             return redirect('funcionario_app:panel-funcionario')
-        return super(InicioCliente,self).dispatch(request,*args,**kwargs)
+        return super(ListaDepartamentos,self).dispatch(request,*args,**kwargs)
+
+
         
     
 

@@ -58,7 +58,7 @@ class UserClienteRegisterView(FormView):
 class LoginUser(FormView):
     template_name='users/cliente/login.html'
     form_class=LoginForm
-    success_url=reverse_lazy('cliente_app:inicio-cliente')
+    success_url=reverse_lazy('cliente_app:lista_departamentos')
 
     def form_valid(self,form):
         #verificacion con authenticate
