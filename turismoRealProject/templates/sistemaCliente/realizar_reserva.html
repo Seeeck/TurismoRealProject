@@ -1,0 +1,12 @@
+{% extends 'base/base.html'%}
+{%load static %}
+{%block titulo%}Realizar reserva{%endblock titulo%}
+{%block contenido%}
+{%include 'includes/nav.html' %}
+
+<div class="form-group">
+    <label for="exampleInputEmail1">Check_in</label>
+    {{form.check_in}}
+</div>
+
+{%endblock contenido%}

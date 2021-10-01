@@ -3,17 +3,18 @@ from django.contrib.auth import login
 from django.shortcuts import redirect, render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls.base import reverse_lazy
-from django.views.generic import(TemplateView)
-from django.views.generic import CreateView
-from django.views.generic.base import View
-from django.views.generic.edit import FormView
-from applications.users.models import User
+
+from django.views.generic import(TemplateView,CreateView)
 from django.views.generic  import ListView
 #Modelos
-from applications.crudModelos.models import Departamento,Zona
+from applications.crudModelos.models import Departamento,Reserva
+#Forms
+from .forms import ReservaForm
 # Create your views here.
 
-from django.http import request
+
+
+
 
 
 
@@ -21,9 +22,9 @@ class Inicio(TemplateView):
     template_name="sistemaCliente/inicio.html"
     
 
-class ListaDepartamentos(LoginRequiredMixin,ListView):
+class ListaDepartamentosView(LoginRequiredMixin,ListView):
     
-    template_name = "sistemaCliente/inicio_cliente.html"
+    template_name = "sistemaCliente/lista_departamentos.html"
     login_url=reverse_lazy('users_app:user-login') 
     paginate_by=4
     model=Departamento
@@ -32,7 +33,7 @@ class ListaDepartamentos(LoginRequiredMixin,ListView):
     def dispatch(self,request,*args,**kwargs):
         if self.request.user.is_funcionario:
             return redirect('funcionario_app:panel-funcionario')
-        return super(ListaDepartamentos,self).dispatch(request,*args,**kwargs)
+        return super(ListaDepartamentosView,self).dispatch(request,*args,**kwargs)
     
     def get_queryset(self):
         comuna=self.request.GET.get("comuna","")
@@ -42,6 +43,13 @@ class ListaDepartamentos(LoginRequiredMixin,ListView):
         return lista
         
         
+class ReservarDepartamentoView(CreateView):
+    model=Reserva
+    template_name="sistemaCliente/realizar_reserva.html"
+    form_class=ReservaForm
+    
+
+
 
 
         

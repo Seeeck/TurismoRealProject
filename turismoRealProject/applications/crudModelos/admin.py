@@ -20,3 +20,4 @@ class DepartamentoAdmin(admin.ModelAdmin):
     list_filter=('id_zona',)
 
 admin.site.register(Departamento,DepartamentoAdmin)
+admin.site.register(Reserva)

@@ -1,6 +1,6 @@
 from django.db import models
 from django.db.models.fields import AutoField
-from applications.users.models import User
+from applications.users.models import User,Cliente
 from turismoRealProject.settings.local import BASE_DIR
 
 # Create your models here.
@@ -37,7 +37,17 @@ class Departamento(models.Model):
         verbose_name_plural='Departamentos'
         ordering=['nombre_departamento']
 
-
+class Reserva(models.Model):
+    id_reserva = models.AutoField(primary_key=True)
+    check_in=models.DateField()
+    check_out=models.DateField()
+    valor_total = models.IntegerField(default=0)
+    tercer_pago_checkout = models.IntegerField(default=0)
+    is_pago_anticipo = models.BooleanField(default=False)
+    is_pago_checkin = models.BooleanField(default=False)
+    is_pago_checkout = models.BooleanField(default=False)
+    id_departamento=models.ForeignKey(Departamento,on_delete=models.CASCADE)
+    id_cliente=models.ForeignKey(Cliente,on_delete=models.CASCADE)
 
 
 """ 
