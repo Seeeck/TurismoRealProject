@@ -24,6 +24,7 @@ Pruebas por:
 - six 1.16.0
 - sqlparse 0.4.1
 - Unipath 1.1
+- rut_chile 2.0.1
 
 
 ## Como ejecutar el proyecto
