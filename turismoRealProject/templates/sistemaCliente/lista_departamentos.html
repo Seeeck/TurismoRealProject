@@ -72,10 +72,11 @@
                     <tr class="row">
                         <th class="col-md-2" scope="col">Nombre departamento</th>
                         <th class="col-md-2" scope="col">Imagen</th>
-                        <th class="col-md-2" scope="col">Numero de piezas</th>
+                        <th class="col-md-2" scope="col">Capacidad</th>
                         <th class="col-md-2" scope="col">Valor/dia</th>
-                        <th class="col-md-2" scope="col">Comuna</th>
-                        <th class="col-md-2" scope="col">Accion</th>
+                        <th class="col" scope="col">Comuna</th>
+                        <th class="col" scope="col">Servicio Extra</th>
+                        <th class="col" scope="col">Accion</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -90,11 +91,11 @@
                             <h1>Sin imagen</h1>
                             {%endif%}
                         </td>
-                        <td class="col-md-2">{{d.numero_personas}}</td>
+                        <td class="col-md-2">{{d.numero_personas}} personas</td>
                         <td class="col-md-2">{{d.valor_dia}}</td>
-                        <td class="col-md-2">{{d.id_zona}}</td>
-
-                        <td class="col-md-2"><button type="button" class="btn btn-success">Reservar</button></td>
+                        <td class="col">{{d.id_zona}}</td>
+                        <td class="col">{{d.nombre_departamento}}</td>
+                        <td class="col"><a class="btn btn-success" href="{%url 'cliente_app:reservar-departamento' d.id_departamento %} ">Reservar</a></td>
                     </tr>
                     {%endfor%}
 

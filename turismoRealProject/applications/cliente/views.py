@@ -3,7 +3,6 @@ from django.contrib.auth import login
 from django.shortcuts import redirect, render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls.base import reverse_lazy
-
 from django.views.generic import(TemplateView,CreateView)
 from django.views.generic  import ListView
 #Modelos
@@ -11,7 +10,7 @@ from applications.crudModelos.models import Departamento,Reserva
 #Forms
 from .forms import ReservaForm
 # Create your views here.
-
+from django.http import HttpRequest
 
 
 
@@ -43,10 +42,42 @@ class ListaDepartamentosView(LoginRequiredMixin,ListView):
         return lista
         
         
-class ReservarDepartamentoView(CreateView):
+class ReservarDepartamentoView(LoginRequiredMixin,CreateView):
     model=Reserva
     template_name="sistemaCliente/realizar_reserva.html"
     form_class=ReservaForm
+    context_object_name='departamento'
+    
+
+    def get_context_data(self,**kwargs):
+        context = super(ReservarDepartamentoView, self).get_context_data(**kwargs)
+        departamento=Departamento.objects.get(id_departamento=self.kwargs['id_departamento'])
+        context['imagen_departamento']=departamento.imagen_departamento
+        context['nombre_departamento']=departamento.nombre_departamento
+        context['numero_personas']=departamento.numero_personas
+        context['lista_personas']=range(1,departamento.numero_personas)
+        context['valor_dia']=departamento.valor_dia
+        context['valor_anticipo']=departamento.valor_anticipo
+        return context
+
+    def form_valid(self,form):
+        print("a@@@@@@@@@")
+        print(self.request.POST.get('nombre0'))
+        print(self.request.POST.get('nombre1'))
+
+        return super(ReservarDepartamentoView,self).form_valid(form)
+    
+    
+
+    
+    
+    
+    
+ 
+    
+
+
+    
     
 
 

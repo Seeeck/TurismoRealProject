@@ -4,9 +4,81 @@
 {%block contenido%}
 {%include 'includes/nav.html' %}
 
-<div class="form-group">
-    <label for="exampleInputEmail1">Check_in</label>
-    {{form.check_in}}
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-md-2 mt-4 align-self-center">
+            <div class="card" style="width: 18rem;">
+                <img src="{{imagen_departamento.url}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{nombre_departamento}}</h5>
+
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><label for="">Capacidad</label>
+                        <h6>{{numero_personas}} Personas</h6>
+                    </li>
+                    <li class="list-group-item"><label for="">Costo anticipo</label>
+                        <h6>${{valor_anticipo}} </h6>
+                    </li>
+                    <li class="list-group-item"><label for="">Valor por dia </label>
+                        <h6>${{valor_dia}} </h6>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+        <div class="col-md-4 align-self-start">
+            <form class="mt-4" action="" method="POST">
+                {%csrf_token%}
+                <div class="row justify-content-center">
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Llegada</label>
+                            {{form.check_in}}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Ida</label>
+                            {{form.check_out}}
+                        </div>
+                    </div>
+
+
+
+                </div>
+        
+                {%for a in lista_personas %}
+                <div class="row mt-4 justify-content-center">
+                    <label for="exampleInputEmail1">Acompañante {{a}}</label>
+                    <div class="col ">
+                        <label for="exampleInputEmail1">Nombre</label>
+                        <input name="nombre{{a}}" type="text">
+                    </div>
+                    <div class="col">
+                        <label for="exampleInputEmail1">Apellido</label>
+                        <input name="apellido{{a}}" type="text">
+                    </div>
+                </div>
+                {%endfor%}
+
+
+                <div class="row justify-content-center">
+                    <div class="col-md-4">
+                        <button type="submit">Reservar</button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+
+
 </div>
+
+
 
 {%endblock contenido%}
