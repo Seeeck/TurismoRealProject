@@ -62,15 +62,19 @@ class LoginUser(FormView):
 
     def form_valid(self,form):
         #verificacion con authenticate
-        user_object= User.objects.get(email=form.cleaned_data['email'])
+        user_object= User.objects.get(email=form.cleaned_data.get('email'))
+        
         if user_object.is_funcionario==False:
+            
             user = authenticate(
-            username=form.cleaned_data['email'],
-            password=form.cleaned_data['password'] 
+        
+            username=form.cleaned_data.get('email'),
+            password=form.clean_password() 
             )
+           
             login(self.request,user)
         
-        print('######desdeLoginUser!!!!!!!!')
+        
         #Con esto se realiza el login y el propio request
         
         return super(LoginUser,self).form_valid(form)

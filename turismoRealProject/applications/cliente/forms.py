@@ -16,7 +16,9 @@ class ReservaForm(forms.ModelForm):
             'class':'form-control'
         })
     )
-   
+    
+    
+
     class Meta:
         model=Reserva
         fields=['check_in','check_out']

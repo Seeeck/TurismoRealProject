@@ -20,27 +20,8 @@
 
             </div>
 
-            <div class="col-md-1">
-                <div class="row">
-                    <label for="fechaDesde">Check-in</label>
-                    <div id="fechaDesde" class="input-group date">
-                        <input type="text" class="form-control" value="25/01/2022"><span class="input-group-addon"><i
-                                class="glyphicon glyphicon-th"></i></span>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="col-md-1">
-                <div class="row">
-                    <label for="fechaDesde">Check-out</label>
-                    <div id="fechaDesde" class="input-group date">
-                        <input type="text" class="form-control" value="25/01/2022"><span class="input-group-addon"><i
-                                class="glyphicon glyphicon-th"></i></span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-2">
+            
+            <div class=" ms-4 col-md-2">
                 <div class="row mt-4">
 
                     <input class="form-control me-2" type="search" placeholder="Numero de personas"
@@ -75,7 +56,8 @@
                         <th class="col-md-2" scope="col">Capacidad</th>
                         <th class="col-md-2" scope="col">Valor/dia</th>
                         <th class="col" scope="col">Comuna</th>
-                        <th class="col" scope="col">Servicio Extra</th>
+                        <th class="col" scope="col">Tour</th>
+                        <th class="col" scope="col">Transporte</th>
                         <th class="col" scope="col">Accion</th>
                     </tr>
                 </thead>
@@ -94,7 +76,17 @@
                         <td class="col-md-2">{{d.numero_personas}} personas</td>
                         <td class="col-md-2">{{d.valor_dia}}</td>
                         <td class="col">{{d.id_zona}}</td>
-                        <td class="col">{{d.nombre_departamento}}</td>
+                        {%if d.is_tour %}
+                        <td class="col">Si</td>
+                        {%else%}
+                        <td class="col">No</td>
+                        {%endif%}
+
+                        {%if d.is_transporte %}
+                        <td class="col">Si</td>
+                        {%else%}
+                        <td class="col">No</td>
+                        {%endif%}
                         <td class="col"><a class="btn btn-success" href="{%url 'cliente_app:reservar-departamento' d.id_departamento %} ">Reservar</a></td>
                     </tr>
                     {%endfor%}

@@ -1,0 +1,135 @@
+[
+  {
+    "model": "crudModelos.Departamento",
+    "pk": 391,
+    "fields": {
+      "id_departamento": 0,
+      "imagen_departamento": "images/departamento1.jpg",
+      "nombre_departamento": "departamento 0",
+      "numero_departamento": 766,
+      "numero_personas": 3,
+      "is_tour": true,
+      "is_transporte": true,
+      "valor_dia": 30000,
+      "valor_anticipo": 15000,
+      "estado_departamentp": "O",
+      "id_zona": 21,
+      "id_tour": null,
+      "id_transporte": null
+    }
+  },
+  {
+    "model": "crudModelos.Departamento",
+    "pk": 223,
+    "fields": {
+      "id_departamento": 1,
+      "imagen_departamento": "images/departamento1.jpg",
+      "nombre_departamento": "departamento 1",
+      "numero_departamento": 12,
+      "numero_personas": 2,
+      "is_tour": true,
+      "is_transporte": true,
+      "valor_dia": 30000,
+      "valor_anticipo": 16000,
+      "estado_departamentp": "O",
+      "id_zona": 21,
+      "id_tour": null,
+      "id_transporte": null
+    }
+  },
+  {
+    "model": "crudModelos.Departamento",
+    "pk": 1269,
+    "fields": {
+      "id_departamento": 2,
+      "imagen_departamento": "images/departamento1.jpg",
+      "nombre_departamento": "departamento 2",
+      "numero_departamento": 178,
+      "numero_personas": 3,
+      "is_tour": true,
+      "is_transporte": true,
+      "valor_dia": 55000,
+      "valor_anticipo": 16000,
+      "estado_departamentp": "D",
+      "id_zona": 1,
+      "id_tour": null,
+      "id_transporte": null
+    }
+  },
+  {
+    "model": "crudModelos.Departamento",
+    "pk": 174,
+    "fields": {
+      "id_departamento": 3,
+      "imagen_departamento": "images/departamento1.jpg",
+      "nombre_departamento": "departamento 3",
+      "numero_departamento": 668,
+      "numero_personas": 3,
+      "is_tour": true,
+      "is_transporte": true,
+      "valor_dia": 40000,
+      "valor_anticipo": 16000,
+      "estado_departamentp": "O",
+      "id_zona": 1,
+      "id_tour": null,
+      "id_transporte": null
+    }
+  },
+  {
+    "model": "crudModelos.Departamento",
+    "pk": 73,
+    "fields": {
+      "id_departamento": 4,
+      "imagen_departamento": "images/departamento1.jpg",
+      "nombre_departamento": "departamento 4",
+      "numero_departamento": 1432,
+      "numero_personas": 4,
+      "is_tour": true,
+      "is_transporte": true,
+      "valor_dia": 55000,
+      "valor_anticipo": 20000,
+      "estado_departamentp": "O",
+      "id_zona": 1,
+      "id_tour": null,
+      "id_transporte": null
+    }
+  },
+  {
+    "model": "crudModelos.Departamento",
+    "pk": 204,
+    "fields": {
+      "id_departamento": 5,
+      "imagen_departamento": "images/departamento1.jpg",
+      "nombre_departamento": "departamento 5",
+      "numero_departamento": 1266,
+      "numero_personas": 4,
+      "is_tour": true,
+      "is_transporte": true,
+      "valor_dia": 40000,
+      "valor_anticipo": 15000,
+      "estado_departamentp": "O",
+      "id_zona": 21,
+      "id_tour": null,
+      "id_transporte": null
+    }
+  },
+  {
+    "model": "crudModelos.Departamento",
+    "pk": 1814,
+    "fields": {
+      "id_departamento": 6,
+      "imagen_departamento": "images/departamento1.jpg",
+      "nombre_departamento": "departamento 6",
+      "numero_departamento": 370,
+      "numero_personas": 2,
+      "is_tour": true,
+      "is_transporte": true,
+      "valor_dia": 40000,
+      "valor_anticipo": 20000,
+      "estado_departamentp": "D",
+      "id_zona": 21,
+      "id_tour": null,
+      "id_transporte": null
+    }
+  }
+]

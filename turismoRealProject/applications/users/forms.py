@@ -2,6 +2,7 @@ import datetime
 from django import forms
 from django.forms.widgets import DateInput
 from itertools import cycle
+from django.contrib.auth import authenticate,login, logout
 
 from .models import User,Cliente
 from rut_chile import rut_chile
@@ -145,5 +146,37 @@ class LoginForm(forms.Form):
             }
         )
     )
+    def clean(self):
+        cleaned_data = super(LoginForm, self).clean()
+        # do your custom validations / transformations here
+        # and some more
+        return cleaned_data 
+
+    def clean_email(self):
+        try:
+            
+            user=User.objects.get(email=self.cleaned_data.get('email'))
+            return self.cleaned_data.get('email')
+        except:
+            raise forms.ValidationError('No existe el email en nuestro sistema')
+    
+    def clean_password(self):
+        if(len(self.cleaned_data['password'])<2):
+            raise forms.ValidationError('Ingrese una clave valida')
+        auth=authenticate(
+            username=str(self.clean_email()),
+            password=self.cleaned_data['password'] 
+            )
+        
+        if auth:
+            return self.cleaned_data['password']
+        else:
+            raise forms.ValidationError('La clave es incorrecta')
+
+            
+
+    
+    
+        
 
 

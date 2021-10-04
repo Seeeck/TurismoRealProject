@@ -7,6 +7,7 @@ from django.views.generic import(TemplateView,CreateView)
 from django.views.generic  import ListView
 #Modelos
 from applications.crudModelos.models import Departamento,Reserva
+from applications.crudModelos.models import Sv_Tour
 #Forms
 from .forms import ReservaForm
 # Create your views here.
@@ -40,6 +41,7 @@ class ListaDepartamentosView(LoginRequiredMixin,ListView):
         lista=Departamento.objects.filter(id_zona__comuna__icontains=comuna)
 
         return lista
+    
         
         
 class ReservarDepartamentoView(LoginRequiredMixin,CreateView):
@@ -52,12 +54,20 @@ class ReservarDepartamentoView(LoginRequiredMixin,CreateView):
     def get_context_data(self,**kwargs):
         context = super(ReservarDepartamentoView, self).get_context_data(**kwargs)
         departamento=Departamento.objects.get(id_departamento=self.kwargs['id_departamento'])
+        tour=Sv_Tour.objects.get(id_tour=departamento.id_tour.id_tour)
         context['imagen_departamento']=departamento.imagen_departamento
         context['nombre_departamento']=departamento.nombre_departamento
         context['numero_personas']=departamento.numero_personas
         context['lista_personas']=range(1,departamento.numero_personas)
         context['valor_dia']=departamento.valor_dia
         context['valor_anticipo']=departamento.valor_anticipo
+        context['is_tour']=departamento.is_tour
+        context['is_transporte']=departamento.is_transporte
+        context['valor_tour']=tour.valor_tour
+        
+
+        
+        
         return context
 
     def form_valid(self,form):

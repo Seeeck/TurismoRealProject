@@ -23,3 +23,5 @@ class UserManager(BaseUserManager,models.Manager):
 #Esto es de administrador
     def create_superuser(self,email,password=None,**extra_fields):
         return self._create_user(email,password,True,True,**extra_fields)
+    
+    

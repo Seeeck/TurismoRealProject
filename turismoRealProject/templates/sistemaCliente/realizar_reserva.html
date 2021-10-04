@@ -36,13 +36,13 @@
 
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Llegada</label>
+                            <label for="exampleInputEmail1">Ida</label>
                             {{form.check_in}}
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Ida</label>
+                            <label for="exampleInputEmail1">Vuelta</label>
                             {{form.check_out}}
                         </div>
                     </div>
@@ -64,6 +64,32 @@
                     </div>
                 </div>
                 {%endfor%}
+
+                
+                {%if is_tour %}
+                <h4 class="mt-4">Servicio de Tour</h4>
+                <div class=" mt-4 form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class=" ms-2 row form-check-label" for="flexCheckDefault">
+                      Seleccione esta casilla si quiere el servicio de tour
+                    </label>
+                    <label class=" ms-2 row form-check-label" for="flexCheckDefault">
+                        Valor tour/persona : ${{valor_tour}}
+                      </label>
+                  </div>
+                {%endif%}
+
+                {%if is_transporte%}
+                <div>
+                    <h4 class="mt-4">Servicio de Transporte</h4>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Ingrese su direccion </label>
+                            <input type="text">
+                        </div>
+                    </div>
+                </div>
+                {%endif%}
 
 
                 <div class="row justify-content-center">

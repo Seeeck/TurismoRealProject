@@ -21,3 +21,8 @@ class DepartamentoAdmin(admin.ModelAdmin):
 
 admin.site.register(Departamento,DepartamentoAdmin)
 admin.site.register(Reserva)
+admin.site.register(Sv_Transporte)
+admin.site.register(Sv_Tour)
+admin.site.register(CheckIn)
+admin.site.register(CheckOut)
+admin.site.register(PersonaExtra)

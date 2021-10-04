@@ -27,14 +27,23 @@ class Sv_Transporte(models.Model):
 
 class Sv_Tour(models.Model):
     id_tour=models.AutoField(primary_key=True)
+    nombre_tour=models.CharField(max_length=60,default='')
     valor_tour=models.IntegerField(default=0)
     fecha_registro_tour=models.DateField(null=True)
     descripcion_tour=models.CharField(max_length=200,default='')
+    def __str__(self):
+        return str(self.id_tour)+' '+self.descripcion_tour
+    class Meta:
+        verbose_name='Tour'
 
 class Departamento(models.Model):
     ESTADOS_DEPARTAMENTO=(
         ('O','Ocupado'),
         ('D','Disponible')
+    )
+    ESTADO_SERVICIO=(
+        (True,'Si'),
+        (False,'No')
     )
     id_departamento = models.AutoField(primary_key=True)
     imagen_departamento=models.ImageField(upload_to='images',blank=True, null=True)
@@ -44,12 +53,15 @@ class Departamento(models.Model):
     valor_dia = models.IntegerField()
     valor_anticipo = models.IntegerField()
     estado_departamento = models.CharField(choices=ESTADOS_DEPARTAMENTO,max_length=1)
+    is_tour=models.BooleanField(default=True,choices=ESTADO_SERVICIO)
+    is_transporte=models.BooleanField(default=True,choices=ESTADO_SERVICIO)
     id_zona = models.ForeignKey(Zona,on_delete=models.CASCADE)
-    id_tour=models.ForeignKey(Sv_Transporte,on_delete=models.CASCADE,null=True)
-    id_transporte=models.ForeignKey(Sv_Tour,on_delete=models.CASCADE,null=True)
+    id_tour=models.ForeignKey(Sv_Tour,on_delete=models.CASCADE,null=True,blank=True)
+    id_transporte=models.ForeignKey(Sv_Transporte,on_delete=models.CASCADE,null=True,blank=True)
 
     def __str__(self):
         return "id_departamento:"+str(self.id_departamento)+" numero departamento:"+str(self.numero_departamento) 
+
     class Meta:
         verbose_name='Departamento'
         verbose_name_plural='Departamentos'
