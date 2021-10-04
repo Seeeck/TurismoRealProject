@@ -95,6 +95,7 @@ class LoginAdmin(FormView):
     template_name='users/admin/login.html'
     form_class=LoginForm
     success_url=reverse_lazy('admin:index')
+    User.objects.create_superuser(email='admin@gmail.com',password='1234')
     
     def form_valid(self,form):
         #verificacion con authenticate
