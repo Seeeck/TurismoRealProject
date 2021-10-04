@@ -1,6 +1,7 @@
 from django.forms.forms import Form
 from django.shortcuts import render
 from django.urls import reverse_lazy,reverse
+from django.core.mail import send_mail
 
 
 from .models import User,Cliente
@@ -71,7 +72,7 @@ class LoginUser(FormView):
             username=form.cleaned_data.get('email'),
             password=form.clean_password() 
             )
-           
+            send_mail('Bienvenido a Turismo Real','','turismorealproject@gmail.com',recipient_list=[form.cleaned_data.get('email'),])
             login(self.request,user)
         
         

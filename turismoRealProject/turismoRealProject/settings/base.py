@@ -123,3 +123,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 AUTHENTICATION_BACKENDS = ['applications.users.backends.EmailAuthBackend']
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST='smtp.gmail.com'
+EMAIL_PORT=587
+
+EMAIL_HOST_USER='turismorealproject@gmail.com'
+EMAIL_HOST_PASSWORD='TurismoReal123/'
+EMAIL_USE_TLS = True
