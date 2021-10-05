@@ -20,16 +20,25 @@ from django.http import HttpRequest
 
 
 
-
+def cliente_full_name(cliente):
+    cliente_nombre=cliente.nombre
+    cliente_apellido=cliente.apellido
+    cliente_full_name=cliente_nombre+' '+cliente_apellido
+    return cliente_full_name
 
 
 class Inicio(TemplateView):
     template_name="sistemaCliente/inicio.html"
 
+
     def get_context_data(self,**kwargs):
-        context = super(TemplateView, self).get_context_data(**kwargs)
-        print(self.request.user)
-        return context
+        if(str(self.request.user)=='AnonymousUser'):
+            pass
+        else:
+            context = super(TemplateView, self).get_context_data(**kwargs)
+            cliente=Cliente.objects.get(user_cliente=self.request.user)
+            context['nombre_cliente']=cliente_full_name(cliente) 
+            return context
     
 
 class ListaDepartamentosView(LoginRequiredMixin,ListView):
@@ -48,10 +57,16 @@ class ListaDepartamentosView(LoginRequiredMixin,ListView):
     def get_queryset(self):
         comuna=self.request.GET.get("comuna","")
         
-        lista=Departamento.objects.filter(id_zona__comuna__icontains=comuna,estado_departamento='D')
+        lista=Departamento.objects.filter(id_zona__comuna__icontains=comuna,estado_departamento=True)
+        
 
         return lista
-    
+    def get_context_data(self,**kwargs):
+        context = super(ListaDepartamentosView, self).get_context_data(**kwargs)
+        cliente=Cliente.objects.get(user_cliente=self.request.user)
+        
+        context['nombre_cliente']=cliente_full_name(cliente)
+        return context
         
         
 class ReservarDepartamentoView(SuccessMessageMixin,LoginRequiredMixin,CreateView):
@@ -63,6 +78,7 @@ class ReservarDepartamentoView(SuccessMessageMixin,LoginRequiredMixin,CreateView
     success_message='Reserva realizada'
     def get_context_data(self,**kwargs):
         context = super(ReservarDepartamentoView, self).get_context_data(**kwargs)
+        cliente=Cliente.objects.get(user_cliente=self.request.user)
         departamento=Departamento.objects.get(id_departamento=self.kwargs['id_departamento'])
         tour=Sv_Tour.objects.get(id_tour=departamento.id_tour.id_tour)
         sv_transporte=Sv_Transporte.objects.get(id_sv_transporte=departamento.id_sv_transporte.id_sv_transporte)
@@ -77,6 +93,7 @@ class ReservarDepartamentoView(SuccessMessageMixin,LoginRequiredMixin,CreateView
         context['valor_tour']=tour.valor_tour
         context['valor_sv_transporte']=sv_transporte.valor_transporte
         context['direccion_departamento']=departamento.direccion_departamento
+        context['nombre_cliente']=cliente_full_name(cliente)
         return context
 
     def form_valid(self,form):
@@ -92,6 +109,7 @@ class ReservarDepartamentoView(SuccessMessageMixin,LoginRequiredMixin,CreateView
                                              ,id_sv_transporte=sv_transporte)
         departamento=Departamento.objects.get(id_departamento=self.kwargs['id_departamento'])
         departamento.estado_departamento=False
+        departamento.save()
         cliente=Cliente.objects.get(user_cliente=self.request.user.id )
         reserva.is_pago_anticipo=True
         reserva.id_departamento=departamento

@@ -5,10 +5,6 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="row collapse navbar-collapse navbar-nav" id="navbarNav">
-
-
-
-
         <div class="col-md-6">
             <div class="row">
                 <li class=" col-md-2 nav-item ">
@@ -26,16 +22,17 @@
         <div class="col-md-6">
             <div class="row justify-content-end  ">
                 {% if not user.is_anonymous %}
-                <div>
-                    <h4>{{nombre_cliente}}</h4>
+                <div class="col me-4 mt-2 justify-content-center">
+
+                    <h5 class="ms-4" style="color: white;">Bienvenido {{nombre_cliente}}</h5>
+
                 </div>
                 <div class="col-md-2 me-4">
-                    
-                    <li class="nav-item"><a class="btn  btn-primary nav-link"
-                            href="">Reservass</a></li>
+
+                    <li class="nav-item"><a class="btn  btn-primary nav-link" href="">Reservass</a></li>
                 </div>
                 <div class="col-md-2 me-4">
-                    
+
                     <li class="nav-item"><a class="btn  btn-primary nav-link"
                             href="{% url 'users_app:user-logout' %}">Cerrar sesion</a></li>
                 </div>
@@ -49,7 +46,7 @@
                             href="{% url 'users_app:user-register'%}">Crear Cuenta</a></li>
                 </div>
                 {%endif%}
-                
+
             </div>
         </div>
 

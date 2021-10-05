@@ -67,7 +67,7 @@ class Departamento(models.Model):
     numero_personas= models.IntegerField()
     valor_dia = models.IntegerField()
     valor_anticipo = models.IntegerField()
-    estado_departamento = models.BooleanField(default=True)
+    estado_departamento = models.BooleanField(default=True,verbose_name='Esta disponible')
     is_tour=models.BooleanField(default=True,choices=ESTADO_SERVICIO)
     is_transporte=models.BooleanField(default=True,choices=ESTADO_SERVICIO)
     id_zona = models.ForeignKey(Zona,on_delete=models.CASCADE)
