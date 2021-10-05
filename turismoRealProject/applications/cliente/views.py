@@ -1,13 +1,18 @@
 
 from django.contrib.auth import login
+from django.contrib.auth.models import User
 from django.shortcuts import redirect, render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls.base import reverse_lazy
 from django.views.generic import(TemplateView,CreateView)
 from django.views.generic  import ListView
+from django.contrib.messages.views import SuccessMessageMixin
 #Modelos
 from applications.crudModelos.models import Departamento,Reserva
-from applications.crudModelos.models import Sv_Tour
+from applications.crudModelos.models import Sv_Tour,Sv_Transporte,CheckIn,CheckOut,Transporte
+from applications.users.models import Cliente
+
+
 #Forms
 from .forms import ReservaForm
 # Create your views here.
@@ -20,6 +25,11 @@ from django.http import HttpRequest
 
 class Inicio(TemplateView):
     template_name="sistemaCliente/inicio.html"
+
+    def get_context_data(self,**kwargs):
+        context = super(TemplateView, self).get_context_data(**kwargs)
+        print(self.request.user)
+        return context
     
 
 class ListaDepartamentosView(LoginRequiredMixin,ListView):
@@ -38,23 +48,24 @@ class ListaDepartamentosView(LoginRequiredMixin,ListView):
     def get_queryset(self):
         comuna=self.request.GET.get("comuna","")
         
-        lista=Departamento.objects.filter(id_zona__comuna__icontains=comuna)
+        lista=Departamento.objects.filter(id_zona__comuna__icontains=comuna,estado_departamento='D')
 
         return lista
     
         
         
-class ReservarDepartamentoView(LoginRequiredMixin,CreateView):
+class ReservarDepartamentoView(SuccessMessageMixin,LoginRequiredMixin,CreateView):
     model=Reserva
     template_name="sistemaCliente/realizar_reserva.html"
     form_class=ReservaForm
     context_object_name='departamento'
-    
-
+    success_url=reverse_lazy('cliente_app:lista_departamentos')
+    success_message='Reserva realizada'
     def get_context_data(self,**kwargs):
         context = super(ReservarDepartamentoView, self).get_context_data(**kwargs)
         departamento=Departamento.objects.get(id_departamento=self.kwargs['id_departamento'])
         tour=Sv_Tour.objects.get(id_tour=departamento.id_tour.id_tour)
+        sv_transporte=Sv_Transporte.objects.get(id_sv_transporte=departamento.id_sv_transporte.id_sv_transporte)
         context['imagen_departamento']=departamento.imagen_departamento
         context['nombre_departamento']=departamento.nombre_departamento
         context['numero_personas']=departamento.numero_personas
@@ -64,17 +75,32 @@ class ReservarDepartamentoView(LoginRequiredMixin,CreateView):
         context['is_tour']=departamento.is_tour
         context['is_transporte']=departamento.is_transporte
         context['valor_tour']=tour.valor_tour
-        
-
-        
-        
+        context['valor_sv_transporte']=sv_transporte.valor_transporte
+        context['direccion_departamento']=departamento.direccion_departamento
         return context
 
     def form_valid(self,form):
-        print("a@@@@@@@@@")
-        print(self.request.POST.get('nombre0'))
-        print(self.request.POST.get('nombre1'))
 
+        
+        reserva=form.save()
+        checkin=CheckIn.objects.create(fecha_checkin=self.request.POST.get('check_in'))
+        checkout=CheckOut.objects.create(fecha_checkout=self.request.POST.get('check_out'))
+        sv_transporte=Sv_Transporte.objects.filter(sv_transporte_disponible=True).first()
+        transporte=Transporte.objects.create(fecha_ida=self.request.POST.get('check_in'),
+                                             fecha_vuelta=self.request.POST.get('check_out'),
+                                             direccion_inicio=self.request.POST.get('direccionInicioTransporte')
+                                             ,id_sv_transporte=sv_transporte)
+        departamento=Departamento.objects.get(id_departamento=self.kwargs['id_departamento'])
+        departamento.estado_departamento=False
+        cliente=Cliente.objects.get(user_cliente=self.request.user.id )
+        reserva.is_pago_anticipo=True
+        reserva.id_departamento=departamento
+        reserva.id_cliente=cliente
+        reserva.id_check_in=checkin
+        reserva.id_check_out=checkout
+        reserva.id_transporte=transporte
+        reserva.save()
+        
         return super(ReservarDepartamentoView,self).form_valid(form)
     
     

@@ -6,6 +6,14 @@
 {%include 'includes/nav.html' %}
 
 <div class="container-fluid">
+
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
     <form action="" method="GET">
         {% csrf_token %}
         <div class="row mt-4 justify-content-center">
@@ -20,7 +28,7 @@
 
             </div>
 
-            
+
             <div class=" ms-4 col-md-2">
                 <div class="row mt-4">
 
@@ -87,7 +95,8 @@
                         {%else%}
                         <td class="col">No</td>
                         {%endif%}
-                        <td class="col"><a class="btn btn-success" href="{%url 'cliente_app:reservar-departamento' d.id_departamento %} ">Reservar</a></td>
+                        <td class="col"><a class="btn btn-success"
+                                href="{%url 'cliente_app:reservar-departamento' d.id_departamento %} ">Reservar</a></td>
                     </tr>
                     {%endfor%}
 

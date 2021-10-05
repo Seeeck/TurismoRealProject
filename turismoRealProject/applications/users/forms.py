@@ -158,7 +158,7 @@ class LoginForm(forms.Form):
             user=User.objects.get(email=self.cleaned_data.get('email'))
             return self.cleaned_data.get('email')
         except:
-            raise forms.ValidationError('No existe el email en nuestro sistema')
+            raise forms.ValidationError('No existe el email en el sistema')
     
     def clean_password(self):
         if(len(self.cleaned_data['password'])<2):

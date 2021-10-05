@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models.fields import AutoField
+from django.db.models.fields.related import ForeignKey
 from applications.users.models import User,Cliente
 from turismoRealProject.settings.local import BASE_DIR
 
@@ -14,16 +15,32 @@ class Zona(models.Model):
     class Meta:
         verbose_name='Zona'
 
+
+
+
 class Sv_Transporte(models.Model):
-    id_transporte=models.AutoField(primary_key=True)
+    id_sv_transporte=models.AutoField(primary_key=True)
     nombre_chofer=models.CharField(max_length=30,null=True)
     apellido_chofer=models.CharField(max_length=30,null=True)
     patente_vehiculo=models.CharField(max_length=10,null=True)
+    valor_transporte=models.IntegerField(default=0)
+    sv_transporte_disponible=models.BooleanField(default=False)
+    class Meta:
+        verbose_name='Servicio de transporte'
+        verbose_name_plural='Servicios de transporte'
+    
+
+class Transporte(models.Model):
+    id_transporte=models.AutoField(primary_key=True)
     fecha_ida=models.DateField(null=True)
     fecha_vuelta=models.DateField(null=True)
     direccion_inicio=models.CharField(max_length=50,null=True)
-    valor_transporte=models.IntegerField(default=0)
     fecha_solicitud=models.DateField(auto_now=True)
+    id_sv_transporte=ForeignKey(Sv_Transporte,on_delete=models.CASCADE,null=True,blank=True)
+
+    class Meta:
+        verbose_name='Transporte'
+        verbose_name_plural='Transportes'
 
 class Sv_Tour(models.Model):
     id_tour=models.AutoField(primary_key=True)
@@ -36,11 +53,8 @@ class Sv_Tour(models.Model):
     class Meta:
         verbose_name='Tour'
 
+    
 class Departamento(models.Model):
-    ESTADOS_DEPARTAMENTO=(
-        ('O','Ocupado'),
-        ('D','Disponible')
-    )
     ESTADO_SERVICIO=(
         (True,'Si'),
         (False,'No')
@@ -49,15 +63,16 @@ class Departamento(models.Model):
     imagen_departamento=models.ImageField(upload_to='images',blank=True, null=True)
     nombre_departamento = models.CharField(max_length=60)
     numero_departamento = models.IntegerField()
+    direccion_departamento =models.CharField(max_length=60,null=True)
     numero_personas= models.IntegerField()
     valor_dia = models.IntegerField()
     valor_anticipo = models.IntegerField()
-    estado_departamento = models.CharField(choices=ESTADOS_DEPARTAMENTO,max_length=1)
+    estado_departamento = models.BooleanField(default=True)
     is_tour=models.BooleanField(default=True,choices=ESTADO_SERVICIO)
     is_transporte=models.BooleanField(default=True,choices=ESTADO_SERVICIO)
     id_zona = models.ForeignKey(Zona,on_delete=models.CASCADE)
     id_tour=models.ForeignKey(Sv_Tour,on_delete=models.CASCADE,null=True,blank=True)
-    id_transporte=models.ForeignKey(Sv_Transporte,on_delete=models.CASCADE,null=True,blank=True)
+    id_sv_transporte=models.ForeignKey(Sv_Transporte,on_delete=models.CASCADE,null=True,blank=True)
 
     def __str__(self):
         return "id_departamento:"+str(self.id_departamento)+" numero departamento:"+str(self.numero_departamento) 
@@ -68,13 +83,13 @@ class Departamento(models.Model):
         ordering=['nombre_departamento']
 
 class CheckIn(models.Model):
-    id_checkin = models.CharField(primary_key=True, max_length=50)
+    id_checkin = models.AutoField(primary_key=True)
     fecha_checkin = models.DateField()
     lista_checkeo = models.CharField(max_length=100,null=True)
     documento_pdf = models.FileField(upload_to=None, max_length=100,null=True)
 
 class CheckOut(models.Model):
-    id_checkout = models.CharField(primary_key=True, max_length=50)
+    id_checkout = models.AutoField(primary_key=True)
     fecha_checkout=models.DateField()
     costo_reparacion=models.IntegerField(null=True)
     valor_servicio_extra=models.IntegerField(null=True)
@@ -89,6 +104,7 @@ class Reserva(models.Model):
     id_cliente=models.ForeignKey(Cliente,on_delete=models.CASCADE,null=True)
     id_check_in=models.ForeignKey(CheckIn,on_delete=models.CASCADE,null=True)
     id_check_out=models.ForeignKey(CheckOut,on_delete=models.CASCADE,null=True)
+    id_transporte=models.ForeignKey(Transporte,on_delete=models.CASCADE,null=True)
 
 
 class PersonaExtra(models.Model):
@@ -96,7 +112,7 @@ class PersonaExtra(models.Model):
     nombre=models.CharField(max_length=30,null=True)
     apellido=models.CharField(max_length=30,null=True)
     id_reserva=models.ForeignKey(Reserva,on_delete=models.CASCADE,null=True)
-
+#
 """
 
 

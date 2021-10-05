@@ -39,3 +39,4 @@ class Cliente(models.Model):
         return "rut:"+self.rut+" nombre:"+self.nombre+" "+self.apellido
     class Meta:
         verbose_name='Cliente'
+#

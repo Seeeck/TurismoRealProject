@@ -50,7 +50,7 @@
 
 
                 </div>
-        
+
                 {%for a in lista_personas %}
                 <div class="row mt-4 justify-content-center">
                     <label for="exampleInputEmail1">Acompañante {{a}}</label>
@@ -65,36 +65,66 @@
                 </div>
                 {%endfor%}
 
-                
+
                 {%if is_tour %}
                 <h4 class="mt-4">Servicio de Tour</h4>
                 <div class=" mt-4 form-check">
                     <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                     <label class=" ms-2 row form-check-label" for="flexCheckDefault">
-                      Seleccione esta casilla si quiere el servicio de tour
+                        Seleccione esta casilla si quiere el servicio de tour
                     </label>
                     <label class=" ms-2 row form-check-label" for="flexCheckDefault">
-                        Valor tour/persona : ${{valor_tour}}
-                      </label>
-                  </div>
+                        Valor tour por persona : ${{valor_tour}}
+                    </label>
+                </div>
                 {%endif%}
 
                 {%if is_transporte%}
                 <div>
+
                     <h4 class="mt-4">Servicio de Transporte</h4>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Ingrese su direccion </label>
-                            <input type="text">
+                    
+
+                    <div class=" mt-4 form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1">
+                        <label class=" ms-2 row form-check-label" for="flexCheckDefault1">
+                            Seleccione esta casilla si quiere el servicio de transporte
+                        </label>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label class=" ms-2 row form-check-label" for="flexCheckDefault">
+                                Valor transporte por persona : ${{valor_sv_transporte}}
+                            </label>
                         </div>
                     </div>
+
+
+
+
+                    <div class="row">
+                        <div class=" mt-4 col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Ingrese su direccion de inicio</label>
+                                <input name="direccionInicioTransporte" type="text">
+                            </div>
+                        </div>
+                        <div class=" mt-4 col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Direccion de llegada</label>
+                                <input name="direccionInicioTransporte" type="text" disabled
+                                    value="{{direccion_departamento}}">
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
                 {%endif%}
 
 
-                <div class="row justify-content-center">
+                <div class=" mt-4 row justify-content-center">
                     <div class="col-md-4">
-                        <button type="submit">Reservar</button>
+                        <button class="btn btn-success" type="submit">Reservar y pagar anticipo</button>
                     </div>
 
                 </div>
