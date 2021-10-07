@@ -100,6 +100,8 @@ class Reserva(models.Model):
     is_pago_anticipo = models.BooleanField(default=False)
     is_pago_checkin = models.BooleanField(default=False)
     is_pago_checkout = models.BooleanField(default=False)
+    is_transporte=models.BooleanField(default=False)
+    is_tour=models.BooleanField(default=False)
     id_departamento=models.ForeignKey(Departamento,on_delete=models.CASCADE,null=True)
     id_cliente=models.ForeignKey(Cliente,on_delete=models.CASCADE,null=True)
     id_check_in=models.ForeignKey(CheckIn,on_delete=models.CASCADE,null=True)
@@ -108,10 +110,11 @@ class Reserva(models.Model):
 
 
 class PersonaExtra(models.Model):
-    rut=models.CharField(primary_key=True,max_length=30)
-    nombre=models.CharField(max_length=30,null=True)
-    apellido=models.CharField(max_length=30,null=True)
+    id_persona_extra=models.AutoField(primary_key=True)
+    nombre=models.CharField(max_length=30,blank=True,null=True)
+    apellido=models.CharField(max_length=30,blank=True,null=True)
     id_reserva=models.ForeignKey(Reserva,on_delete=models.CASCADE,null=True)
+
 #
 """
 

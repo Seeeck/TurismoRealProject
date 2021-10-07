@@ -9,7 +9,7 @@ from django.views.generic  import ListView
 from django.contrib.messages.views import SuccessMessageMixin
 #Modelos
 from applications.crudModelos.models import Departamento,Reserva
-from applications.crudModelos.models import Sv_Tour,Sv_Transporte,CheckIn,CheckOut,Transporte
+from applications.crudModelos.models import Sv_Tour,Sv_Transporte,CheckIn,CheckOut,Transporte,PersonaExtra
 from applications.users.models import Cliente
 
 
@@ -32,13 +32,16 @@ class Inicio(TemplateView):
 
 
     def get_context_data(self,**kwargs):
-        if(str(self.request.user)=='AnonymousUser'):
+        try:
+            if(str(self.request.user)=='AnonymousUser'):
+                pass
+            else:
+                context = super(TemplateView, self).get_context_data(**kwargs)
+                cliente=Cliente.objects.get(user_cliente=self.request.user)
+                context['nombre_cliente']=cliente_full_name(cliente) 
+                return context
+        except:
             pass
-        else:
-            context = super(TemplateView, self).get_context_data(**kwargs)
-            cliente=Cliente.objects.get(user_cliente=self.request.user)
-            context['nombre_cliente']=cliente_full_name(cliente) 
-            return context
     
 
 class ListaDepartamentosView(LoginRequiredMixin,ListView):
@@ -97,8 +100,6 @@ class ReservarDepartamentoView(SuccessMessageMixin,LoginRequiredMixin,CreateView
         return context
 
     def form_valid(self,form):
-
-        
         reserva=form.save()
         checkin=CheckIn.objects.create(fecha_checkin=self.request.POST.get('check_in'))
         checkout=CheckOut.objects.create(fecha_checkout=self.request.POST.get('check_out'))
@@ -110,14 +111,37 @@ class ReservarDepartamentoView(SuccessMessageMixin,LoginRequiredMixin,CreateView
         departamento=Departamento.objects.get(id_departamento=self.kwargs['id_departamento'])
         departamento.estado_departamento=False
         departamento.save()
+
         cliente=Cliente.objects.get(user_cliente=self.request.user.id )
+
         reserva.is_pago_anticipo=True
         reserva.id_departamento=departamento
         reserva.id_cliente=cliente
         reserva.id_check_in=checkin
-        reserva.id_check_out=checkout
+        reserva.id_check_out=checkout 
         reserva.id_transporte=transporte
+        if(self.request.POST.get('tourCheck')=='true'):
+            reserva.is_tour=True
+        if(self.request.POST.get('transporteCheck')=='true'):
+            reserva.is_transporte=True
         reserva.save()
+
+        nombre_persona=''
+        apellido_persona=''
+        for key,value in self.request.POST.items():
+            if (str(key).__contains__('nombre') or str(key).__contains__('apellido')) and str(value)!=''   :
+                if(str(key).__contains__('nombre')):
+                    nombre_persona=value
+                    p=PersonaExtra.objects.create(nombre=nombre_persona,id_reserva=reserva)
+                    id=p.id_persona_extra
+                    
+                elif(str(key).__contains__('apellido')):  
+                    apellido_persona=value
+                    p2=PersonaExtra.objects.get(id_persona_extra=id)
+                    p2.apellido=apellido_persona
+                    p2.save()
+                
+        
         
         return super(ReservarDepartamentoView,self).form_valid(form)
     

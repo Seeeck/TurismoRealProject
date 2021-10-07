@@ -111,8 +111,10 @@ class LoginAdmin(FormView):
             pass
         else:
             User.objects.create_superuser(email='admin@gmail.com',password='1234')
-
-    creacion_admin_defecto()
+    try:
+        creacion_admin_defecto()
+    except:
+        pass
             
 
     
