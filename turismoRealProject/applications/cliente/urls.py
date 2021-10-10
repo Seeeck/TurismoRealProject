@@ -7,6 +7,8 @@ urlpatterns = [
     path('',views.Inicio.as_view(),name='inicio-principal'),
     path('cliente/lista-departamentos/', views.ListaDepartamentosView.as_view(),name='lista_departamentos'),
     path('cliente/reserva-departamento/<id_departamento>', views.ReservarDepartamentoView.as_view(),name='reservar-departamento'),
+    path('cliente/reservas/',views.ListaReservasView.as_view(),name='lista-reservas'),
+    
 
 
 ]
