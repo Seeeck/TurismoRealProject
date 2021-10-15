@@ -1,0 +1,56 @@
+{% extends 'base/base.html'%}
+{%load static %}
+{%block titulo%}Inicio{%endblock titulo%}
+
+{%block contenido%}
+{%include 'includes/nav.html' %}
+
+
+<div class="container">
+  <h1 class="mt-4">Reservas Activas</h1>
+  <table class=" mt-4 table">
+    <thead>
+      <tr>
+        <th scope="col">Imagen</th>
+        <th scope="col">Departamento</th>
+        <th scope="col">Check In</th>
+        <th scope="col">Check Out</th>
+        <th scope="col">Comuna</th>
+        <th scope="col">Valor Total</th>
+        <th scope="col">Accion</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      {% for r in reservas %}
+      <tr>
+        <th class="col-md-2">
+          {% if r.id_departamento.imagen_departamento %}
+          <img  class="img-fluid " src="{{r.id_departamento.imagen_departamento.url}}" alt="">
+          {%else%}
+          <h1>Sin imagen</h1>
+          {%endif%}
+        </th>
+        <th>{{r.id_departamento.nombre_departamento}}</th>
+        <td>{{r.id_check_in.fecha_checkin}}</td>
+        <td>{{r.id_check_out.fecha_checkout}}</td>
+        <td>{{r.id_departamento.id_zona.comuna}}</td>
+        <td>${{r.valor_total }}</td>
+        <td><a class="btn btn-success" href="">Ver </a></td>
+
+
+      </tr>
+      {%endfor%}
+    </tbody>
+  </table>
+
+</div>
+
+
+
+
+{%endblock contenido%}
+
+{%block footer%}
+{% include 'includes/footer.html' %}
+{%endblock footer%}

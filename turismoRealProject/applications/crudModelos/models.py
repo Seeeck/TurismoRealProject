@@ -69,8 +69,8 @@ class Departamento(models.Model):
     valor_anticipo = models.IntegerField()
     estado_departamento = models.BooleanField(default=True,verbose_name='Esta disponible')
     is_tour=models.BooleanField(default=True,choices=ESTADO_SERVICIO)
-    is_transporte=models.BooleanField(default=True,choices=ESTADO_SERVICIO)
-    id_zona = models.ForeignKey(Zona,on_delete=models.CASCADE)
+    is_transporte=models.BooleanField(default=True,choices=ESTADO_SERVICIO,null=True)
+    id_zona = models.ForeignKey(Zona,on_delete=models.CASCADE,null=True)
     id_tour=models.ForeignKey(Sv_Tour,on_delete=models.CASCADE,null=True,blank=True)
     id_sv_transporte=models.ForeignKey(Sv_Transporte,on_delete=models.CASCADE,null=True,blank=True)
 
@@ -97,7 +97,7 @@ class CheckOut(models.Model):
 class Reserva(models.Model):
     id_reserva = models.AutoField(primary_key=True)
     valor_total = models.IntegerField(default=0)
-    is_pago_anticipo = models.BooleanField(default=False)
+    is_pago_anticipo = models.BooleanField(default=False,)
     is_pago_checkin = models.BooleanField(default=False)
     is_pago_checkout = models.BooleanField(default=False)
     is_transporte=models.BooleanField(default=False)

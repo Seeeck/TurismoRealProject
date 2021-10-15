@@ -7,12 +7,14 @@ from django.urls.base import reverse_lazy
 from django.views.generic import(TemplateView,CreateView)
 from django.views.generic  import ListView
 from django.contrib.messages.views import SuccessMessageMixin
+from django.views.generic.edit import UpdateView
 #Modelos
 from applications.crudModelos.models import Departamento,Reserva
 from applications.crudModelos.models import Sv_Tour,Sv_Transporte,CheckIn,CheckOut,Transporte,PersonaExtra
 from applications.users.models import Cliente
 
-
+#Datetime
+from datetime import date, datetime
 #Forms
 from .forms import ReservaForm
 # Create your views here.
@@ -53,8 +55,11 @@ class ListaDepartamentosView(LoginRequiredMixin,ListView):
     context_object_name = "departamentos"
 
     def dispatch(self,request,*args,**kwargs):
-        if self.request.user.is_funcionario:
-            return redirect('funcionario_app:panel-funcionario')
+        try:
+            if self.request.user.is_funcionario:
+                return redirect('funcionario_app:panel-funcionario')
+        except:
+            pass
         return super(ListaDepartamentosView,self).dispatch(request,*args,**kwargs)
     
     def get_queryset(self):
@@ -101,13 +106,10 @@ class ReservarDepartamentoView(SuccessMessageMixin,LoginRequiredMixin,CreateView
 
     def form_valid(self,form):
         reserva=form.save()
+
         checkin=CheckIn.objects.create(fecha_checkin=self.request.POST.get('check_in'))
         checkout=CheckOut.objects.create(fecha_checkout=self.request.POST.get('check_out'))
-        sv_transporte=Sv_Transporte.objects.filter(sv_transporte_disponible=True).first()
-        transporte=Transporte.objects.create(fecha_ida=self.request.POST.get('check_in'),
-                                             fecha_vuelta=self.request.POST.get('check_out'),
-                                             direccion_inicio=self.request.POST.get('direccionInicioTransporte')
-                                             ,id_sv_transporte=sv_transporte)
+
         departamento=Departamento.objects.get(id_departamento=self.kwargs['id_departamento'])
         departamento.estado_departamento=False
         departamento.save()
@@ -119,15 +121,10 @@ class ReservarDepartamentoView(SuccessMessageMixin,LoginRequiredMixin,CreateView
         reserva.id_cliente=cliente
         reserva.id_check_in=checkin
         reserva.id_check_out=checkout 
-        reserva.id_transporte=transporte
-        if(self.request.POST.get('tourCheck')=='true'):
-            reserva.is_tour=True
-        if(self.request.POST.get('transporteCheck')=='true'):
-            reserva.is_transporte=True
-        reserva.save()
 
         nombre_persona=''
         apellido_persona=''
+        cantidad_personas=0
         for key,value in self.request.POST.items():
             if (str(key).__contains__('nombre') or str(key).__contains__('apellido')) and str(value)!=''   :
                 if(str(key).__contains__('nombre')):
@@ -139,17 +136,50 @@ class ReservarDepartamentoView(SuccessMessageMixin,LoginRequiredMixin,CreateView
                     apellido_persona=value
                     p2=PersonaExtra.objects.get(id_persona_extra=id)
                     p2.apellido=apellido_persona
+                    cantidad_personas=cantidad_personas+1
                     p2.save()
-                
-        
-        
-        return super(ReservarDepartamentoView,self).form_valid(form)
-    
-    
+        precio_tour=0
+        if(self.request.POST.get('tourCheck')=='true'):
+            reserva.is_tour=True
+            precio_tour=(departamento.id_tour.valor_tour)*cantidad_personas
+        precio_transporte=0
+        if(self.request.POST.get('transporteCheck')=='true'):
+            reserva.is_transporte=True
+            precio_transporte=(departamento.id_sv_transporte.valor_transporte)*cantidad_personas
+            sv_transporte=Sv_Transporte.objects.filter(sv_transporte_disponible=True).first()
+            transporte=Transporte.objects.create(fecha_ida=self.request.POST.get('check_in'),
+                                             fecha_vuelta=self.request.POST.get('check_out'),
+                                             direccion_inicio=self.request.POST.get('direccionInicioTransporte')
+                                             ,id_sv_transporte=sv_transporte)
+            reserva.id_transporte=transporte
 
+        
+        dias=((datetime.strptime(reserva.id_check_out.fecha_checkout,'%Y-%m-%d'))-(datetime.strptime(reserva.id_check_in.fecha_checkin,'%Y-%m-%d'))).days
+        precio_departamento_dias=departamento.valor_dia*dia
+        valor_total=precio_departamento_dias+precio_tour+precio_transporte
+
+        reserva.valor_total=valor_total
+        reserva.save()
+        return super(ReservarDepartamentoView,self).form_valid(form)
+
+
+class ListaReservasView(LoginRequiredMixin,ListView):
+    template_name = "sistemaCliente/lista_reservas.html"
+    model = Reserva
+    context_object_name='reservas'
     
-    
-    
+    def get_queryset(self):   
+        cliente=Cliente.objects.get(user_cliente=self.request.user)
+        reservas=Reserva.objects.filter(id_cliente=cliente)
+        
+        return reservas
+
+    def get_context_data(self,**kwargs):
+        context = super(ListaReservasView, self).get_context_data(**kwargs)
+        cliente=Cliente.objects.get(user_cliente=self.request.user)
+        
+        context['nombre_cliente']=cliente_full_name(cliente)
+        return context
     
  
     

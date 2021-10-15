@@ -12,7 +12,12 @@
     <div class="container">
         <div class="masthead-subheading">Turismo Real</div>
         <div class="masthead-heading text-uppercase">Reserva tu departamento</div>
+        {% if not user.is_anonymous %}
+        <a href="{% url 'cliente_app:lista_departamentos' %}" class="btn btn-primary">Reserva aqui</a>
+        
+        {%else%}
         <a href="{% url 'users_app:user-login' %}" class="btn btn-primary">Reserva aqui</a>
+        {%endif%}
     </div>
 </header>
 <!-- Services-->

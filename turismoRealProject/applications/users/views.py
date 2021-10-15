@@ -42,7 +42,7 @@ class UserClienteRegisterView(FormView):
         nombre=form.cleaned_data['nombre_cliente']
         apellido=form.cleaned_data['apellido_cliente']
         fecha_nacimiento=form.cleaned_data['fecha_nacimiento']
-  
+        send_mail('Bienvenido a Turismo Real','','turismorealproject@gmail.com',recipient_list=[form.cleaned_data['email'],])
         Cliente.objects.create(
             rut=rut,
             nombre=nombre,
@@ -72,7 +72,7 @@ class LoginUser(FormView):
             username=form.cleaned_data.get('email'),
             password=form.clean_password() 
             )
-            send_mail('Bienvenido a Turismo Real','','turismorealproject@gmail.com',recipient_list=[form.cleaned_data.get('email'),])
+            
             login(self.request,user)
         
         
