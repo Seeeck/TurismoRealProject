@@ -1,0 +1,37 @@
+{% extends 'base/base.html'%}
+{%load static %}
+{%block titulo%}Realizar reserva{%endblock titulo%}
+{%block contenido%}
+{%include 'includes/nav.html' %}
+
+
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-6 mt-4">
+            <div class="card text-center">
+
+                <div class="card-body">
+                    <h5 class="card-title">{{reserva.id_departamento.nombre_departamento}}</h5>
+                    <div class="row justify-content-center">
+                        <div class="col-6">
+                            <img class="img-fluid " src="{{reserva.id_departamento.imagen_departamento.url}}" alt="">
+                        </div>
+                        
+                    </div>
+
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+                <div class="card-footer text-muted">
+                    2 days ago
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+{%endblock contenido%}

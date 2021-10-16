@@ -155,7 +155,7 @@ class ReservarDepartamentoView(SuccessMessageMixin,LoginRequiredMixin,CreateView
 
         
         dias=((datetime.strptime(reserva.id_check_out.fecha_checkout,'%Y-%m-%d'))-(datetime.strptime(reserva.id_check_in.fecha_checkin,'%Y-%m-%d'))).days
-        precio_departamento_dias=departamento.valor_dia*dia
+        precio_departamento_dias=departamento.valor_dia*dias
         valor_total=precio_departamento_dias+precio_tour+precio_transporte
 
         reserva.valor_total=valor_total
@@ -167,6 +167,7 @@ class ListaReservasView(LoginRequiredMixin,ListView):
     template_name = "sistemaCliente/lista_reservas.html"
     model = Reserva
     context_object_name='reservas'
+    paginate_by=4
     
     def get_queryset(self):   
         cliente=Cliente.objects.get(user_cliente=self.request.user)
@@ -180,6 +181,20 @@ class ListaReservasView(LoginRequiredMixin,ListView):
         
         context['nombre_cliente']=cliente_full_name(cliente)
         return context
+
+class EditarReservaView(LoginRequiredMixin,UpdateView):
+    pk_url_kwarg = 'id_reserva' 
+    form_class=ReservaForm
+    template_name='sistemaCliente/editar_reserva.html'
+    context_object_name='reserva'
+
+    def get_queryset(self):
+          
+        cliente=Cliente.objects.get(user_cliente=self.request.user)
+        reserva=Reserva.objects.filter(id_cliente=cliente,id_reserva=self.kwargs['id_reserva'])
+        print(reserva)
+        return reserva
+      
     
  
     
