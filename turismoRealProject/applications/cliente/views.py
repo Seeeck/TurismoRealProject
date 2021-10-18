@@ -141,7 +141,7 @@ class ReservarDepartamentoView(SuccessMessageMixin,LoginRequiredMixin,CreateView
         precio_tour=0
         if(self.request.POST.get('tourCheck')=='true'):
             reserva.is_tour=True
-            precio_tour=(departamento.id_tour.valor_tour)*cantidad_personas
+            precio_tour=(departamento.id_tour.valor_tour)*cantidad_personas+1
         precio_transporte=0
         if(self.request.POST.get('transporteCheck')=='true'):
             reserva.is_transporte=True
@@ -211,8 +211,9 @@ class EditarReservaView(LoginRequiredMixin,UpdateView):
         context['nombre_cliente']=cliente_full_name(cliente)
         return context
     
-    def form_valid(self,form):
+    def form_valid(self):
         
+        print(self.request.POST)
         reserva=Reserva.objects.get(id_reserva=self.kwargs['id_reserva'])
         #transporteCheck
         
@@ -238,11 +239,11 @@ class EditarReservaView(LoginRequiredMixin,UpdateView):
         for a in PersonaExtra.objects.filter(id_reserva=reserva):
             cantidad_personas=cantidad_personas+1
             
-        precio_tour=0
+        precio_tour=reserva.valor_tour
         if(self.request.POST.get('tourCheck')=='true'):
             reserva.is_tour=True
             precio_tour=(departamento.id_tour.valor_tour)*cantidad_personas
-        precio_transporte=0
+        precio_transporte=reserva.valor_transporte
         if(self.request.POST.get('transporteCheck')=='true'):
             reserva.is_transporte=True
             precio_transporte=reserva.valor_transporte+((departamento.id_sv_transporte.valor_transporte)*cantidad_personas)
@@ -259,14 +260,13 @@ class EditarReservaView(LoginRequiredMixin,UpdateView):
         reserva.valor_total=precio_transporte+precio_tour+reserva.valor_total
        
         
-        Reserva.objects.filter(id_reserva=reserva.id_reserva).update(is_tour=reserva.is_tour,
+        """ Reserva.objects.filter(id_reserva=reserva.id_reserva).update(is_tour=reserva.is_tour,
                                                                                 is_transporte=reserva.is_transporte,
                                                                                 valor_transporte=reserva.valor_transporte,
                                                                                 valor_tour=reserva.valor_tour,
-                                                                                valor_total=reserva.valor_total)
-        
+                                                                                valor_total=reserva.valor_total) """
         reserva.save()
-        return super(EditarReservaView,self).form_valid(form)
+        return super(EditarReservaView,self).form_valid()
       
     
  
