@@ -1,4 +1,58 @@
-<nav class="navbar navbar-expand-lg navbar-dark  bg-dark">
+<div class="container-fluid">
+    <div class="row navbar-dark bg-dark ">
+        <li class=" col-2 nav-item ">
+            <a class="nav-link text-white" href="{% url 'cliente_app:inicio-principal' %}">
+                <h4>Turismo real reservas</h4>
+            </a>
+        </li>
+
+        <li class=" col-1 nav-item ">
+            <a class="nav-link text-white " href="#"><span>Nosotros</span></a>
+        </li>
+
+        <li class="col-1 nav-item">
+            <a class="nav-link text-white" href="#">Precios</a>
+        </li>
+        <li class="col-1 nav-item">
+            <a class="nav-link text-white" href="#">Contacto</a>
+        </li>
+
+
+
+        <li class="col-7  nav-item">
+            <div class="row row-cols-2 justify-content-end">
+
+                {% if not user.is_anonymous %}
+                <div class="col-4 col-sm-6">
+                    <h5 class="ms-4" style="color: white;">Bienvenido {{nombre_cliente}}</h5>
+                </div>
+                <div class="col-2 col-lg-3 col-md-3 col-sm-5">
+                    <a style="color: white;" class="btn  btn-primary nav-link"
+                        href="{% url 'cliente_app:lista-reservas' %}">Reservas</a>
+                </div>
+                <div class="col-2 col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-5">
+                    <a style="color: white;" class="btn  btn-primary nav-link"
+                        href="{% url 'users_app:user-logout' %}">Cerrar sesion</a>
+                </div>
+                {%else%}
+                <div class="col-2">
+                    <a style="color: white;" class="btn ml-4 btn-primary nav-link"
+                        href="{% url 'users_app:user-login' %}">Iniciar sesion</a>
+                </div>
+                <div class="col-2">
+                    <a style="color: white;" class="btn ml-4 btn-primary nav-link "
+                        href="{% url 'users_app:user-register'%}">Crear Cuenta</a>
+                </div>
+                {%endif%}
+
+            </div>
+
+        </li>
+
+
+    </div>
+</div>
+<!-- <nav class="navbar navbar-expand-lg navbar-dark  bg-dark">
     <a class="navbar-brand" href="{% url 'cliente_app:inicio-principal' %}">Turismo real reservas </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,7 +85,7 @@
 
                     <li class="nav-item"><a class="btn  btn-primary nav-link" href="{% url 'cliente_app:lista-reservas' %}">Reservas</a></li>
                 </div>
-                <div class="col-md-2 me-4">
+                <div class="col-md-2 col-lg-2 col-sm-2 col-xl-2 me-4 me-4">
 
                     <li class="nav-item"><a class="btn  btn-primary nav-link"
                             href="{% url 'users_app:user-logout' %}">Cerrar sesion</a></li>
@@ -52,4 +106,4 @@
 
 
     </div>
-</nav>
+</nav> -->
