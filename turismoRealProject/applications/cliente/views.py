@@ -211,9 +211,9 @@ class EditarReservaView(LoginRequiredMixin,UpdateView):
         context['nombre_cliente']=cliente_full_name(cliente)
         return context
     
-    def form_valid(self):
+    def form_valid(self,form):
         
-        print(self.request.POST)
+        print('$$$$$$')
         reserva=Reserva.objects.get(id_reserva=self.kwargs['id_reserva'])
         #transporteCheck
         
@@ -266,7 +266,7 @@ class EditarReservaView(LoginRequiredMixin,UpdateView):
                                                                                 valor_tour=reserva.valor_tour,
                                                                                 valor_total=reserva.valor_total) """
         reserva.save()
-        return super(EditarReservaView,self).form_valid()
+        return super(EditarReservaView,self).form_valid(form)
       
     
  
