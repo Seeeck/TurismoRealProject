@@ -19,9 +19,11 @@ pip-selfcheck.json
 *.log
 *.pot
 *.pyc
-__pycache__/
+__pycache__
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
-
-
+entorno/
+/__pycache__/*
+db.sqlite
+hotel-env/

@@ -1,0 +1,42 @@
+{% extends 'base/base.html'%}
+{%load static%}
+{%block titulo%}Inicio{%endblock titulo%}
+
+{%block contenido%}
+
+<div class="content">
+  
+    <h1>{{ object.REse }}</h1>
+    <h2>Cliente:</h2>
+
+    <p>Nombre: {{ object.nombre }} {{ object.apellido }}</p>
+    <p>Rut: {{ object.rut }}</p>
+    <p>Fecha de nacimiento: {{ object.fecha_nacimiento }}</p>
+    <h2>Reservas</h2>
+    {% for reserva  in Reservas %}
+    
+    <p>Reserva: {{ reserva.id_reserva }}</p>
+    <p>Valor total {{ reserva.valor_total }}</p>
+    <p>Departamento {{ reserva.id_departamento.nombre_departamento }}</p>
+    <p>Numero {{ reserva.id_departamento.numero_departamento }}</p>
+    <p>Cantidad de personas {{ reserva.id_departamento.numero_personas }}</p>
+    <p> 
+    <form action="/funcionario/listadoItem/{{reserva.id_departamento.id_departamento}}" method="get">
+    
+        <button type="submit" class="btn btn-primary"> Ver items del departamento</button>
+    </form></p>
+
+    
+    
+    
+    
+    {% endfor %}
+    
+    <p>{{ Mensaje }}</p>
+    
+    <button class="btn btn-primary"> Volver</button>
+ 
+    
+</div>
+
+{%endblock contenido%}

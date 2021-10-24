@@ -1,0 +1,71 @@
+{% extends 'base/base.html'%}
+{%load static%}
+{%block titulo%}Inicio{%endblock titulo%}
+
+{%block contenido%}
+<div class="content">
+    <h1>Listado de items de departamento</h1>
+    <form action="/funcionario/modificarEstado" method="post">
+  
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">estado</th>
+        <th scope="col">Nro.Departamento</th>
+        <th scope="col">Precio estimado</th>        
+        <th scope="col">Cambiar estado</th>
+
+
+
+        
+      </tr>
+    </thead>
+    <tbody>
+        {% if items %}
+        {% for item  in items %}
+      <tr >
+        <th scope="row"> {{ forloop.counter }}</th>
+        <td>{{item.nombre}}</td>
+        <td>{{item.get_estado_display}}</td>
+        <td>{{item.id_departamento.numero_departamento}}</td>
+        <td>{{item.precio_estimado}}</td>
+        <input type="hidden" name="id_item" value="{{item.id}}" >
+
+        <td>
+
+        <select class="form-select" name="opciones"  aria-label="Default select example">
+          {% for x, y in item.ESTADO_CHOICES %}
+              <option value="{{ x }}"{% if item.estado == x %} selected{% endif %}>{{ y }}</option>
+          {% endfor %}
+        </select>
+ 
+
+        </td>
+
+
+        
+      </tr>
+
+     
+
+      {% endfor %}
+
+      {% else %}
+      <p>No hay cliente capichi.</p>
+    {% endif %} 
+  
+  </tbody>
+</table>
+<center> 
+    {% csrf_token %}
+    
+    <button type="submit" class="btn btn-primary"> Guardar</button>
+  </center>
+</form>
+
+</div>
+
+
+{%endblock contenido%}
