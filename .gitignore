@@ -26,4 +26,4 @@ db.sqlite3-journal
 entorno/
 /__pycache__/*
 db.sqlite
-hotel-env/
+/hotel-env
