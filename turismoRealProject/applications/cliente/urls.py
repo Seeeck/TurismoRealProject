@@ -8,7 +8,7 @@ urlpatterns = [
     path('cliente/lista-departamentos/', views.ListaDepartamentosView.as_view(),name='lista_departamentos'),
     path('cliente/reserva-departamento/<id_departamento>', views.ReservarDepartamentoView.as_view(),name='reservar-departamento'),
     path('cliente/reservas/',views.ListaReservasView.as_view(),name='lista-reservas'),
-    path('cliente/reservas/<id_reserva>',views.EditarReservaView.as_view(),name='editar-reserva'),
+    path('cliente/reservas/<id_reserva>',views.EditarReservaView,name='editar-reserva'),
 
     
 
