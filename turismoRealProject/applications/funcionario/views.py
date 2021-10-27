@@ -15,7 +15,7 @@ from django.urls.base import reverse_lazy
 from applications.funcionario.models import Item 
 
 
-from applications.users.models import Cliente
+from applications.users.models import Cliente, User
 from applications.crudModelos.models import Reserva
 
 # Create your views here.
@@ -30,6 +30,29 @@ class FuncionarioPanelPrincialView(LoginRequiredMixin,TemplateView):
         return super(FuncionarioPanelPrincialView,self).dispatch(request,*args,**kwargs)
 
 
+class Checkin(TemplateView):    
+    template_name = 'sistemaFuncionario/checkin.html' 
+    def get_context_data(self, **kwargs):
+        
+        context = super().get_context_data(**kwargs)
+        query = self.request.GET.get('q')
+        
+        if query :
+
+            try:
+            
+                context['cliente'] = Cliente.objects.get(
+       
+                Q(rut=query) | Q(nombre=query))
+            
+            except ObjectDoesNotExist:
+                
+                print('dsds')
+
+           
+            context['Reservas'] = Reserva.objects.filter(id_cliente=context['cliente'].rut )
+        
+        return context
 
 
 class ListadoClientes(ListView):
@@ -103,5 +126,30 @@ def modificar_estado(request):
     
     return HttpResponseRedirect(reverse('funcionario_app:listadoItem',kwargs={'pk':items[0].id_departamento.id_departamento}))
 
+from django.conf import settings
+from django.core.mail import EmailMultiAlternatives, message
+from django.template.loader import get_template
+def send_user_mail(request,id):
+    
+    cliente = Cliente.objects.get(rut=id)
+    subject = 'Terminos y condicciones'
+    template = get_template('sistemaFuncionario/template_correo.html')
 
+    content = template.render({
+        'nombre': cliente.nombre,
+        'apellido': cliente.apellido,
+       
+
+
+    })
+
+    message = EmailMultiAlternatives(subject,
+                                    '',settings.EMAIL_HOST_USER,
+                                    [cliente.user_cliente.email]) 
+
+    message.attach_alternative(content, 'text/html')
+    message.send()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+
+    
    

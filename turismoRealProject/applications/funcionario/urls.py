@@ -10,6 +10,10 @@ urlpatterns = [
     path('/listadoItem/<slug:pk>', views.ListadoItem.as_view(),name='listadoItem'),
      path('/detalleCliente/<pk>', views.DetalleCliente.as_view(), name='cliente-detalle'),
      path('/modificarEstado', views.modificar_estado, name='modificar-estado'),
+     path('/checkin', views.Checkin.as_view(), name='checkin'),
+     path('/enviarCorrreo/<int:id>', views.send_user_mail, name='enviar-correo'),
+
+
 
     
 
