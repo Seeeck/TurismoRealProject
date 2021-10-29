@@ -16,7 +16,7 @@ from applications.funcionario.models import Item
 
 
 from applications.users.models import Cliente, User
-from applications.crudModelos.models import Reserva
+from applications.crudModelos.models import Reserva,PersonaExtra
 
 # Create your views here.
 
@@ -117,29 +117,36 @@ def modificar_estado(request):
     items= Item.objects.filter(id__in=ids)
     items_modificado=[]
     estados = request.POST.getlist('opciones')
+    
     for index,item in enumerate(items):
         item.estado = estados[index]
         items_modificado.append(item)
     
     Item.objects.bulk_update(items_modificado,['estado'])
+    id=0
+    try:
+        id=items[0].id_departamento.id_departamento
+    except:
+        id=0
 
     
-    return HttpResponseRedirect(reverse('funcionario_app:listadoItem',kwargs={'pk':items[0].id_departamento.id_departamento}))
+    return HttpResponseRedirect(reverse('funcionario_app:listadoItem',kwargs={'pk':id}))
 
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives, message
 from django.template.loader import get_template
-def send_user_mail(request,id):
+from django.contrib import messages
+def send_user_mail(request,rut,id_reserva):
     
-    cliente = Cliente.objects.get(rut=id)
+    cliente = Cliente.objects.get(rut=rut)
+    
     subject = 'Terminos y condicciones'
     template = get_template('sistemaFuncionario/template_correo.html')
-
+    messages.success(request, 'Correo enviado correctamente')
     content = template.render({
         'nombre': cliente.nombre,
         'apellido': cliente.apellido,
-       
-
+        'id_reserva':id_reserva,
 
     })
 
@@ -151,5 +158,33 @@ def send_user_mail(request,id):
     message.send()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
+def pago_checkin(request,id_reserva):
+
+    if(request.method=='GET'):
+        reserva=Reserva.objects.get(id_reserva=id_reserva)
+        reserva.id_departamento
+        cantidad_personas=PersonaExtra.objects.filter(id_reserva=id_reserva).count()+1
+        precio_total_reserva=cantidad_personas*reserva.id_departamento.valor_dia
+        precio_anticipo=cantidad_personas*reserva.id_departamento.valor_anticipo
+        valor_reserva_dif= int(precio_total_reserva) - int(precio_anticipo) 
+        if(reserva.is_transporte):
+            valor_reserva_dif=reserva.valor_transporte+valor_reserva_dif
+        if(reserva.is_tour):
+            valor_reserva_dif=reserva.valor_tour+valor_reserva_dif
+        valor_pagar=valor_reserva_dif
+
+        context={
+            'reserva':reserva,
+            'valor_pago':valor_pagar
+        }
+        return render(request,'sistemaCliente/detalle_pago_reserva.html',context)
     
+    if(request.method=='POST'):
+        reserva=Reserva.objects.get(id_reserva=id_reserva)
+        pago_checkin=int(request.POST.get('valor_pago'))
+        valor_pago=reserva.por_pagar
+        valor_pago=valor_pago-pago_checkin
+        reserva=Reserva.objects.filter(id_reserva=id_reserva).update(por_pagar=valor_pago)
+        print(Reserva.objects.get(id_reserva=id_reserva).por_pagar)
+        pass
    

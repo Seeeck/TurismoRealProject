@@ -138,7 +138,7 @@ class LoginAdmin(FormView):
 class LoginFuncionario(FormView):
     template_name='users/funcionario/login.html'
     form_class=LoginForm
-    success_url=reverse_lazy('funcionario_app:panel-funcionario')
+    success_url=reverse_lazy('funcionario_app:listadoCliente')
     
     def form_valid(self,form):
         #verificacion con authenticate

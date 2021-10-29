@@ -158,10 +158,13 @@ class ReservarDepartamentoView(SuccessMessageMixin,LoginRequiredMixin,CreateView
         dias=((datetime.strptime(reserva.id_check_out.fecha_checkout,'%Y-%m-%d'))-(datetime.strptime(reserva.id_check_in.fecha_checkin,'%Y-%m-%d'))).days
         precio_departamento_dias=departamento.valor_dia*dias
         valor_total=precio_departamento_dias+precio_tour+precio_transporte
+
         reserva.valor_transporte=precio_transporte
         reserva.valor_tour=precio_tour
         reserva.valor_reserva_departamento=precio_departamento_dias
         reserva.valor_total=valor_total
+        reserva.por_pagar=valor_total-(departamento.valor_anticipo*(cantidad_personas+1))
+        reserva.is_pago_anticipo=True
         reserva.save()
         return super(ReservarDepartamentoView,self).form_valid(form)
 
@@ -214,14 +217,17 @@ def EditarReservaView(request,id_reserva):
         cantidad_personas=PersonaExtra.objects.filter(id_reserva=id_reserva).count()+1
         precio_tour=cantidad_personas*departamento.id_tour.valor_tour
         is_tour=reserva[0].is_tour
+        is_tour=False
         if(request.POST.get('tourCheck')=='true'):
             reserva[0].is_tour=True
             is_tour=True
             precio_tour=(departamento.id_tour.valor_tour)*cantidad_personas
+            por_pagar_tour=precio_tour
         precio_transporte=reserva[0].valor_transporte
 
         existe_transporte=reserva[0].is_transporte
         transporte=0
+        existe_transporte=False
         if(request.POST.get('transporteCheck')=='true'):
             
             reserva[0].is_transporte
@@ -230,6 +236,7 @@ def EditarReservaView(request,id_reserva):
             
 
             precio_transporte=reserva[0].valor_transporte+((departamento.id_sv_transporte.valor_transporte)*cantidad_personas)
+            por_pagar_transporte=precio_transporte
             sv_transporte=Sv_Transporte.objects.filter(sv_transporte_disponible=True).first()
             
             transporte=Transporte.objects.create(fecha_ida=reserva[0].id_check_in.fecha_checkin,
@@ -239,8 +246,12 @@ def EditarReservaView(request,id_reserva):
             
             
         
-        
-        
+        por_pago=reserva[0].por_pagar
+        if(existe_transporte):
+            por_pago=por_pago+precio_transporte
+        if(is_tour):
+            por_pago=por_pago+precio_tour
+
         valor_total=precio_transporte+precio_tour+reserva[0].valor_total
         
        
@@ -249,7 +260,8 @@ def EditarReservaView(request,id_reserva):
                                                                      valor_transporte=precio_transporte,
                                                                      valor_tour=precio_tour,
                                                                      valor_total=valor_total,
-                                                                     id_transporte=transporte)
+                                                                     id_transporte=transporte,
+                                                                     por_pagar=por_pago)
 
 
         return HttpResponseRedirect(reverse_lazy('cliente_app:lista_departamentos'))
