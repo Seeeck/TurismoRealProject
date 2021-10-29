@@ -1,0 +1,255 @@
+{% extends 'base/base.html'%}
+{%load static %}
+{%block titulo%}Ver Reserva{%endblock titulo%}
+{%block contenido%}
+{%include 'includes/nav.html' %}
+
+
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-6 mt-4">
+            <div class="card text-center">
+
+                <div class="card-body">
+                    <h5 class="card-title">{{reserva.id_departamento.nombre_departamento}}</h5>
+                    <div class="row justify-content-center">
+                        <div class="col-6">
+                            <img class="img-fluid " src="{{reserva.id_departamento.imagen_departamento.url}}" alt="">
+                        </div>
+
+                    </div>
+                    <div class="row mt-4 justify-content-center">
+                        <div class=" col-4 mb-3 ">
+                            <label for="exampleFormControlInput1" class="form-label">Check In</label>
+                            <input disabled value="{{reserva.id_check_in.fecha_checkin }}" type="email"
+                                class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                        </div>
+                        <div class=" col-4 mb-3 ">
+                            <label for="exampleFormControlInput1" class="form-label">Check Out</label>
+                            <input disabled value="{{reserva.id_check_out.fecha_checkout}}" type="email"
+                                class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <h4>Personas Extra</h4>
+                        {%for persona in personas_extra %}
+                        <div class=" col-4 mb-3 ">
+                            <input disabled value="{{persona.nombre}} {{persona.apellido}}" type="email"
+                                class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                        </div>
+                        {%endfor%}
+                    </div>
+                    <form method="POST" action="">
+                        {%csrf_token%}
+                        <div>
+                            {%if personas_disponibles %}
+                            <h4>Agregar persona extra</h4>
+                            {%for persona_disponible in personas_disponibles%}
+                            <div class="row mt-4 justify-content-center">
+
+                                <div class="col-4 mb-3  ">
+                                    <label for="exampleInputEmail1">Nombre</label>
+                                    <input class="form-control" id='nombre{{persona_disponible}}'
+                                        name="nombre{{persona_disponible}}" type="text">
+                                </div>
+                                <div class="col-4 mb-3 ">
+                                    <label for="exampleInputEmail1">Apellido</label>
+                                    <input class="form-control" id='apellido{{persona_disponible}}'
+                                        name="apellido{{persona_disponible}}" type="text">
+                                </div>
+                            </div>
+                            {%endfor%}
+                            {%endif%}
+                        </div>
+
+                        <div>
+                            {%if reserva.is_tour %}
+                            <h4>Servicio de Tour</h4>
+                            <div class="row mt-4 justify-content-center">
+
+                                <div class="col-4 mb-3  ">
+                                    <label for="exampleInputEmail1">Nombre del tour:</label>
+                                    <input disabled class="form-control"
+                                        value="{{reserva.id_departamento.id_tour.nombre_tour}}" name="" type="text">
+                                </div>
+                                <div class="col-4 mb-3  ">
+                                    <label for="exampleInputEmail1">Valor total Tour:</label>
+                                    <input disabled class="form-control" value=" ${{reserva.valor_tour}}" name=""
+                                        type="text">
+                                </div>
+                            </div>
+                            {%else%}
+                            {%if reserva.id_departamento.is_tour%}
+                            <h4 class="mt-4">Servicio de Tour</h4>
+                            <div class="row mt-4 mb-4 justify-content-center ">
+                                <div class="col-7">
+                                    <input class="form-check-input" type="checkbox" value="0" name="tourCheck"
+                                        id="tourCheck" onclick="tourCheckFunction()">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Seleccione esta casilla si quiere el servicio de tour
+                                    </label>
+                                </div>
+
+
+                                <div class="col-5">
+                                    <label class=" ms-2form-check-label" for="flexCheckDefault">
+                                        Valor tour por persona : ${{reserva.id_departamento.id_tour.valor_tour}}
+                                    </label>
+                                </div>
+
+                            </div>
+                            {%endif%}
+                            {%endif%}
+                        </div>
+                        <div>
+                            {%if reserva.is_transporte%}
+                            <h4>Servicio Transporte</h4>
+                            <div class="row mt-4 justify-content-center">
+
+                                <div class="col-4 mb-3  ">
+                                    <label for="exampleInputEmail1">Fecha ida:</label>
+                                    <input disabled class="form-control" value="{{reserva.id_check_in.fecha_checkin }}"
+                                        name="" type="text">
+                                </div>
+                                <div class="col-4 mb-3  ">
+                                    <label for="exampleInputEmail1">Fecha Vuelta:</label>
+                                    <input disabled class="form-control" value=" {{reserva.id_check_out.fecha_checkout }}"
+                                        name="" type="text">
+                                </div>
+                                <div class="col-4 mb-3  ">
+                                    <label for="exampleInputEmail1">Direccion Inicio</label>
+                                    <input disabled class="form-control"
+                                        value=" {{reserva.id_transporte.direccion_inicio}}" name="" type="text">
+                                </div>
+                                <div class="col-4 mb-3  ">
+                                    <label for="exampleInputEmail1">Nombre Chofer</label>
+                                    <input disabled class="form-control"
+                                        value=" {{reserva.id_transporte.id_sv_transporte.nombre_chofer}} {{reserva.id_transporte.id_sv_transporte.apellido_chofer}} "
+                                        name="" type="text">
+                                </div>
+                                <div class="col-4 mb-3  ">
+                                    <label for="exampleInputEmail1">Patente</label>
+                                    <input disabled class="form-control"
+                                        value=" {{reserva.id_transporte.id_sv_transporte.patente_vehiculo}}" name=""
+                                        type="text">
+                                </div>
+                                <div class="col-4 mb-3  ">
+                                    <label for="exampleInputEmail1">Valor total</label>
+                                    <input disabled class="form-control" value="${{reserva.valor_transporte}}" name=""
+                                        type="text">
+                                </div>
+                            </div>
+                            {%else%}
+                            {%if reserva.id_departamento.is_transporte%}
+                            <h4>Servicio Transporte</h4>
+                            <div>
+                                <div class="row justify-content-center">
+                                    <div class=" col-md-6 mt-4 form-check">
+                                        <input class="form-check-input" type="checkbox" value="0" id="transporteCheck"
+                                            name="transporteCheck" onclick="transporteCheckFunction()">
+                                        <label class=" ms-2 row form-check-label" for="flexCheckDefault1">
+                                            Seleccione esta casilla si quiere el servicio de transporte
+                                        </label>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="row justify-content-center">
+                                    <div class="col-md-6">
+                                        <label class=" ms-2 row form-check-label" for="flexCheckDefault">
+                                            Valor transporte por persona :
+                                            ${{reserva.id_departamento.id_sv_transporte.valor_transporte}}
+                                        </label>
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class=" mt-4 col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Ingrese su direccion de inicio</label>
+                                            <input class="form-control" id='direccionInicioTransporte'
+                                                name="direccionInicioTransporte" type="text">
+                                            <p id="demo"></p>
+                                        </div>
+                                    </div>
+                                    <div class=" mt-4 col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Direccion de llegada</label>
+                                            <input class="form-control" disabled name="direccionInicioTransporte"
+                                                type="text" disabled
+                                                value="{{reserva.id_departamento.direccion_departamento}}">
+                                        </div>
+                                    </div>
+                                    {{form.check_in}}
+                                </div>
+                            </div>
+                            {%endif%}
+                            {%endif%}
+                        </div>
+                        <button onclick="return validarDireccionInicio()" class="btn btn-success" type="submit">Actualizar
+                            </button>
+                    </form>
+
+                    
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<script>
+    function tourCheckFunction() {
+        // Get the checkbox
+        var checkBox = document.getElementById("tourCheck");
+        // Get the output text
+
+        // If the checkbox is checked, display the output text
+        if (checkBox.checked == true) {
+            checkBox.value = true;
+
+        } else {
+            checkBox.value = false;
+        }
+    }
+
+    function transporteCheckFunction() {
+        // Get the checkbox
+        var checkBox = document.getElementById("transporteCheck");
+        // Get the output text
+
+        // If the checkbox is checked, display the output text
+        if (checkBox.checked == true) {
+            checkBox.value = true;
+
+        } else {
+            checkBox.value = false;
+        }
+    }
+
+    function validarDireccionInicio() {
+        const transporte_check = document.querySelector('#transporteCheck')
+        const direccion_inicio = document.querySelector('#direccionInicioTransporte')
+
+        if (transporte_check.checked) {
+            if (direccion_inicio.value.length <= 0) {
+                text = "Ingrese una direccion "
+                document.getElementById("demo").innerHTML = text;
+                return false
+            }
+        } else {
+            return true
+
+        }
+
+        return true
+    }
+
+
+</script>
+
+
+{%endblock contenido%}

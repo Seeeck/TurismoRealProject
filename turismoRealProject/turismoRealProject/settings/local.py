@@ -17,7 +17,8 @@ DATABASES = {
         'NAME': get_secret('DB_NAME'),
         'USER':get_secret('DB_USER'),
         'PASSWORD':get_secret('PASSWORD'),
-    }
+      }
+    
 }
 
 #url de los archivos staticos

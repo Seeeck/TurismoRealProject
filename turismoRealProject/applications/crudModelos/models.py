@@ -96,7 +96,11 @@ class CheckOut(models.Model):
 
 class Reserva(models.Model):
     id_reserva = models.AutoField(primary_key=True)
+    por_pagar=models.IntegerField(default=0)
     valor_total = models.IntegerField(default=0)
+    valor_transporte=models.IntegerField(default=0)
+    valor_tour=models.IntegerField(default=0)
+    valor_reserva_departamento=models.IntegerField(default=0)
     is_pago_anticipo = models.BooleanField(default=False,)
     is_pago_checkin = models.BooleanField(default=False)
     is_pago_checkout = models.BooleanField(default=False)

@@ -1,0 +1,60 @@
+{% extends 'base/base.html'%}
+{%load static%}
+{%block titulo%}Inicio{%endblock titulo%}
+
+{%block contenido%}
+<div class="content">
+  <h1>Clientes</h1>
+  {% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+      {% endfor %}
+  </ul>
+  {% endif %}
+  <form method='GET'>
+    <input type='text' name='q' value='{{ request.GET.q }}'>
+    <input class="btn btn-primary" type='submit' value="Buscar un cliente">
+
+  </form>
+  <h1>Check-in</h1>
+  <h2>Cliente:</h2>
+
+  <p>Nombre: {{ cliente.nombre }} {{ cliente.apellido }}</p>
+  <p>Rut: {{ cliente.rut }}</p>
+  <p>Fecha de nacimiento: {{ cliente.fecha_nacimiento }}</p>
+
+  <h2>Reservas activas</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">reserva</th>
+        <th scope="col">valor total</th>
+        <th scope="col">nro departamento</th>
+        <th scope="col">cantidad de personas </th>
+        <th scope="col"> check-in </th>
+
+
+      </tr>
+    </thead>
+    <tbody>
+      {% for reserva in Reservas %}
+      <tr>
+        <th scope="row"> {{ forloop.counter }}</th>
+        <td>{{ reserva.id_reserva }}</td>
+        <td>{{ reserva.valor_total }}</td>
+        <td>{{ reserva.id_departamento.numero_departamento }}</td>
+        <td>{{ reserva.id_departamento.numero_personas }}</td>
+        <td><a class="btn btn-success" href="{% url 'funcionario_app:enviar-correo' rut=cliente.rut id_reserva=reserva.id_reserva %}"> solicitar pago</a> </td>
+        <!-- .0.user_cliente.id -->
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+
+
+
+
+  {%endblock contenido%}

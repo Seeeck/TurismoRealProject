@@ -26,7 +26,7 @@
       <tr>
         <th class="col-md-2">
           {% if r.id_departamento.imagen_departamento %}
-          <img  class="img-fluid " src="{{r.id_departamento.imagen_departamento.url}}" alt="">
+          <img class="img-fluid " src="{{r.id_departamento.imagen_departamento.url}}" alt="">
           {%else%}
           <h1>Sin imagen</h1>
           {%endif%}
@@ -36,13 +36,34 @@
         <td>{{r.id_check_out.fecha_checkout}}</td>
         <td>{{r.id_departamento.id_zona.comuna}}</td>
         <td>${{r.valor_total }}</td>
-        <td><a class="btn btn-success" href="">Ver </a></td>
+        <td><a class="btn btn-success" href="{% url 'cliente_app:editar-reserva' r.id_reserva %}">Ver </a>
+          <a class="btn btn-danger" href="">Cancelar reserva</a>
+        </td>
 
 
       </tr>
       {%endfor%}
     </tbody>
   </table>
+
+  {% if is_paginated %}
+  <nav aria-label="Page navigation example">
+    <ul class="pagination">
+      {% if page_obj.has_previous %}
+      <li class="page-item"><a class="page-link" href="?page={{page_obj.previous_page_number}}">Atras</a>
+      </li>
+      {% endif%}
+
+      <li class="page-item"><a class="page-link" href="?page={{page_obj.number}}">{{page_obj.number}}</a>
+      </li>
+
+      {% if page_obj.has_next %}
+      <li class="page-item"><a class="page-link" href="?page={{page_obj.next_page_number}}">Siguiente</a>
+      </li>
+      {%endif%}
+    </ul>
+  </nav>
+  {%endif%}
 
 </div>
 

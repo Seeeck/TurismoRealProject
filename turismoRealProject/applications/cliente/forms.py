@@ -42,6 +42,9 @@ class ReservaForm(forms.ModelForm):
         except:
             pass
         
-        
+class InvalidForm(forms.ModelForm):
+    class Meta:
+        model=Reserva
+        fields=[]       
         
         

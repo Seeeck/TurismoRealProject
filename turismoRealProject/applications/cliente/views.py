@@ -16,9 +16,10 @@ from applications.users.models import Cliente
 #Datetime
 from datetime import date, datetime
 #Forms
-from .forms import ReservaForm
+from .forms import InvalidForm, ReservaForm
 # Create your views here.
 from django.http import HttpRequest
+from django.http.response import HttpResponseRedirect
 
 
 
@@ -141,7 +142,7 @@ class ReservarDepartamentoView(SuccessMessageMixin,LoginRequiredMixin,CreateView
         precio_tour=0
         if(self.request.POST.get('tourCheck')=='true'):
             reserva.is_tour=True
-            precio_tour=(departamento.id_tour.valor_tour)*cantidad_personas
+            precio_tour=(departamento.id_tour.valor_tour)*cantidad_personas+1
         precio_transporte=0
         if(self.request.POST.get('transporteCheck')=='true'):
             reserva.is_transporte=True
@@ -155,10 +156,15 @@ class ReservarDepartamentoView(SuccessMessageMixin,LoginRequiredMixin,CreateView
 
         
         dias=((datetime.strptime(reserva.id_check_out.fecha_checkout,'%Y-%m-%d'))-(datetime.strptime(reserva.id_check_in.fecha_checkin,'%Y-%m-%d'))).days
-        precio_departamento_dias=departamento.valor_dia*dia
+        precio_departamento_dias=departamento.valor_dia*dias
         valor_total=precio_departamento_dias+precio_tour+precio_transporte
 
+        reserva.valor_transporte=precio_transporte
+        reserva.valor_tour=precio_tour
+        reserva.valor_reserva_departamento=precio_departamento_dias
         reserva.valor_total=valor_total
+        reserva.por_pagar=valor_total-(departamento.valor_anticipo*(cantidad_personas+1))
+        reserva.is_pago_anticipo=True
         reserva.save()
         return super(ReservarDepartamentoView,self).form_valid(form)
 
@@ -167,6 +173,8 @@ class ListaReservasView(LoginRequiredMixin,ListView):
     template_name = "sistemaCliente/lista_reservas.html"
     model = Reserva
     context_object_name='reservas'
+    paginate_by=4
+    
     
     def get_queryset(self):   
         cliente=Cliente.objects.get(user_cliente=self.request.user)
@@ -180,6 +188,117 @@ class ListaReservasView(LoginRequiredMixin,ListView):
         
         context['nombre_cliente']=cliente_full_name(cliente)
         return context
+
+def EditarReservaView(request,id_reserva):
+    
+    if(request.method=='POST'):
+        cliente=Cliente.objects.get(user_cliente=request.user)
+        reserva=Reserva.objects.filter(id_cliente=cliente,id_reserva=id_reserva)
+
+        id_departamento=reserva[0].id_departamento.id_departamento
+
+        departamento=Departamento.objects.get(id_departamento=id_departamento)
+        cantidad_personas=0
+        for key,value in request.POST.items():
+            if (str(key).__contains__('nombre') or str(key).__contains__('apellido')) and str(value)!=''   :
+                if(str(key).__contains__('nombre')):
+                    nombre_persona=value
+                    p=PersonaExtra.objects.create(nombre=nombre_persona,id_reserva=reserva[0])
+                    id=p.id_persona_extra
+                    
+                elif(str(key).__contains__('apellido')):  
+                    apellido_persona=value
+                    p2=PersonaExtra.objects.get(id_persona_extra=id)
+                    p2.apellido=apellido_persona
+                    cantidad_personas=cantidad_personas+1
+                    p2.save() 
+        
+        cantidad_personas=0
+        cantidad_personas=PersonaExtra.objects.filter(id_reserva=id_reserva).count()+1
+        precio_tour=cantidad_personas*departamento.id_tour.valor_tour
+        is_tour=reserva[0].is_tour
+        is_tour=False
+        if(request.POST.get('tourCheck')=='true'):
+            reserva[0].is_tour=True
+            is_tour=True
+            precio_tour=(departamento.id_tour.valor_tour)*cantidad_personas
+            por_pagar_tour=precio_tour
+        precio_transporte=reserva[0].valor_transporte
+
+        existe_transporte=reserva[0].is_transporte
+        transporte=0
+        existe_transporte=False
+        if(request.POST.get('transporteCheck')=='true'):
+            
+            reserva[0].is_transporte
+            existe_transporte=True
+              
+            
+
+            precio_transporte=reserva[0].valor_transporte+((departamento.id_sv_transporte.valor_transporte)*cantidad_personas)
+            por_pagar_transporte=precio_transporte
+            sv_transporte=Sv_Transporte.objects.filter(sv_transporte_disponible=True).first()
+            
+            transporte=Transporte.objects.create(fecha_ida=reserva[0].id_check_in.fecha_checkin,
+                                             fecha_vuelta=reserva[0].id_check_out.fecha_checkout,
+                                             direccion_inicio=request.POST.get('direccionInicioTransporte')
+                                             ,id_sv_transporte=sv_transporte)
+            
+            
+        
+        por_pago=reserva[0].por_pagar
+        if(existe_transporte):
+            por_pago=por_pago+precio_transporte
+        if(is_tour):
+            por_pago=por_pago+precio_tour
+
+        valor_total=precio_transporte+precio_tour+reserva[0].valor_total
+        
+       
+        reserva=Reserva.objects.filter(id_reserva=reserva[0].id_reserva).update(is_tour=is_tour,
+                                                                     is_transporte=existe_transporte,
+                                                                     valor_transporte=precio_transporte,
+                                                                     valor_tour=precio_tour,
+                                                                     valor_total=valor_total,
+                                                                     id_transporte=transporte,
+                                                                     por_pagar=por_pago)
+
+
+        return HttpResponseRedirect(reverse_lazy('cliente_app:lista_departamentos'))
+
+    elif(request.method=='GET'):
+     
+        cliente=Cliente.objects.get(user_cliente=request.user)
+        reserva=Reserva.objects.filter(id_cliente=cliente,id_reserva=id_reserva)
+        
+        
+        #Context
+        personas_extra=PersonaExtra.objects.filter(id_reserva=id_reserva)
+        numero_personas_disponibilidad=reserva.last().id_departamento.numero_personas
+        personas_extra=PersonaExtra.objects.filter(id_reserva=id_reserva)
+        personas_disponibilidad=numero_personas_disponibilidad-personas_extra.__len__()
+        
+        
+        context= {
+            'personas_extra': personas_extra,
+            'personas_disponibles':range(1,personas_disponibilidad),
+            'nombre_cliente':cliente_full_name(cliente),
+            'reserva':reserva[0]
+        }
+        
+        return render(request,'sistemaCliente/editar_reserva.html',context)
+        
+
+    
+
+
+
+    #guardado de datos
+
+    
+    
+
+      
     
  
     
