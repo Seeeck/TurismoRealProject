@@ -136,12 +136,13 @@ from django.conf import settings
 from django.core.mail import EmailMultiAlternatives, message
 from django.template.loader import get_template
 from django.contrib import messages
-def send_user_mail(request,rut,id_reserva):
+
+def email_chekin(request,rut,id_reserva):
     
     cliente = Cliente.objects.get(rut=rut)
     
     subject = 'Terminos y condicciones'
-    template = get_template('sistemaFuncionario/template_correo.html')
+    template = get_template('sistemaFuncionario/template_correo_checkin.html')
     messages.success(request, 'Correo enviado correctamente')
     content = template.render({
         'nombre': cliente.nombre,
@@ -163,10 +164,8 @@ def pago_checkin(request,id_reserva):
     if(request.method=='GET'):
         reserva=Reserva.objects.get(id_reserva=id_reserva)
         reserva.id_departamento
-        cantidad_personas=PersonaExtra.objects.filter(id_reserva=id_reserva).count()+1
-        precio_total_reserva=cantidad_personas*reserva.id_departamento.valor_dia
-        precio_anticipo=cantidad_personas*reserva.id_departamento.valor_anticipo
-        valor_reserva_dif= int(precio_total_reserva) - int(precio_anticipo) 
+
+        valor_reserva_dif=reserva.por_pagar
         if(reserva.is_transporte):
             valor_reserva_dif=reserva.valor_transporte+valor_reserva_dif
         if(reserva.is_tour):
@@ -184,7 +183,34 @@ def pago_checkin(request,id_reserva):
         pago_checkin=int(request.POST.get('valor_pago'))
         valor_pago=reserva.por_pagar
         valor_pago=valor_pago-pago_checkin
-        reserva=Reserva.objects.filter(id_reserva=id_reserva).update(por_pagar=valor_pago)
+        reserva=Reserva.objects.filter(id_reserva=id_reserva).update(por_pagar=valor_pago,is_pago_checkin=True)
+        reserva=Reserva.objects.get(id_reserva=id_reserva)
         print(Reserva.objects.get(id_reserva=id_reserva).por_pagar)
-        pass
-   
+        messages.success(request, 'La reserva del departamento '+str(reserva.id_departamento.nombre_departamento)+' se pagó correctamente ')
+        return render(request,'sistemaCliente/pago_checkin_realizado.html')
+
+
+def email_chekout(request,rut,id_reserva):
+    
+    cliente = Cliente.objects.get(rut=rut)
+    
+    subject = 'Pago de Check-out'
+    template = get_template('sistemaFuncionario/template_correo_checkout.html')
+    messages.success(request, 'Correo enviado correctamente')
+    content = template.render({
+        'nombre': cliente.nombre,
+        'apellido': cliente.apellido,
+        'id_reserva':id_reserva,
+
+    })
+
+    message = EmailMultiAlternatives(subject,
+                                    '',settings.EMAIL_HOST_USER,
+                                    [cliente.user_cliente.email]) 
+
+    message.attach_alternative(content, 'text/html')
+    message.send()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+
+def pago_checkout(request,id_reserva):
+    pass

@@ -193,9 +193,9 @@ def EditarReservaView(request,id_reserva):
     
     if(request.method=='POST'):
         cliente=Cliente.objects.get(user_cliente=request.user)
-        reserva=Reserva.objects.filter(id_cliente=cliente,id_reserva=id_reserva)
+        reserva=Reserva.objects.get(id_cliente=cliente,id_reserva=id_reserva)
 
-        id_departamento=reserva[0].id_departamento.id_departamento
+        id_departamento=reserva.id_departamento.id_departamento
 
         departamento=Departamento.objects.get(id_departamento=id_departamento)
         cantidad_personas=0
@@ -203,7 +203,7 @@ def EditarReservaView(request,id_reserva):
             if (str(key).__contains__('nombre') or str(key).__contains__('apellido')) and str(value)!=''   :
                 if(str(key).__contains__('nombre')):
                     nombre_persona=value
-                    p=PersonaExtra.objects.create(nombre=nombre_persona,id_reserva=reserva[0])
+                    p=PersonaExtra.objects.create(nombre=nombre_persona,id_reserva=reserva)
                     id=p.id_persona_extra
                     
                 elif(str(key).__contains__('apellido')):  
@@ -216,46 +216,47 @@ def EditarReservaView(request,id_reserva):
         cantidad_personas=0
         cantidad_personas=PersonaExtra.objects.filter(id_reserva=id_reserva).count()+1
         precio_tour=cantidad_personas*departamento.id_tour.valor_tour
-        is_tour=reserva[0].is_tour
+        is_tour=reserva.is_tour
         is_tour=False
         if(request.POST.get('tourCheck')=='true'):
-            reserva[0].is_tour=True
+            reserva.is_tour=True
             is_tour=True
             precio_tour=(departamento.id_tour.valor_tour)*cantidad_personas
             por_pagar_tour=precio_tour
-        precio_transporte=reserva[0].valor_transporte
+        precio_transporte=reserva.valor_transporte
 
-        existe_transporte=reserva[0].is_transporte
-        transporte=0
+        existe_transporte=reserva.is_transporte
+        
         existe_transporte=False
         if(request.POST.get('transporteCheck')=='true'):
             
-            reserva[0].is_transporte
+            reserva.is_transporte
             existe_transporte=True
               
             
 
-            precio_transporte=reserva[0].valor_transporte+((departamento.id_sv_transporte.valor_transporte)*cantidad_personas)
+            precio_transporte=reserva.valor_transporte+((departamento.id_sv_transporte.valor_transporte)*cantidad_personas)
             por_pagar_transporte=precio_transporte
             sv_transporte=Sv_Transporte.objects.filter(sv_transporte_disponible=True).first()
             
-            transporte=Transporte.objects.create(fecha_ida=reserva[0].id_check_in.fecha_checkin,
-                                             fecha_vuelta=reserva[0].id_check_out.fecha_checkout,
+            transporte=Transporte.objects.create(fecha_ida=reserva.id_check_in.fecha_checkin,
+                                             fecha_vuelta=reserva.id_check_out.fecha_checkout,
                                              direccion_inicio=request.POST.get('direccionInicioTransporte')
                                              ,id_sv_transporte=sv_transporte)
+            print(transporte.id)
             
             
         
-        por_pago=reserva[0].por_pagar
+        por_pago=reserva.por_pagar
         if(existe_transporte):
             por_pago=por_pago+precio_transporte
         if(is_tour):
             por_pago=por_pago+precio_tour
 
-        valor_total=precio_transporte+precio_tour+reserva[0].valor_total
+        valor_total=precio_transporte+precio_tour+reserva.valor_total
         
        
-        reserva=Reserva.objects.filter(id_reserva=reserva[0].id_reserva).update(is_tour=is_tour,
+        reserva=Reserva.objects.filter(id_reserva=reserva.id_reserva).update(is_tour=is_tour,
                                                                      is_transporte=existe_transporte,
                                                                      valor_transporte=precio_transporte,
                                                                      valor_tour=precio_tour,
@@ -269,12 +270,18 @@ def EditarReservaView(request,id_reserva):
     elif(request.method=='GET'):
      
         cliente=Cliente.objects.get(user_cliente=request.user)
-        reserva=Reserva.objects.filter(id_cliente=cliente,id_reserva=id_reserva)
+        reserva=Reserva.objects.get(id_cliente=cliente,id_reserva=id_reserva)
         
         
         #Context
+        personas_disponibilidad=0
+        numero_personas_disponibilidad=0
         personas_extra=PersonaExtra.objects.filter(id_reserva=id_reserva)
-        numero_personas_disponibilidad=reserva.last().id_departamento.numero_personas
+        try:
+            numero_personas_disponibilidad=reserva.last().id_departamento.numero_personas
+        except:
+            personas_disponibilidad=0
+        
         personas_extra=PersonaExtra.objects.filter(id_reserva=id_reserva)
         personas_disponibilidad=numero_personas_disponibilidad-personas_extra.__len__()
         
@@ -283,7 +290,7 @@ def EditarReservaView(request,id_reserva):
             'personas_extra': personas_extra,
             'personas_disponibles':range(1,personas_disponibilidad),
             'nombre_cliente':cliente_full_name(cliente),
-            'reserva':reserva[0]
+            'reserva':reserva
         }
         
         return render(request,'sistemaCliente/editar_reserva.html',context)

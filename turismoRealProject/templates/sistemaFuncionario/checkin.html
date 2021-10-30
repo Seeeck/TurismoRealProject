@@ -34,6 +34,10 @@
         <th scope="col">nro departamento</th>
         <th scope="col">cantidad de personas </th>
         <th scope="col"> check-in </th>
+        <th scope="col"> check-out </th>
+
+
+
 
 
       </tr>
@@ -46,7 +50,26 @@
         <td>{{ reserva.valor_total }}</td>
         <td>{{ reserva.id_departamento.numero_departamento }}</td>
         <td>{{ reserva.id_departamento.numero_personas }}</td>
-        <td><a class="btn btn-success" href="{% url 'funcionario_app:enviar-correo' rut=cliente.rut id_reserva=reserva.id_reserva %}"> solicitar pago</a> </td>
+
+
+
+        <td>{% if reserva.is_pago_checkin %}
+          {%else%}<a class="btn btn-success"
+            href="{% url 'funcionario_app:enviar-correo' rut=cliente.rut id_reserva=reserva.id_reserva %}"> solicitar
+            pago</a>{%endif%} </td>
+
+
+        
+
+        
+        <td>{% if reserva.is_pago_checkout %}{%else%}<a class="btn btn-success"
+            href="{% url 'funcionario_app:enviar-correo2' rut=cliente.rut id_reserva=reserva.id_reserva %}"> solicitar
+            pago</a> {%endif%}</td>
+        
+
+
+
+
         <!-- .0.user_cliente.id -->
       </tr>
       {% endfor %}
