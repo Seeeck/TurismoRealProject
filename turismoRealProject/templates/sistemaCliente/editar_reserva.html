@@ -108,12 +108,12 @@
 
                                 <div class="col-4 mb-3  ">
                                     <label for="exampleInputEmail1">Fecha ida:</label>
-                                    <input disabled class="form-control" value="{{reserva.id_transporte.fecha_ida}}"
+                                    <input disabled class="form-control" value="{{reserva.id_check_in.fecha_checkin }}"
                                         name="" type="text">
                                 </div>
                                 <div class="col-4 mb-3  ">
                                     <label for="exampleInputEmail1">Fecha Vuelta:</label>
-                                    <input disabled class="form-control" value=" {{reserva.id_transporte.fecha_vuelta}}"
+                                    <input disabled class="form-control" value=" {{reserva.id_check_out.fecha_checkout }}"
                                         name="" type="text">
                                 </div>
                                 <div class="col-4 mb-3  ">
@@ -187,6 +187,20 @@
                             </div>
                             {%endif%}
                             {%endif%}
+                        </div>
+                        <div>
+                            Por pagar
+                            <div class="row">
+                                <div class=" mt-4 col-md-6">
+                                    <div class="form-group">
+                                        
+                                        <input value="${{reserva.por_pagar}}" class="form-control" id='direccionInicioTransporte'
+                                            name="direccionInicioTransporte" disabled type="text">
+                                        <p id="demo"></p>
+                                    </div>
+                                </div>
+                                
+                            </div>
                         </div>
                         <button onclick="return validarDireccionInicio()" class="btn btn-success" type="submit">Actualizar
                             </button>

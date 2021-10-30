@@ -16,7 +16,7 @@ from applications.funcionario.models import Item
 
 
 from applications.users.models import Cliente, User
-from applications.crudModelos.models import Reserva
+from applications.crudModelos.models import Reserva,PersonaExtra
 
 # Create your views here.
 
@@ -117,29 +117,37 @@ def modificar_estado(request):
     items= Item.objects.filter(id__in=ids)
     items_modificado=[]
     estados = request.POST.getlist('opciones')
+    
     for index,item in enumerate(items):
         item.estado = estados[index]
         items_modificado.append(item)
     
     Item.objects.bulk_update(items_modificado,['estado'])
+    id=0
+    try:
+        id=items[0].id_departamento.id_departamento
+    except:
+        id=0
 
     
-    return HttpResponseRedirect(reverse('funcionario_app:listadoItem',kwargs={'pk':items[0].id_departamento.id_departamento}))
+    return HttpResponseRedirect(reverse('funcionario_app:listadoItem',kwargs={'pk':id}))
 
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives, message
 from django.template.loader import get_template
-def send_user_mail(request,id):
-    
-    cliente = Cliente.objects.get(rut=id)
-    subject = 'Terminos y condicciones'
-    template = get_template('sistemaFuncionario/template_correo.html')
+from django.contrib import messages
 
+def email_chekin(request,rut,id_reserva):
+    
+    cliente = Cliente.objects.get(rut=rut)
+    
+    subject = 'Terminos y condicciones'
+    template = get_template('sistemaFuncionario/template_correo_checkin.html')
+    messages.success(request, 'Correo enviado correctamente')
     content = template.render({
         'nombre': cliente.nombre,
         'apellido': cliente.apellido,
-       
-
+        'id_reserva':id_reserva,
 
     })
 
@@ -151,5 +159,58 @@ def send_user_mail(request,id):
     message.send()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
+def pago_checkin(request,id_reserva):
+
+    if(request.method=='GET'):
+        reserva=Reserva.objects.get(id_reserva=id_reserva)
+        reserva.id_departamento
+
+        valor_reserva_dif=reserva.por_pagar
+        if(reserva.is_transporte):
+            valor_reserva_dif=reserva.valor_transporte+valor_reserva_dif
+        if(reserva.is_tour):
+            valor_reserva_dif=reserva.valor_tour+valor_reserva_dif
+        valor_pagar=valor_reserva_dif
+
+        context={
+            'reserva':reserva,
+            'valor_pago':valor_pagar
+        }
+        return render(request,'sistemaCliente/detalle_pago_reserva.html',context)
     
-   
+    if(request.method=='POST'):
+        reserva=Reserva.objects.get(id_reserva=id_reserva)
+        pago_checkin=int(request.POST.get('valor_pago'))
+        valor_pago=reserva.por_pagar
+        valor_pago=valor_pago-pago_checkin
+        reserva=Reserva.objects.filter(id_reserva=id_reserva).update(por_pagar=valor_pago,is_pago_checkin=True)
+        reserva=Reserva.objects.get(id_reserva=id_reserva)
+        print(Reserva.objects.get(id_reserva=id_reserva).por_pagar)
+        messages.success(request, 'La reserva del departamento '+str(reserva.id_departamento.nombre_departamento)+' se pagó correctamente ')
+        return render(request,'sistemaCliente/pago_checkin_realizado.html')
+
+
+def email_chekout(request,rut,id_reserva):
+    
+    cliente = Cliente.objects.get(rut=rut)
+    
+    subject = 'Pago de Check-out'
+    template = get_template('sistemaFuncionario/template_correo_checkout.html')
+    messages.success(request, 'Correo enviado correctamente')
+    content = template.render({
+        'nombre': cliente.nombre,
+        'apellido': cliente.apellido,
+        'id_reserva':id_reserva,
+
+    })
+
+    message = EmailMultiAlternatives(subject,
+                                    '',settings.EMAIL_HOST_USER,
+                                    [cliente.user_cliente.email]) 
+
+    message.attach_alternative(content, 'text/html')
+    message.send()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+
+def pago_checkout(request,id_reserva):
+    pass
