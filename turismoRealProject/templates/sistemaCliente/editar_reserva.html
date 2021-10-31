@@ -188,6 +188,20 @@
                             {%endif%}
                             {%endif%}
                         </div>
+                        <div>
+                            Por pagar
+                            <div class="row">
+                                <div class=" mt-4 col-md-6">
+                                    <div class="form-group">
+                                        
+                                        <input value="${{reserva.por_pagar}}" class="form-control" id='direccionInicioTransporte'
+                                            name="direccionInicioTransporte" disabled type="text">
+                                        <p id="demo"></p>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
                         <button onclick="return validarDireccionInicio()" class="btn btn-success" type="submit">Actualizar
                             </button>
                     </form>
