@@ -1,8 +1,9 @@
 import datetime
 from datetime import date
 from django import forms
+from django.db.models import fields
 from django.forms.widgets import DateInput
-from applications.crudModelos.models import Reserva
+from applications.crudModelos.models import Reserva, Transporte
 
 class DateInput(forms.DateInput):
     input_type='date'
@@ -28,8 +29,6 @@ class ReservaForm(forms.ModelForm):
             
             raise forms.ValidationError('La fecha del llegada debe ser mayor a la actual')
             
-        else:
-            pass
 
     def clean_check_out(self):
         try:

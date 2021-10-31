@@ -9,6 +9,8 @@ from django.shortcuts import render
 from django.db.models import Q
 from django.views.generic import TemplateView , ListView , View , DetailView
 from django.shortcuts import redirect, render
+from django.db.models import Sum
+
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls.base import reverse_lazy
@@ -213,4 +215,36 @@ def email_chekout(request,rut,id_reserva):
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
 def pago_checkout(request,id_reserva):
-    pass
+
+    if(request.method=='GET'):
+        reserva=Reserva.objects.get(id_reserva=id_reserva)
+        items_daniado=Item.objects.filter(id_departamento=reserva.id_departamento)
+
+        por_pagar=reserva.por_pagar
+        precio_items= 0
+      
+        for i in items_daniado:             
+            precio_items = precio_items + i.precio_estimado
+             
+        total =  precio_items +  por_pagar
+        
+    
+
+        context={
+            'cantidad': items_daniado.count(),
+            'precio_items': precio_items,
+            'por_pagar': por_pagar,
+            'total ' : total,
+        }
+        return render(request,'sistemaCliente/detalle_pago_checkout.html',context)
+    
+    if(request.method=='POST'):
+        reserva=Reserva.objects.get(id_reserva=id_reserva)
+        pago_checkin=int(request.POST.get('valor_pago'))
+        valor_pago=reserva.por_pagar
+        valor_pago=valor_pago-pago_checkin
+        reserva=Reserva.objects.filter(id_reserva=id_reserva).update(por_pagar=valor_pago,is_pago_checkin=True)
+        reserva=Reserva.objects.get(id_reserva=id_reserva)
+        print(Reserva.objects.get(id_reserva=id_reserva).por_pagar)
+        messages.success(request, 'La reserva del departamento '+str(reserva.id_departamento.nombre_departamento)+' se pagó correctamente ')
+        return render(request,'sistemaCliente/pago_checkin_realizado.html')
