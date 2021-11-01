@@ -164,8 +164,7 @@ class ReservarDepartamentoView(SuccessMessageMixin, LoginRequiredMixin, CreateVi
                                                    direccion_inicio=self.request.POST.get('direccionInicioTransporte'), id_sv_transporte=sv_transporte)
             reserva.id_transporte = transporte
 
-        dias = ((datetime.strptime(reserva.id_check_out.fecha_checkout, '%Y-%m-%d')) -
-                (datetime.strptime(reserva.id_check_in.fecha_checkin, '%Y-%m-%d'))).days
+        dias = ((datetime.strptime(reserva.id_check_out.fecha_checkout, '%Y-%m-%d'))-(datetime.strptime(reserva.id_check_in.fecha_checkin, '%Y-%m-%d'))).days+1
         precio_departamento_dias = departamento.valor_dia*dias
         valor_total = precio_departamento_dias+precio_tour+precio_transporte
 
@@ -265,7 +264,8 @@ def EditarReservaView(request, id_reserva):
         if (reserva.is_tour == False or reserva.is_transporte == False):
 
             valor_total = precio_transporte+precio_tour+reserva.valor_total
-            por_pago =valor_total - (reserva.id_departamento.valor_dia/reserva.id_departamento.valor_anticipo)
+            #por_pago =valor_total - (reserva.id_departamento.valor_dia/reserva.id_departamento.valor_anticipo)
+            por_pago=reserva.por_pagar+precio_transporte+precio_tour
             reserva = Reserva.objects.filter(id_reserva=reserva.id_reserva).update(is_tour=is_tour,
                                                                                 is_transporte=existe_transporte,
                                                                                 valor_transporte=precio_transporte,

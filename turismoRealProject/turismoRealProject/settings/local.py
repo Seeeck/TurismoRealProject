@@ -12,17 +12,13 @@ ALLOWED_HOSTS = []
 
 #Configuracion que viene de secret.json
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.oracle',
-    #     'NAME': get_secret('DB_NAME'),
-    #     'USER':get_secret('DB_USER'),
-    #     'PASSWORD':get_secret('PASSWORD'),
-    #   }
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'db.sqlite',
-    }
-    
+     'default': {
+         'ENGINE': 'django.db.backends.oracle',
+         'NAME': get_secret('DB_NAME'),
+         'USER':get_secret('DB_USER'),
+         'PASSWORD':get_secret('PASSWORD'),
+       }
+     
 }
 
 #url de los archivos staticos

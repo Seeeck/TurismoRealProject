@@ -18,7 +18,7 @@ from applications.funcionario.models import Item
 
 
 from applications.users.models import Cliente, User
-from applications.crudModelos.models import Reserva,PersonaExtra
+from applications.crudModelos.models import Departamento, Reserva,PersonaExtra
 
 # Create your views here.
 
@@ -241,5 +241,6 @@ def pago_checkout(request,id_reserva):
         pago_checkout=int(request.POST.get('valor_pago'))
         Reserva.objects.filter(id_reserva=id_reserva).update(por_pagar=0,is_pago_checkout=True)
         items_daniado.update(estado='so')
+        Departamento.objects.filter(id_departamento=reserva.id_departamento.id_departamento).update(estado_departamento=True)
         messages.success(request, 'La reserva del departamento '+str(reserva.id_departamento.nombre_departamento)+' se pagó correctamente ')
         return render(request,'sistemaCliente/pago_checkin_realizado.html')
