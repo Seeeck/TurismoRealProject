@@ -9,6 +9,8 @@ from django.shortcuts import render
 from django.db.models import Q
 from django.views.generic import TemplateView , ListView , View , DetailView
 from django.shortcuts import redirect, render
+from django.db.models import Sum
+
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls.base import reverse_lazy
@@ -166,10 +168,6 @@ def pago_checkin(request,id_reserva):
         reserva.id_departamento
 
         valor_reserva_dif=reserva.por_pagar
-        if(reserva.is_transporte):
-            valor_reserva_dif=reserva.valor_transporte+valor_reserva_dif
-        if(reserva.is_tour):
-            valor_reserva_dif=reserva.valor_tour+valor_reserva_dif
         valor_pagar=valor_reserva_dif
 
         context={
@@ -213,4 +211,35 @@ def email_chekout(request,rut,id_reserva):
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
 def pago_checkout(request,id_reserva):
-    pass
+
+    reserva=Reserva.objects.get(id_reserva=id_reserva)
+    items_daniado=Item.objects.filter(id_departamento=reserva.id_departamento, estado='do')
+    total=0
+    if(request.method=='GET'):
+        
+        por_pagar=reserva.por_pagar
+        precio_items= 0
+        
+        for i in items_daniado:             
+            precio_items = precio_items + i.precio_estimado
+             
+        total= precio_items + por_pagar
+        
+        
+    
+
+        context={
+            'cantidad': items_daniado.count(),
+            'items': items_daniado,
+            'precio_items': precio_items,
+            'por_pagar': por_pagar,
+            'total' : total,
+        }
+        return render(request,'sistemaCliente/detalle_pago_checkout.html',context)
+    
+    if(request.method=='POST'):
+        pago_checkout=int(request.POST.get('valor_pago'))
+        Reserva.objects.filter(id_reserva=id_reserva).update(por_pagar=0,is_pago_checkout=True)
+        items_daniado.update(estado='so')
+        messages.success(request, 'La reserva del departamento '+str(reserva.id_departamento.nombre_departamento)+' se pagó correctamente ')
+        return render(request,'sistemaCliente/pago_checkin_realizado.html')
