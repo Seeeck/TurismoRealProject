@@ -265,7 +265,7 @@ def EditarReservaView(request, id_reserva):
         if (reserva.is_tour == False or reserva.is_transporte == False):
 
             valor_total = precio_transporte+precio_tour+reserva.valor_total
-            por_pago =valor_total - (reserva.valor_reserva_departamento/2)
+            por_pago =valor_total - (reserva.id_departamento.valor_dia/reserva.id_departamento.valor_anticipo)
             reserva = Reserva.objects.filter(id_reserva=reserva.id_reserva).update(is_tour=is_tour,
                                                                                 is_transporte=existe_transporte,
                                                                                 valor_transporte=precio_transporte,
