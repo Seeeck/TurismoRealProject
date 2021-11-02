@@ -39,14 +39,16 @@ class Checkin(TemplateView):
         context = super().get_context_data(**kwargs)
         query = self.request.GET.get('q')
         
+
         if query :
 
             try:
             
-                context['cliente'] = Cliente.objects.get(
-       
-                Q(rut=query) | Q(nombre=query))
-            
+                context['cliente'] = Cliente.objects.get(Q(rut=query) | Q(nombre=query))
+                
+               
+                
+                
             except ObjectDoesNotExist:
                 
                 print('dsds')
@@ -179,6 +181,9 @@ def pago_checkin(request,id_reserva):
     if(request.method=='POST'):
         reserva=Reserva.objects.get(id_reserva=id_reserva)
         pago_checkin=int(request.POST.get('valor_pago'))
+        print('@@@@@@@@@@@@@')
+        print(type(pago_checkin))
+        print('@@@@@@@@@@@@@@@')
         valor_pago=reserva.por_pagar
         valor_pago=valor_pago-pago_checkin
         reserva=Reserva.objects.filter(id_reserva=id_reserva).update(por_pagar=valor_pago,is_pago_checkin=True)

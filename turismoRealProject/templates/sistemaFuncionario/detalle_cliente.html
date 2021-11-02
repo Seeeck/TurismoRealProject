@@ -34,12 +34,15 @@
                 <td>{{ reserva.id_departamento.nombre_departamento }}</td>
                 <td>{{ reserva.id_departamento.numero_departamento }}</td>
                 <td>{{ reserva.id_departamento.numero_personas }}</td>
+                {%if reserva.is_pago_checkout%}
+                {%else%}
                 <td>
                     <form action="/funcionario/listadoItem/{{reserva.id_departamento.id_departamento}}" method="get">
 
                         <button type="submit" class="btn btn-primary"> Ver </button>
                     </form>
                 </td>
+                {%endif%}
             </tr>
             {% endfor %}
 

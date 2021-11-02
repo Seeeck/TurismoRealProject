@@ -28,7 +28,8 @@
                          <p> precio total items  {{precio_items}}</p>
                          <p> cantidad faltante  {{por_pagar}}</p>
                          <hr>
-                         <p> total  <input name="valor_pago" type="text" value="{{total}}"></p>
+                         <p> total <input disabled type="text" value="{{total}}"></p>
+                               <input name="valor_pago" type="hidden" value="{{total}}"></p>
                         
                          <button   class="btn btn-danger" type="submit">Pagar checkout</button>
 

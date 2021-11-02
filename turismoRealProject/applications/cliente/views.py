@@ -175,6 +175,7 @@ class ReservarDepartamentoView(SuccessMessageMixin, LoginRequiredMixin, CreateVi
         reserva.por_pagar = valor_total - \
             (departamento.valor_anticipo*(cantidad_personas+1))
         reserva.is_pago_anticipo = True
+        reserva.fecha_reserva=date.today()
         reserva.save()
         return super(ReservarDepartamentoView, self).form_valid(form)
 

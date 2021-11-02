@@ -20,7 +20,8 @@
                     <form method="POST">
                         {%csrf_token%}
                         <p name="pago" class="card-text"> Precio a pagar </p>
-                        <input type="text"   name="valor_pago" value="{{valor_pago}}" id="" >
+                         <input type="text" disabled value="{{valor_pago}}">
+                        <input type="hidden"  name="valor_pago" value="{{valor_pago}}" id="" >
                         <button   class="btn btn-danger" type="submit">Pagar checkin</button>
                     </form>
 

@@ -7,10 +7,11 @@
 
 
 <div class="container">
-  <h1 class="mt-4">Reservas Activas</h1>
+  <h1 class="mt-4">Reservas </h1>
   <table class=" mt-4 table">
     <thead>
       <tr>
+        <th scope="col">Fecha reserva</th>
         <th scope="col">Imagen</th>
         <th scope="col">Departamento</th>
         <th scope="col">Check In</th>
@@ -23,7 +24,10 @@
     </thead>
     <tbody>
       {% for r in reservas %}
+      {% if r.is_pago_checkout %}
+      {%else%}
       <tr>
+        <th>{{r.fecha_reserva}}</th>
         <th class="col-md-2">
           {% if r.id_departamento.imagen_departamento %}
           <img class="img-fluid " src="{{r.id_departamento.imagen_departamento.url}}" alt="">
@@ -39,9 +43,8 @@
         <td><a class="btn btn-success" href="{% url 'cliente_app:editar-reserva' r.id_reserva %}">Ver </a>
 
         </td>
-
-
       </tr>
+      {%endif%}
       {%endfor%}
     </tbody>
   </table>

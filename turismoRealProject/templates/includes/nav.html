@@ -1,8 +1,10 @@
+{% load static%}
 <div class="container-fluid">
     <div class="row navbar-dark bg-dark ">
-        <li class=" col-2 nav-item ">
+        <li class=" col-1 nav-item ">
             <a class="nav-link text-white" href="{% url 'cliente_app:inicio-principal' %}">
-                <h4>Turismo real reservas</h4>
+                
+                <img class="img-fluid" src="{% static '/img/logos/turismo_real_logo.png' %}" alt="">
             </a>
         </li>
 

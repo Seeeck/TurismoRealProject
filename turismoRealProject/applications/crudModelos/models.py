@@ -75,7 +75,7 @@ class Departamento(models.Model):
     id_sv_transporte=models.ForeignKey(Sv_Transporte,on_delete=models.CASCADE,null=True,blank=True)
 
     def __str__(self):
-        return "id_departamento:"+str(self.id_departamento)+" numero departamento:"+str(self.numero_departamento) 
+        return "id_departamento:"+str(self.id_departamento)+" nombre departamento:"+self.nombre_departamento
 
     class Meta:
         verbose_name='Departamento'
@@ -111,6 +111,7 @@ class Reserva(models.Model):
     id_check_in=models.ForeignKey(CheckIn,on_delete=models.CASCADE,null=True)
     id_check_out=models.ForeignKey(CheckOut,on_delete=models.CASCADE,null=True)
     id_transporte=models.ForeignKey(Transporte,on_delete=models.CASCADE,null=True)
+    fecha_reserva=models.DateField(auto_now=True)
 
 
 class PersonaExtra(models.Model):
