@@ -181,14 +181,12 @@ def pago_checkin(request,id_reserva):
     if(request.method=='POST'):
         reserva=Reserva.objects.get(id_reserva=id_reserva)
         pago_checkin=int(request.POST.get('valor_pago'))
-        print('@@@@@@@@@@@@@')
-        print(type(pago_checkin))
-        print('@@@@@@@@@@@@@@@')
+        
         valor_pago=reserva.por_pagar
         valor_pago=valor_pago-pago_checkin
         reserva=Reserva.objects.filter(id_reserva=id_reserva).update(por_pagar=valor_pago,is_pago_checkin=True)
         reserva=Reserva.objects.get(id_reserva=id_reserva)
-        print(Reserva.objects.get(id_reserva=id_reserva).por_pagar)
+        
         messages.success(request, 'La reserva del departamento '+str(reserva.id_departamento.nombre_departamento)+' se pagó correctamente ')
         return render(request,'sistemaCliente/pago_checkin_realizado.html')
 

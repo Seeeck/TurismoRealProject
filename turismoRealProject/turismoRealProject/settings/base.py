@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'applications.cliente',
     'applications.funcionario',
     'applications.crudModelos',
+    'applications.reportesReserva',
 
 
 

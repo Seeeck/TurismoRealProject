@@ -73,3 +73,4 @@ Pruebas por:
     - Pagina administrador de la pagina:    
      http://127.0.0.1:8000/admin 
 11. Prueba
+12. python manage.py shell < reportes_automaticos.py

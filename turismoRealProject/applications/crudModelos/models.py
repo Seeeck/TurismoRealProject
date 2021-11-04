@@ -1,7 +1,7 @@
 from django.db import models
 from django.db.models.fields import AutoField
 from django.db.models.fields.related import ForeignKey
-from applications.users.models import User,Cliente
+from applications.users.models import Cliente
 from turismoRealProject.settings.local import BASE_DIR
 
 # Create your models here.

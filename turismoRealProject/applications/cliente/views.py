@@ -172,8 +172,7 @@ class ReservarDepartamentoView(SuccessMessageMixin, LoginRequiredMixin, CreateVi
         reserva.valor_tour = precio_tour
         reserva.valor_reserva_departamento = precio_departamento_dias
         reserva.valor_total = valor_total
-        reserva.por_pagar = valor_total - \
-            (departamento.valor_anticipo*(cantidad_personas+1))
+        reserva.por_pagar = valor_total - departamento.valor_anticipo
         reserva.is_pago_anticipo = True
         reserva.fecha_reserva=date.today()
         reserva.save()
@@ -244,7 +243,7 @@ def EditarReservaView(request, id_reserva):
 
         if(request.POST.get('transporteCheck') == 'true'):
             existe_transporte = True
-
+            reserva.is_transporte=existe_transporte
             precio_transporte = (departamento.id_sv_transporte.valor_transporte)*cantidad_personas
             sv_transporte = Sv_Transporte.objects.filter(
                 sv_transporte_disponible=True).first()
@@ -262,7 +261,7 @@ def EditarReservaView(request, id_reserva):
 
         # if(is_tour):
         #     por_pago = por_pago+precio_tour
-        if (reserva.is_tour == False or reserva.is_transporte == False):
+        if (reserva.is_tour == False and reserva.is_transporte == False):
 
             valor_total = precio_transporte+precio_tour+reserva.valor_total
             #por_pago =valor_total - (reserva.id_departamento.valor_dia/reserva.id_departamento.valor_anticipo)
@@ -274,8 +273,42 @@ def EditarReservaView(request, id_reserva):
                                                                                 valor_total=valor_total,
                                                                                 id_transporte=id_transporte,
                                                                                 por_pagar=por_pago)
+        if(is_tour==True and existe_transporte == False):
+            valor_total = precio_transporte+precio_tour+reserva.valor_total
+            #por_pago =valor_total - (reserva.id_departamento.valor_dia/reserva.id_departamento.valor_anticipo)
+            por_pago=reserva.por_pagar+precio_transporte+precio_tour
+            reserva = Reserva.objects.filter(id_reserva=reserva.id_reserva).update(is_tour=is_tour,
+                                                                                is_transporte=reserva.is_transporte,
+                                                                                valor_transporte=precio_transporte,
+                                                                                valor_tour=precio_tour,
+                                                                                valor_total=valor_total,
+                                                                                id_transporte=id_transporte,
+                                                                                por_pagar=por_pago)
+        if(is_tour==False and existe_transporte == True):
+            valor_total = precio_transporte+precio_tour+reserva.valor_total
+            #por_pago =valor_total - (reserva.id_departamento.valor_dia/reserva.id_departamento.valor_anticipo)
+            por_pago=reserva.por_pagar+precio_transporte+precio_tour
+            reserva = Reserva.objects.filter(id_reserva=reserva.id_reserva).update(is_tour=reserva.is_tour,
+                                                                                is_transporte=existe_transporte,
+                                                                                valor_transporte=precio_transporte,
+                                                                                valor_tour=precio_tour,
+                                                                                valor_total=valor_total,
+                                                                                id_transporte=id_transporte,
+                                                                                por_pagar=por_pago)
+        if(is_tour==True and existe_transporte == True):
+            valor_total = precio_transporte+precio_tour+reserva.valor_total
+            #por_pago =valor_total - (reserva.id_departamento.valor_dia/reserva.id_departamento.valor_anticipo)
+            por_pago=reserva.por_pagar+precio_transporte+precio_tour
+            reserva = Reserva.objects.filter(id_reserva=reserva.id_reserva).update(is_tour=is_tour,
+                                                                                is_transporte=existe_transporte,
+                                                                                valor_transporte=precio_transporte,
+                                                                                valor_tour=precio_tour,
+                                                                                valor_total=valor_total,
+                                                                                id_transporte=id_transporte,
+                                                                                por_pagar=por_pago)
+            
 
-        return HttpResponseRedirect(reverse_lazy('cliente_app:lista_departamentos'))
+        return HttpResponseRedirect(reverse_lazy('cliente_app:editar-reserva',kwargs={'id_reserva': reserva.id_reserva}))
 
     elif(request.method == 'GET'):
 
