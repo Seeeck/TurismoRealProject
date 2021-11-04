@@ -106,6 +106,10 @@ class Reserva(models.Model):
     is_pago_checkout = models.BooleanField(default=False)
     is_transporte=models.BooleanField(default=False)
     is_tour=models.BooleanField(default=False)
+
+    is_pago_tour=models.BooleanField(default=False)
+    is_pago_transporte=models.BooleanField(default=False)
+    
     id_departamento=models.ForeignKey(Departamento,on_delete=models.CASCADE,null=True)
     id_cliente=models.ForeignKey(Cliente,on_delete=models.CASCADE,null=True)
     id_check_in=models.ForeignKey(CheckIn,on_delete=models.CASCADE,null=True)
