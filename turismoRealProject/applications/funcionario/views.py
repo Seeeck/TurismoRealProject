@@ -176,7 +176,7 @@ def pago_checkin(request,id_reserva):
             'reserva':reserva,
             'valor_pago':valor_pagar
         }
-        return render(request,'sistemaCliente/detalle_pago_reserva.html',context)
+        return render(request,'sistemaCliente/detalle_pago_checkin.html',context)
     
     if(request.method=='POST'):
         reserva=Reserva.objects.get(id_reserva=id_reserva)
