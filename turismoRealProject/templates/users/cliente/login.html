@@ -10,7 +10,13 @@ Login cliente
     <div class="row">
         {%include 'includes/nav.html' %}
     </div>
-    
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+    </ul>
+    {% endif %}
     <div class="row mt-4">
         <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
             <div class="card border-0 shadow rounded-3 my-5">
@@ -19,23 +25,23 @@ Login cliente
                     <form method="POST">
                         {%csrf_token%}
                         <div class=" mb-3">
-                            <label >Correo</label>
+                            <label>Correo</label>
                             {{form.email}}
                             {{form.errors.email}}
-                            
+
                         </div>
                         <div class=" mb-3">
                             <label>Clave</label>
                             {{form.password}}
                             {{form.errors.password}}
-                            
+
                         </div>
 
                         <div class="d-grid">
                             <button class="btn btn-primary btn-login text-uppercase fw-bold"
                                 type="submit">Ingresar</button>
                         </div>
-                        
+
                     </form>
                 </div>
             </div>

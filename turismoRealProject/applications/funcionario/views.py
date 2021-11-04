@@ -188,7 +188,7 @@ def pago_checkin(request,id_reserva):
         reserva=Reserva.objects.get(id_reserva=id_reserva)
         
         messages.success(request, 'La reserva del departamento '+str(reserva.id_departamento.nombre_departamento)+' se pagó correctamente ')
-        return render(request,'sistemaCliente/pago_checkin_realizado.html')
+        return HttpResponseRedirect(reverse('users_app:user-login'))
 
 
 def email_chekout(request,rut,id_reserva):
@@ -246,4 +246,4 @@ def pago_checkout(request,id_reserva):
         items_daniado.update(estado='so')
         Departamento.objects.filter(id_departamento=reserva.id_departamento.id_departamento).update(estado_departamento=True)
         messages.success(request, 'La reserva del departamento '+str(reserva.id_departamento.nombre_departamento)+' se pagó correctamente ')
-        return render(request,'sistemaCliente/pago_checkin_realizado.html')
+        return HttpResponseRedirect(reverse('users_app:user-login'))
