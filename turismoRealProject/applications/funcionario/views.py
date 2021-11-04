@@ -184,7 +184,12 @@ def pago_checkin(request,id_reserva):
         
         valor_pago=reserva.por_pagar
         valor_pago=valor_pago-pago_checkin
-        reserva=Reserva.objects.filter(id_reserva=id_reserva).update(por_pagar=valor_pago,is_pago_checkin=True)
+        if(reserva.is_transporte):
+            reserva.is_pago_transporte=True
+        if(reserva.is_tour):
+            reserva.is_pago_tour=True
+
+        reserva=Reserva.objects.filter(id_reserva=id_reserva).update(por_pagar=valor_pago,is_pago_checkin=True,is_pago_transporte=reserva.is_pago_transporte,is_pago_tour=reserva.is_pago_tour)
         reserva=Reserva.objects.get(id_reserva=id_reserva)
         
         messages.success(request, 'La reserva del departamento '+str(reserva.id_departamento.nombre_departamento)+' se pagó correctamente ')
@@ -228,8 +233,6 @@ def pago_checkout(request,id_reserva):
              
         total= precio_items + por_pagar
         
-        
-    
 
         context={
             'cantidad': items_daniado.count(),
@@ -237,6 +240,7 @@ def pago_checkout(request,id_reserva):
             'precio_items': precio_items,
             'por_pagar': por_pagar,
             'total' : total,
+            'reserva':reserva
         }
         return render(request,'sistemaCliente/detalle_pago_checkout.html',context)
     

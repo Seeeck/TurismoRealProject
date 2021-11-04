@@ -21,6 +21,11 @@ DATABASES = {
      
 }
 
+""" DATABASES={ 'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'db.sqlite',
+    }}
+ """
 #url de los archivos staticos
 #Para cargar los archivos estaticos se usa {% load static %} en el html
 STATIC_URL = '/static/'
