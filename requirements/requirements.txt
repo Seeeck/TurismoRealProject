@@ -8,3 +8,5 @@ sqlparse==0.4.1
 Unipath==1.1
 Pillow==8.3.2
 rut_chile==2.0.1
+django-3-jet-1.0.8
+google-api-python-client==1.4.1

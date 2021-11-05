@@ -4,6 +4,8 @@ from django.urls import path,re_path,include
 from django.conf import settings
 from django.conf.urls.static import static
 urlpatterns = [
+    path('jet/',include('jet.urls','jet')),
+    path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),
     path('admin/', admin.site.urls),
     re_path('', include('applications.users.urls')),
     re_path('', include('applications.cliente.urls')),

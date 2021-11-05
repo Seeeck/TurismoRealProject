@@ -1,6 +1,7 @@
 from django.core.exceptions import ImproperlyConfigured
 import json
 from unipath import Path
+from django.contrib import admin
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -27,8 +28,10 @@ SECRET_KEY = get_secret('SECRET_KEY')
 
 
 # Application definition
-
+X_FRAME_OPTIONS = 'SAMEORIGIN'
 INSTALLED_APPS = [
+    'jet.dashboard',
+    'jet',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,13 +43,8 @@ INSTALLED_APPS = [
     'applications.funcionario',
     'applications.crudModelos',
     'applications.reportesReserva',
-
-
-
-   
-
-
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -78,7 +76,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'turismoRealProject.wsgi.application'
 
-
+JET_INDEX_DASHBOARD = 'dashboard.CustomIndexDashboard'
 
 
 
