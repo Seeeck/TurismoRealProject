@@ -73,4 +73,6 @@ Pruebas por:
     - Pagina administrador de la pagina:    
      http://127.0.0.1:8000/admin 
 11. Prueba
-12. python manage.py shell < reportes_automaticos.py
+13. python manage.py migrate jet
+14. python manage.py collectstatic
+15. python manage.py migrate dashboard
