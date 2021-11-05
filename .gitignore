@@ -1,6 +1,7 @@
 # secret key
 turismoRealProject/secret.json
-#
+#local
+turismoRealProject/turismoRealProject/settings/local.py
 #Entornos
 EntornoJP/
 pyvenv.cfg
