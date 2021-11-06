@@ -1,8 +1,9 @@
 # secret key
 turismoRealProject/secret.json
+#local
+turismoRealProject/turismoRealProject/settings/local.py
 #Entornos
 EntornoJP/
-Entorno/
 pyvenv.cfg
 pip-selfcheck.json
 #Temporal vscode

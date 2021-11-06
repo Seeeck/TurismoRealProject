@@ -16,24 +16,42 @@
             <div class="card w-75">
                 <div class="card-body">
                     <h5 class="card-title">{{reserva.id_departamento.nombre_departamento}}</h5>
-                    
+
                     <form method="POST">
                         {%csrf_token%}
-                         <p>items</p>
-                         <ul>
-                         {%for item in items%}
-                         <li> {{item.nombre}}: {{item.precio_estimado}}</li>
-                         {%endfor%}
-                        </ul>
-                         <p> precio total items  {{precio_items}}</p>
-                         <p> cantidad faltante  {{por_pagar}}</p>
-                         <hr>
-                         <p> total <input disabled type="text" value="{{total}}"></p>
-                               <input name="valor_pago" type="hidden" value="{{total}}"></p>
-                        
-                         <button   class="btn btn-danger" type="submit">Pagar checkout</button>
 
-                         
+                        {%if reserva.is_tour %}
+                        {%if reserva.is_pago_tour%}
+                        {%else%}
+                        <h5>Tour por pagar</h5>
+                        <p>Nombre Tour:{{reserva.id_departamento.id_tour.nombre_tour}}</p>
+                        <p>Valor Tour:{{reserva.valor_tour}}</p>
+                        {%endif%}
+                        {%endif%}
+                        {%if reserva.is_transporte%}
+                        {%if reserva.is_pago_transporte%}
+                        {%else%}
+                        <h5>Transporte por Pagar</h5>
+                        <p>Fecha ida {{reserva.id_transporte.fecha_ida}}</p>
+                        <p>Fecha vuelta {{reserva.id_transporte.fecha_ida}}</p>
+                        <p>Valor transporte {{reserva.valor_transporte}}</p>
+                        {%endif%}
+                        {%endif%}
+                        <h5>items dañados por pagar</h5>
+                        <ul>
+                            {%for item in items%}
+                            <li> {{item.nombre}}: {{item.precio_estimado}}</li>
+                            {%endfor%}
+                        </ul>
+                        <p> precio total items {{precio_items}}</p>
+                        <p> cantidad faltante {{por_pagar}}</p>
+                        <hr>
+                        <p> total <input disabled type="text" value="{{total}}"></p>
+                        <input name="valor_pago" type="hidden" value="{{total}}"></p>
+
+                        <button class="btn btn-danger" type="submit">Pagar checkout</button>
+
+
                     </form>
 
                 </div>

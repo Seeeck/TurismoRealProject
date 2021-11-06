@@ -1,0 +1,16 @@
+{% extends "admin/base.html" %}
+
+{% load static %}
+
+
+{% block branding %}
+<h1 id="site-name">
+    <a href="{% url 'admin:index' %}">
+        <img src="{% static 'img/logos/turismo_real_logo.png' %}" height="100px" />
+    </a>
+</h1>
+<h1 style="color: white;">Panel de administracion</h1>
+{% endblock %}
+
+
+{% block nav-global %}{% endblock %}
