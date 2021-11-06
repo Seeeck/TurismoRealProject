@@ -76,7 +76,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'turismoRealProject.wsgi.application'
 
-JET_INDEX_DASHBOARD = 'dashboard.CustomIndexDashboard'
+
+
+
 
 
 
