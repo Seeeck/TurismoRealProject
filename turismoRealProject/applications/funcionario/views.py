@@ -218,10 +218,35 @@ def email_chekout(request,rut,id_reserva):
     message.send()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
+def email_chekout2(request,rut,id_reserva):
+    
+    cliente = Cliente.objects.get(rut=rut)
+    
+    subject = 'Checkout realizado'
+    template = get_template('sistemaFuncionario/template_correo_checkout2.html')
+    messages.success(request, 'Checkout finalizado y aviso a cliente emitido')
+    Reserva.objects.filter(id_reserva=id_reserva).update(is_pago_checkout=True)
+    content = template.render({
+        'nombre': cliente.nombre,
+        'apellido': cliente.apellido,
+        'id_reserva':id_reserva,
+
+    })
+
+    message = EmailMultiAlternatives(subject,
+                                    '',settings.EMAIL_HOST_USER,
+                                    [cliente.user_cliente.email]) 
+
+    message.attach_alternative(content, 'text/html')
+    message.send()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+
 def pago_checkout(request,id_reserva):
 
     reserva=Reserva.objects.get(id_reserva=id_reserva)
     items_daniado=Item.objects.filter(id_departamento=reserva.id_departamento, estado='do')
+    rut=reserva.id_cliente.rut
+    cliente = Cliente.objects.get(rut=rut)
     total=0
     if(request.method=='GET'):
         
@@ -250,4 +275,20 @@ def pago_checkout(request,id_reserva):
         items_daniado.update(estado='so')
         Departamento.objects.filter(id_departamento=reserva.id_departamento.id_departamento).update(estado_departamento=True)
         messages.success(request, 'La reserva del departamento '+str(reserva.id_departamento.nombre_departamento)+' se pagó correctamente ')
+
+        subject = 'Checkout realizado'
+        template = get_template('sistemaFuncionario/template_correo_checkout2.html')
+        content = template.render({
+            'nombre': cliente.nombre,
+            'apellido': cliente.apellido,
+            'id_reserva':id_reserva,
+    
+        })
+
+        message = EmailMultiAlternatives(subject,
+                                    '',settings.EMAIL_HOST_USER,
+                                    [cliente.user_cliente.email]) 
+
+        message.attach_alternative(content, 'text/html')
+        message.send()
         return HttpResponseRedirect(reverse('users_app:user-login'))

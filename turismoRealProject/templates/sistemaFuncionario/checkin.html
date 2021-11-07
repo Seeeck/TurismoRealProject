@@ -84,9 +84,16 @@
         
 
         
-        <td>{% if reserva.is_pago_checkout %}{%else%}<a class="btn btn-success"
-            href="{% url 'funcionario_app:enviar-correo2' rut=cliente.rut id_reserva=reserva.id_reserva %}"> solicitar
-            pago</a> {%endif%}</td>
+        <td>
+          {% if reserva.is_pago_checkout %}
+          {%else%}
+              {% if reserva.por_pagar == 0 %}
+              <a class="btn btn-success" href="{% url 'funcionario_app:enviar-correo3' rut=cliente.rut id_reserva=reserva.id_reserva %}">Finalizar Checkout </a>
+              {%else%}
+              <a class="btn btn-success" href="{% url 'funcionario_app:enviar-correo2' rut=cliente.rut id_reserva=reserva.id_reserva %}"> solicitar pago</a>
+              {%endif%}
+          {%endif%}
+        </td>
         
 
 

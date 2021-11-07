@@ -14,6 +14,8 @@ urlpatterns = [
     path('/enviarCorrreoCheckin/<rut>/<id_reserva>', views.email_chekin, name='enviar-correo'),
     path('/pagarCheckin/<id_reserva>', views.pago_checkin, name='pago-checkin'),
     path('/enviarCorrreoCheckout/<rut>/<id_reserva>', views.email_chekout, name='enviar-correo2'),
+    path('/enviarCorrreoCheckoutSinPagar/<rut>/<id_reserva>', views.email_chekout2, name='enviar-correo3'),
+
     path('/pagarCheckout/<id_reserva>', views.pago_checkout, name='pago-checkout'),
 
 
