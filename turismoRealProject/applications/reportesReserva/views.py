@@ -13,7 +13,20 @@ def reportesView(request):
             semana=request.POST.get('week')
             num_semana=int(semana.split("W",1)[1]) 
             reservas=Reserva.objects.filter(fecha_fin_reserva__week=num_semana)
-            print(reservas)
+            
+            total=0
+            for reserva in reservas:
+                total=total+reserva.valor_total
+            total_semanañ=total
+            cantidad_reservas_semanal=reservas.count()
+            """ total_tour_semanal=
+            total_transporte_semanal=
+            total_diferencia_semana_anterior=
+            porcentaje_semana_anterior=
+            total_diferencia_semana_posterior=
+            porcentaje_semana_posterior= """
+            print(reservas.count())
+
             return render(request,'admin/reportes_template.html')
 
         

@@ -11,7 +11,7 @@ ALLOWED_HOSTS = []
 
 
 #Configuracion que viene de secret.json
-DATABASES = {
+""" DATABASES = {
      'default': {
          'ENGINE': 'django.db.backends.oracle',
          'NAME': get_secret('DB_NAME'),
@@ -19,13 +19,13 @@ DATABASES = {
          'PASSWORD':get_secret('PASSWORD'),
        }
      
-}
+} """
 
-""" DATABASES={ 'default': {
+DATABASES={ 'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': 'db.sqlite',
     }}
- """
+
 #url de los archivos staticos
 #Para cargar los archivos estaticos se usa {% load static %} en el html
 STATIC_URL = '/static/'

@@ -76,3 +76,4 @@ Pruebas por:
 13. python manage.py migrate jet
 14. python manage.py collectstatic
 15. python manage.py migrate dashboard
+16. FAKE DATA para reservas: python manage.py loaddata generateReserva1.json (junio-8 de noviembre) 
