@@ -1,3 +1,4 @@
+{%load static%}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,6 +15,7 @@
 
 
     <div class="container">
+
         <div class="row justify-content-center">
             <div class="col-4">
                 <a class="btn btn-primary" href="">Volver al panel de administracion</a>
@@ -27,11 +29,41 @@
         <div class="row">
             <form action="" method="POST">
                 {%csrf_token%}
-                <input type="week" name="week" id="camp-week"  required>
+                <input type="week" name="week" id="camp-week" required>
                 <button class="btn btn-primary" type="submit">Obtener reporte</button>
             </form>
         </div>
+        {% if reporte_week%}
+        <div>
+            <div class="row">
+                <div class="col-2">
+                    <img class="img-fluid" src="{% static 'img/logos/turismo_real_logo.png' %}" width="75%" >
+                </div>
+                
+            </div>
+            <p>Cantidad de reservas realizadas:{{cantidad_reservas_semanal}}</p>
+            <p>total semanal:{{total_semanal}}</p>
+            <p>Total por dias de reserva:{{total_reserva_dias_departamento}}</p>
+            <p>Aumento del total respescto a la semana anterior:{{aumento_total}}</p>
+            <p>Porcentaje de aumento respescto a la semana anterior{{porcentaje_aumento_total}}</p>
+            <p>total de tours:{{total_tour_semanal}}</p>
+            <p>Aumento del total de tours respescto a la semana anterior:{{aumento_tour}}</p>
+            <p>total de transportes:{{total_transporte_semanal}}</p>
+            <p>Aumento del total de transporte respescto a la semana anterior:{{aumento_transporte}}</p>
+            
 
+        </div>
+        {%endif%}
+        {% if reporte_day%}
+        <div>
+
+        </div>
+        {%endif%}
+        {%if reporte_month%}
+        <div>
+
+        </div>
+        {%endif%}
 
     </div>
 </body>
