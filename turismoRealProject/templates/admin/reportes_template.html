@@ -27,44 +27,128 @@
         <br>
 
         <div class="row">
-            <form action="" method="POST">
+            <form class="col-4" action="" method="POST">
                 {%csrf_token%}
                 <input type="week" name="week" id="camp-week" required>
-                <button class="btn btn-primary" type="submit">Obtener reporte</button>
+                <button class="btn btn-primary" type="submit">Obtener reporte semanal</button>
+            </form>
+
+            <form class="col-4" action="" method="POST">
+                {%csrf_token%}
+                <input type="date" name="day"  required>
+                <button class="btn btn-primary" type="submit">Obtener reporte diario</button>
             </form>
         </div>
-        {% if reporte_week%}
+       {%if is_reporte %}
+       {%if reporte_week%}
         <div>
+            <br>
             <div class="row">
+
                 <div class="col-2">
-                    <img class="img-fluid" src="{% static 'img/logos/turismo_real_logo.png' %}" width="75%" >
+                    <img class="img-fluid" src="{% static 'img/logos/turismo_real_logo.png' %}" width="75%">
                 </div>
+
+            </div>
+            <div class="row justify-content-center">
+                
+                    <h1 class="col-6">Reporte de ventas respecto a la semana anterior</h1>
+                    <h1 class="col-6">Semana: {{inicio_semana}} -- {{fin_semana}}</h1>
+                
+
                 
             </div>
-            <p>Cantidad de reservas realizadas:{{cantidad_reservas_semanal}}</p>
-            <p>total semanal:{{total_semanal}}</p>
-            <p>Total por dias de reserva:{{total_reserva_dias_departamento}}</p>
-            <p>Aumento del total respescto a la semana anterior:{{aumento_total}}</p>
-            <p>Porcentaje de aumento respescto a la semana anterior{{porcentaje_aumento_total}}</p>
-            <p>total de tours:{{total_tour_semanal}}</p>
-            <p>Aumento del total de tours respescto a la semana anterior:{{aumento_tour}}</p>
-            <p>total de transportes:{{total_transporte_semanal}}</p>
-            <p>Aumento del total de transporte respescto a la semana anterior:{{aumento_transporte}}</p>
-            
+            <div class="row justify-content-center">
+                <div class="col-6">
+                    <ul class="list-group">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+
+                            <h4>Cantidad de reservas realizadas</h4>
+                            <h2><span class="badge bg-success">{{cantidad_reservas_semanal}}</span></h2>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+
+                            <h4>Total semanal</h4>
+                            <h2><span class="badge bg-success">${{total_semanal}}</span></h2>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <h4>Total semanal por dias de reservas</h4>
+                            <h2><span class="badge bg-success">{{total_reserva_dias_departamento}}</span></h2>
+                        </li>
+
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            {%if is_aumento_total %}
+                            <h4>Aumento de ventas totales</h4>
+                            <h2><span class="badge bg-success">{{aumento_total}}</span></h2>
+                            {%else%}
+                            <h4>Disminución de ventas totales</h4>
+                            <h2><span class="badge bg-danger">{{aumento_total}}</span></h2>
+                            {%endif%}
+                        </li>
+
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            {%if is_aumento_total_porcentaje %}
+                            <h4>Porcentaje de aumento de ventas totales</h4>
+                            <h2><span class="badge bg-success">+{{porcentaje_aumento_total}}</span></h2>
+                            {%else%}
+                            <h4>Porcentaje de disminución de ventas totales</h4>
+                            <h2><span class="badge bg-danger">{{porcentaje_aumento_total}}</span></h2>
+                            {%endif%}
+                        </li>
+
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <h4>Total de tours</h4>
+                            <h2><span class="badge bg-success">{{total_tour_semanal}}</span></h2>
+                        </li>
+
+
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            {%if is_aumento_total_tour %}
+                            <h4>Aumento del ventas totales de tour</h4>
+                            <h2><span class="badge bg-success">{{aumento_tour}}</span></h2>
+                            {%else%}
+                            <h4>Disminucion de ventas totales de tour</h4>
+                            <h2><span class="badge bg-danger">{{aumento_tour}}</span></h2>
+                            {%endif%}
+                        </li>
+
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <h4>Total de transportes</h4>
+                            <h2><span class="badge bg-success">{{total_transporte_semanal}}</span></h2>
+                        </li>
+
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            {%if is_aumento_total_transporte %}
+                            <h4>Aumento del ventas totales de transporte</h4>
+                            <h2><span class="badge bg-success">{{aumento_transporte}}</span></h2>
+                            {%else%}
+                            <h4>Disminucion de ventas totales de transporte</h4>
+                            <h2><span class="badge bg-danger">{{aumento_transporte}}</span></h2>
+                            {%endif%}
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+
+
 
         </div>
-        {%endif%}
-        {% if reporte_day%}
-        <div>
+       {%endif%}
+       {%if reserva_day%} 
 
-        </div>
-        {%endif%}
-        {%if reporte_month%}
-        <div>
+       {%endif%}
 
-        </div>
-        {%endif%}
+       {%if reserva_month%}
 
+       {%endif%}
+       
+       {%endif%}
+
+       {%if sin_reservas%} 
+       {{mensaje}}
+       {%endif%}
     </div>
 </body>
 
