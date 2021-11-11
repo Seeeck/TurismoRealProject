@@ -18,6 +18,15 @@ def reportesView(request):
             semana=request.POST.get('week')
             num_semana=int(semana.split("W",1)[1]) 
             reservas=Reserva.objects.filter(fecha_fin_reserva__week=num_semana)
+
+            if(reservas.count()==0):
+                mensaje="No existen reservas"
+                context={
+                'mensaje':mensaje,
+                'sin_reservas':True
+                }
+                return render(request,'admin/reportes_template.html',context)  
+
             inicio_semana = datetime.datetime.strptime(semana+ '-1', "%Y-W%W-%w").strftime("%d/%m/%y")
             fin_semana=datetime.datetime.strptime(semana+ '-0', "%Y-W%W-%w").strftime("%d/%m/%y")
 
@@ -108,6 +117,13 @@ def reportesView(request):
 ######Day
         if(request.POST.get('day')):
             reservas=Reserva.objects.filter(fecha_fin_reserva=request.POST.get('day'))
+            if(reservas.count()==0):
+                mensaje="No existen reservas"
+                context={
+                'mensaje':mensaje,
+                'sin_reservas':True
+                }
+                return render(request,'admin/reportes_template.html',context)  
             print(request.POST.get('day'))
             dia= datetime.datetime.strptime(request.POST.get('day'), "%Y-%m-%d").strftime("%d/%m/%y")
             is_reporte=True
@@ -205,6 +221,13 @@ def reportesView(request):
             mes=int(datetime.datetime.strptime(request.POST.get('month'), "%Y-%m").strftime("%m"))
             mes_anio=datetime.datetime.strptime(request.POST.get('month'), "%Y-%m").strftime("%B/%Y")
             reservas=Reserva.objects.filter(fecha_fin_reserva__month=mes)
+            if(reservas.count()==0):
+                mensaje="No existen reservas"
+                context={
+                'mensaje':mensaje,
+                'sin_reservas':True
+                }
+                return render(request,'admin/reportes_template.html',context)  
             is_reporte=True
             reporte_month=True
             total_mes=0
@@ -294,14 +317,16 @@ def reportesView(request):
             }
 
             return render(request,'admin/reportes_template.html',context)
-            
-    #    if(True==False):
-    #            mensaje="No existen reservas"
-    #            context={
-    #                'mensaje':mensaje,
-    #                'sin_reservas':True
-    #            }
-    #            return render(request,'admin/reportes_template.html',context)
+
+def is_reserva(reservas,request):
+    if(reservas.count()==0):
+        mensaje="No existen reservas"
+        context={
+                'mensaje':mensaje,
+                'sin_reservas':True
+                }
+        return render(request,'admin/reportes_template.html',context)       
+        
         
 
         
