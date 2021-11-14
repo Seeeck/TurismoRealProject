@@ -7,9 +7,12 @@ Login cliente
 {%block contenido%}
 
 <div class="container-fluid">
+    
     <div class="row">
         {%include 'includes/nav.html' %}
     </div>
+    
+
     {% if messages %}
     <ul class="messages">
         {% for message in messages %}

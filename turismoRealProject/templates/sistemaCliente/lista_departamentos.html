@@ -16,38 +16,23 @@
     {% endif %}
     <form action="" method="GET">
         {% csrf_token %}
+        
         <div class="row mt-4 justify-content-center">
 
-            <div class="col-md-2">
-                <div class="row mt-4">
-
-                    <input id="comuna" name="comuna" class="form-control me-2" type="search" placeholder="A donde vas?"
-                        aria-label="Buscar departamento">
-                </div>
-
-
+            <div class="col-10 col-md-4 mt-2">
+                <input id="comuna" name="comuna" class="form-control me-2" type="search" placeholder="A donde vas?"
+                    aria-label="Buscar departamento">
             </div>
 
-
-            <div class=" ms-4 col-md-2">
-                <div class="row mt-4">
-
-                    <input class="form-control me-2" type="search" placeholder="Numero de personas"
-                        aria-label="Buscar departamento">
-                </div>
-
-
+            <div class="col-10 col-md-4 mt-2">
+                <input class="form-control me-2" type="search" placeholder="Numero de personas"
+                    aria-label="Buscar departamento">
             </div>
 
-            <div class="col-md-1 ms-4 ">
-                <div class="row mt-4 ml-4 ">
-                    <button type="submit" class=" btn btn-primary">Buscar</button>
-                </div>
-
-            </div>
-
-
+            <button type="submit" class=" col-5 col-md-2 btn btn-primary mt-2">Buscar</button>
         </div>
+
+        
 
     </form>
 
@@ -56,52 +41,57 @@
 
     <div class="mt-4 row justify-content-center">
         <div class="col-md-7">
-            <table class="table">
-                <thead>
-                    <tr class="row">
-                        <th class="col-md-2" scope="col">Nombre departamento</th>
-                        <th class="col-md-2" scope="col">Imagen</th>
-                        <th class="col-md-2" scope="col">Capacidad</th>
-                        <th class="col-md-2" scope="col">Valor/dia</th>
-                        <th class="col" scope="col">Comuna</th>
-                        <th class="col" scope="col">Tour</th>
-                        <th class="col" scope="col">Transporte</th>
-                        <th class="col" scope="col">Accion</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for d in departamentos %}
-                    <tr class="row">
-                        <td class="col-md-2">{{d.nombre_departamento}}</td>
-                        <td class="col-md-2">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class=" col col-md-2" scope="col">Nombre departamento</th>
+                            <th class=" col col-md-2" scope="col">Imagen</th>
+                            <th class=" col col-md-2" scope="col">Capacidad</th>
+                            <th class=" col col-md-2" scope="col">Valor/dia</th>
+                            <th class="col" scope="col">Comuna</th>
+                            <th class="col" scope="col">Tour</th>
+                            <th class="col" scope="col">Transporte</th>
+                            <th class="col" scope="col">Accion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for d in departamentos %}
+                        <tr>
+                            <td class="col-md-2">{{d.nombre_departamento}}</td>
+                            <td class="col-md-2">
 
-                            {% if d.imagen_departamento %}
-                            <img class="img-fluid " src="{{d.imagen_departamento.url}}" alt="">
+                                {% if d.imagen_departamento %}
+                                <img class="img-fluid " src="{{d.imagen_departamento.url}}" alt="">
+                                {%else%}
+                                <h1>Sin imagen</h1>
+                                {%endif%}
+                            </td>
+                            <td class="col-md-2">{{d.numero_personas}} personas</td>
+                            <td class="col-md-2">{{d.valor_dia}}</td>
+                            <td class="col">{{d.id_zona}}</td>
+                            {%if d.is_tour %}
+                            <td class="col">Si</td>
                             {%else%}
-                            <h1>Sin imagen</h1>
+                            <td class="col">No</td>
                             {%endif%}
-                        </td>
-                        <td class="col-md-2">{{d.numero_personas}} personas</td>
-                        <td class="col-md-2">{{d.valor_dia}}</td>
-                        <td class="col">{{d.id_zona}}</td>
-                        {%if d.is_tour %}
-                        <td class="col">Si</td>
-                        {%else%}
-                        <td class="col">No</td>
-                        {%endif%}
 
-                        {%if d.is_transporte %}
-                        <td class="col">Si</td>
-                        {%else%}
-                        <td class="col">No</td>
-                        {%endif%}
-                        <td class="col"><a class="btn btn-success"
-                                href="{%url 'cliente_app:reservar-departamento' d.id_departamento %} ">Reservar</a></td>
-                    </tr>
-                    {%endfor%}
+                            {%if d.is_transporte %}
+                            <td class="col">Si</td>
+                            {%else%}
+                            <td class="col">No</td>
+                            {%endif%}
+                            <td class="col"><a class="btn btn-success"
+                                    href="{%url 'cliente_app:reservar-departamento' d.id_departamento %} ">Reservar</a>
+                            </td>
+                        </tr>
+                        {%endfor%}
 
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+
+            </div>
+
             {% if is_paginated %}
             <nav aria-label="Page navigation example">
                 <ul class="pagination">

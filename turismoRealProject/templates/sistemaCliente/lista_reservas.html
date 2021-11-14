@@ -8,46 +8,51 @@
 
 <div class="container">
   <h1 class="mt-4">Reservas </h1>
-  <table class=" mt-4 table">
-    <thead>
-      <tr>
-        <th scope="col">Fecha reserva</th>
-        <th scope="col">Imagen</th>
-        <th scope="col">Departamento</th>
-        <th scope="col">Check In</th>
-        <th scope="col">Check Out</th>
-        <th scope="col">Comuna</th>
-        <th scope="col">Valor Total</th>
-        <th scope="col">Accion</th>
 
-      </tr>
-    </thead>
-    <tbody>
-      {% for r in reservas %}
-      {% if r.is_pago_checkout %}
-      {%else%}
-      <tr>
-        <th>{{r.fecha_reserva}}</th>
-        <th class="col-md-2">
-          {% if r.id_departamento.imagen_departamento %}
-          <img class="img-fluid " src="{{r.id_departamento.imagen_departamento.url}}" alt="">
-          {%else%}
-          <h1>Sin imagen</h1>
-          {%endif%}
-        </th>
-        <th>{{r.id_departamento.nombre_departamento}}</th>
-        <td>{{r.id_check_in.fecha_checkin}}</td>
-        <td>{{r.id_check_out.fecha_checkout}}</td>
-        <td>{{r.id_departamento.id_zona.comuna}}</td>
-        <td>${{r.valor_total }}</td>
-        <td><a class="btn btn-success" href="{% url 'cliente_app:editar-reserva' r.id_reserva %}">Ver </a>
+  <div class="table-responsive">
 
-        </td>
-      </tr>
-      {%endif%}
-      {%endfor%}
-    </tbody>
-  </table>
+    <table class=" mt-4 table">
+      <thead>
+        <tr>
+          <th scope="col">Fecha reserva</th>
+          <th scope="col">Imagen</th>
+          <th scope="col">Departamento</th>
+          <th scope="col">Check In</th>
+          <th scope="col">Check Out</th>
+          <th scope="col">Comuna</th>
+          <th scope="col">Valor Total</th>
+          <th scope="col">Accion</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        {% for r in reservas %}
+        {% if r.is_pago_checkout %}
+        {%else%}
+        <tr>
+          <th>{{r.fecha_reserva}}</th>
+          <th class="col-md-2">
+            {% if r.id_departamento.imagen_departamento %}
+            <img class="img-fluid " src="{{r.id_departamento.imagen_departamento.url}}" alt="">
+            {%else%}
+            <h1>Sin imagen</h1>
+            {%endif%}
+          </th>
+          <th>{{r.id_departamento.nombre_departamento}}</th>
+          <td>{{r.id_check_in.fecha_checkin}}</td>
+          <td>{{r.id_check_out.fecha_checkout}}</td>
+          <td>{{r.id_departamento.id_zona.comuna}}</td>
+          <td>${{r.valor_total }}</td>
+          <td><a class="btn btn-success" href="{% url 'cliente_app:editar-reserva' r.id_reserva %}">Ver </a>
+
+          </td>
+        </tr>
+        {%endif%}
+        {%endfor%}
+      </tbody>
+    </table>
+  </div>
+
 
   {% if is_paginated %}
   <nav aria-label="Page navigation example">

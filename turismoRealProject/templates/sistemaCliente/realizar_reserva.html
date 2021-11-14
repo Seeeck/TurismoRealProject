@@ -5,42 +5,44 @@
 {%include 'includes/nav.html' %}
 
 <div class="container-fluid">
+
     <div class="row justify-content-center">
-        <div class="col-md-2 mt-4 align-self-center">
-            <div class="card" style="width: 18rem;">
-                <img src="{{imagen_departamento.url}}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">{{nombre_departamento}}</h5>
 
-                </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><label for="">Capacidad</label>
-                        <h6>{{numero_personas}} Personas</h6>
-                    </li>
-                    <li class="list-group-item"><label for="">Costo anticipo</label>
-                        <h6>${{valor_anticipo}} </h6>
-                    </li>
-                    <li class="list-group-item"><label for="">Valor por dia </label>
-                        <h6>${{valor_dia}} </h6>
-                    </li>
-
-                </ul>
+        <div class="card mt-4" style="width: 18rem;">
+            <img src="{{imagen_departamento.url}}" class="card-img-top " alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{nombre_departamento}}</h5>
 
             </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><label for="">Capacidad</label>
+                    <h6>{{numero_personas}} Personas</h6>
+                </li>
+                <li class="list-group-item"><label for="">Costo anticipo</label>
+                    <h6>${{valor_anticipo}} </h6>
+                </li>
+                <li class="list-group-item"><label for="">Valor por dia </label>
+                    <h6>${{valor_dia}} </h6>
+                </li>
+
+            </ul>
 
         </div>
+    </div>
+
+    <div class="row justify-content-center">
         <div class="col-md-4 align-self-start">
+
             <form id='formReserva' class="mt-4" action="" method="POST">
                 {%csrf_token%}
                 <div class="row justify-content-center">
-
-                    <div class="col-md-6">
+                    <div class="col-10 mt-2 col-md-6">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Check-In</label>
                             {{form.check_in}}
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-10 mt-2 col-md-6">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Check-out</label>
                             {{form.check_out}}
@@ -51,93 +53,131 @@
 
 
                 </div>
-                <div id="personasExtras">
-                    {%for a in lista_personas %}
-                    <div class="row mt-4 justify-content-center">
-                        <label for="exampleInputEmail1">Acompañante {{a}}</label>
-                        <div class="col ">
-                            <label for="exampleInputEmail1">Nombre</label>
-                            <input id='nombre{{a}}' name="nombre{{a}}" type="text">
-                        </div>
-                        <div class="col">
-                            <label for="exampleInputEmail1">Apellido</label>
-                            <input id='apellido{{a}}' name="apellido{{a}}" type="text">
-                        </div>
-                    </div>
-                    {%endfor%}
 
+                <div class="mt-4" id="personasExtras">
+                    <div class="row justify-content-center ">
+                        {%for a in lista_personas %}
+
+                        <div class="col-10 col-md-5 ms-2">
+
+                            <div class="row justify-content-center">
+
+                                <label class="col-6" for="exampleInputEmail1">Acompañante {{a}}</label>
+                            </div>
+
+                            <div class="row mt-2">
+                                <input class="col-4 form-control" placeholder="nombre" id='nombre{{a}}'
+                                    name="nombre{{a}}" type="text">
+                            </div>
+
+                            <div class="row mt-2">
+                                <input class="col-4 form-control" placeholder="apellido" id='apellido{{a}}'
+                                    name="apellido{{a}}" type="text">
+                            </div>
+                        </div>
+
+                        {%endfor%}
+                    </div>
+                </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                {%if is_tour %}
+                <div class="row justify-content-center">
+                    <div class="col-7">
+                        <h4 class="mt-4">Servicio de Tour</h4>
+                    </div>
                 </div>
 
-                {%if is_tour %}
-                <h4 class="mt-4">Servicio de Tour</h4>
-                <div class=" mt-4 form-check">
-                    <input class="form-check-input" type="checkbox" value="0" name="tourCheck" id="tourCheck"
-                        onclick="tourCheckFunction()">
-                    <label class=" ms-2 row form-check-label" for="flexCheckDefault">
-                        Seleccione esta casilla si quiere el servicio de tour
-                    </label>
-                    <label class=" ms-2 row form-check-label" for="flexCheckDefault">
-                        Valor tour por persona : ${{valor_tour}}
-                    </label>
+                <div class="row justify-content-center">
+                    <div class="col-1">
+                        <input class="form-check-input" type="checkbox" value="0" name="tourCheck" id="tourCheck"
+                            onclick="tourCheckFunction()">
+                    </div>
+                    <div class="col-8">
+                        <label class=" ms-2 row form-check-label" for="flexCheckDefault">
+                            Seleccione esta casilla si quiere el servicio de tour
+                        </label>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-9">
+                        <label class=" ms-2 row form-check-label" for="flexCheckDefault">
+                            Valor tour por persona : ${{valor_tour}}
+                        </label>
+                    </div>
                 </div>
                 {%endif%}
+            </div>
 
+            <div class="col-md-4">
                 {%if is_transporte%}
                 <div>
 
-                    <h4 class="mt-4">Servicio de Transporte</h4>
+                    <div class="row justify-content-center">
 
+                        <h4 class="col-4 text-center mt-4">Servicio de Transporte</h4>
 
-                    <div class=" mt-4 form-check">
-                        <input class="form-check-input" type="checkbox" value="0" id="transporteCheck"
-                            name="transporteCheck" onclick="transporteCheckFunction()">
-                        <label class=" ms-2 row form-check-label" for="flexCheckDefault1">
-                            Seleccione esta casilla si quiere el servicio de transporte
-                        </label>
                     </div>
-                    <div class="row">
-                        <div class="col">
+
+                    <div class="row justify-content-center">
+                        <div class="col-1">
+                            <input class="form-check-input" type="checkbox" value="0" id="transporteCheck"
+                                name="transporteCheck" onclick="transporteCheckFunction()">
+                        </div>
+                        <div class="col-8">
+                            <label class=" ms-2 row form-check-label" for="flexCheckDefault1">
+                                Seleccione esta casilla si quiere el servicio de transporte
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-9">
                             <label class=" ms-2 row form-check-label" for="flexCheckDefault">
                                 Valor transporte por persona : ${{valor_sv_transporte}}
                             </label>
                         </div>
                     </div>
 
-
-
-
-                    <div class="row">
-                        <div class=" mt-4 col-md-6">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Ingrese su direccion de inicio</label>
-                                <input id='direccionInicioTransporte' name="direccionInicioTransporte" type="text">
-                                <p id="demo"></p>
-                            </div>
+                    <div class="row justify-content-center mt-3">
+                        <div class="col-9">
+                            <input class="form-control" placeholder="Ingrese la direccion de inicio"
+                                id='direccionInicioTransporte' name="direccionInicioTransporte" type="text">
                         </div>
-                        <div class=" mt-4 col-md-6">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Direccion de llegada</label>
-                                <input name="direccionInicioTransporte" type="text" disabled
-                                    value="{{direccion_departamento}}">
-                            </div>
+
+                    </div>
+
+
+                    <div class="row justify-content-center">
+
+                        <div class="col-8">
+                            <label for="exampleInputEmail1">Direccion de llegada</label>
+
                         </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <input class="col-9" name="direccionInicioTransporte" type="text" disabled
+                            value="{{direccion_departamento}}">
                     </div>
 
                 </div>
                 {%endif%}
+            </div>
 
-
-                <div class=" mt-4 row justify-content-center">
-                    <div class="col-md-4">
-                        <button onclick="return validarDireccionInicio()" class="btn btn-success" type="submit">Reservar
-                            y
-                            pagar anticipo</button>
-                    </div>
-
-                </div>
-            </form>
         </div>
+
+
+
+
+
+        <div class="row justify-content-center mt-4">
+            <button onclick="return validarDireccionInicio()" class="btn btn-success col-5 col-md-2" type="submit">Reservar
+                y
+                pagar anticipo</button>
+        </div>
+        </form>
     </div>
+</div>
 
 
 </div>

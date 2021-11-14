@@ -8,18 +8,35 @@
 {%include 'includes/nav.html' %}
 
 <!-- Masthead-->
-<header class="masthead">
-    <div class="container">
-        <div class="masthead-subheading">Turismo Real</div>
-        <div class="masthead-heading text-uppercase">Reserva tu departamento</div>
+
+<div id="reservaAqui">
+
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <h1 style="color: white;" class="col-7 mt-4 text-center">Reserva tu departamento</h1>
+        </div>
+
         {% if not user.is_anonymous %}
-        <a href="{% url 'cliente_app:lista_departamentos' %}" class="btn btn-primary">Reserva aqui</a>
-        
+        <div class="row mt-4 justify-content-center">
+
+            <a href="{% url 'cliente_app:lista_departamentos' %}" class="btn btn-primary col-7 col-md-2">Reserva
+                aqui</a>
+
+        </div>
         {%else%}
-        <a href="{% url 'users_app:user-login' %}" class="btn btn-primary">Reserva aqui</a>
+        <div class="row mt-4 justify-content-center">
+
+            <a href="{% url 'users_app:user-login' %}" class="btn col-5 col-md-2 btn-primary">Reserva aqui</a>
+
+        </div>
+
         {%endif%}
     </div>
-</header>
+
+</div>
+
+
+
 <!-- Services-->
 <section class="page-section" id="services">
     <div class="container">
