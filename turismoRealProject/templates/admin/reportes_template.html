@@ -49,7 +49,6 @@
 
             <form class="col-3" action="" method="POST">
                 {%csrf_token%}
-<<<<<<< Updated upstream
                 <input type="month" name="month" required>
                 <button class="btn btn-primary" type="submit">Obtener reporte mensual</button>
             </form>
@@ -137,32 +136,6 @@
                             {%endif%}
                         </li>
                     </ul>
-=======
-                <input type="date" name="day" required>
-                <button class="btn btn-primary" type="submit">Obtener reporte diario</button>
-            </form>
-        </div>
-        {%if is_reporte %}
-        {%if reporte_week%}
-        <div>
-
-            <div id="importarPDFweek">
-                <br>
-                <div class="row">
-
-                    <div class="col-2">
-                        <img class="img-fluid" src="{% static 'img/logos/turismo_real_logo.png' %}" width="75%">
-                    </div>
-
-                </div>
-                <div class="row justify-content-center">
-
-                    <h1 class="col-6">Reporte de ventas respecto a la semana anterior</h1>
-                    <h1 class="col-6">Semana: {{inicio_semana}} -- {{fin_semana}}</h1>
-
-
-
->>>>>>> Stashed changes
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-6">
@@ -280,7 +253,6 @@
         </div>
         {%endif%}
 
-<<<<<<< Updated upstream
             </div>
             <div class="row justify-content-center">
                 <div class="col-6">
@@ -450,24 +422,10 @@
             <div class="col-2"><button class="btn btn-success" id="toPDFButton">Importar a PDF</button></div>
         </div>
         
-=======
-        {%if reserva_day%}
-
-        {%endif%}
-
-        {%if reserva_month%}
-
-        {%endif%}
-
->>>>>>> Stashed changes
-        {%endif%}
+       
 
         {%if sin_reservas%}
         {{mensaje}}
-<<<<<<< Updated upstream
-        
-=======
->>>>>>> Stashed changes
         {%endif%}
     </div>
     <script>

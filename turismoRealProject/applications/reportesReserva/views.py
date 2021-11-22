@@ -138,7 +138,6 @@ def reportesView(request):
                 total_transporte_dia=total_transporte_dia+reserva.valor_transporte
                 total_reserva_dias_departamento=total_reserva_dias_departamento+reserva.valor_reserva_departamento
             
-<<<<<<< Updated upstream
             cantidad_reservas_dia=reservas.count()
 
             
@@ -195,13 +194,6 @@ def reportesView(request):
                 aumento_transporte=total_diferencia_transporte_da
             #Fin semama anterior
 
-=======
-            cantidad_reservas_semanal=reservas.count()
-            return render(request,'admin/reportes_template.html')
-
-        if(request.POST.get('month')):
-            pass    
->>>>>>> Stashed changes
 
             context={
                 'total_dia':total_dia,
@@ -264,7 +256,6 @@ def reportesView(request):
                 total_tour_mes_ma=total_tour_mes_ma+reserva.valor_tour
                 total_transporte_mes_ma=total_transporte_mes_ma+reserva.valor_transporte
             
-<<<<<<< Updated upstream
 
             total_diferencia_ma=total_mes-total_mes_ma
             total_diferencia_tour_ma=total_tour_mes-total_tour_mes_ma
@@ -336,15 +327,6 @@ def is_reserva(reservas,request):
                 }
         return render(request,'admin/reportes_template.html',context)       
         
-=======
-        if(True==False):
-            mensaje="No existen reservas"
-            context={
-                'mensaje':mensaje,
-                'sin_reservas':True
-            }
-            return render(request,'admin/reportes_template.html',context)
->>>>>>> Stashed changes
         
 
         
