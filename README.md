@@ -4,10 +4,10 @@
 Desarrollado por:
 - Franco Zambelli
 - Juan Pablo Polanco
-
-Pruebas por:
 - Celso Villagra 
 - Kevin Peréz
+
+Carrera: Ingeniería en informática
 
 ## Requisitos del sistema
 ### Requisitos Generales
@@ -25,22 +25,23 @@ Pruebas por:
 - sqlparse 0.4.1
 - Unipath 1.1
 - rut_chile 2.0.1
-
+- django-3-jet 1.0.8
+- google-api-python-client 1.4.1
 
 ## Como ejecutar el proyecto
 1. En consola crear un entorno
     ````powershell
-    python -m venv Entorno 
+    python -m venv EntornoTest
     ````
 2. Iniciar entorno
     ````powershell
-    Entorno\Scripts\activate
+    EntornoTest\Scripts\activate
     ````
 3. Instalar librebrias del proyecto
     ````powershell
     pip install -r requirements/requirements.txt
     ````
-4. Pedir __secret.json__ al creador del proyecto.
+4. Pedir el documento __secret.json__.
 5. Pegar __secret.json__ en: ``/turismorealproyect/turismorealproject/``
 
 6. En Oracle SQL:
@@ -63,17 +64,31 @@ Pruebas por:
      ````powershell
      python manage.py createsuperuser
     ````
-9. Arranca el proyecto
+9. Ejecute los siguentes comandos de migración  
+    ````powershell
+    python manage.py migrate jet
+    ````
+    ````powershell
+    python manage.py collectstatic
+    ````
+    ````powershell
+    python manage.py migrate dashboard
+    ````
+    ````powershell
+    python manage.py migrate dashboard
+    ````
+10. Arranca el proyecto
     ````powershell
     python manage.py runserver
     ````
-10. Accede desde tu navegador:
+11. Accede desde tu navegador:
     - Pagina de inicio:     
     http://127.0.0.1:8000/
     - Pagina administrador de la pagina:    
      http://127.0.0.1:8000/admin 
-11. Prueba
-13. python manage.py migrate jet
-14. python manage.py collectstatic
-15. python manage.py migrate dashboard
-16. FAKE DATA para reservas: python manage.py loaddata generateReserva1.json (junio-8 de noviembre) 
+
+12. Para ingresar datos de prueba ejecute:
+    ````powershell
+    python manage.py loaddata generateReserva1.json (junio-8 de noviembre) 
+    ````
+ 
