@@ -89,6 +89,6 @@ Carrera: Ingeniería en informática
 
 12. Para ingresar datos de prueba ejecute:
     ````powershell
-    python manage.py loaddata generateReserva1.json (junio-8 de noviembre) 
+    python manage.py loaddata generateReserva1.json
     ````
  
