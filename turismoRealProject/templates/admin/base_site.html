@@ -40,7 +40,6 @@
     </div>
     <!-- END Content -->
     {% if user.is_anonymous %}
-    {%block footer%}{%endblock%}
     {%else%}
     {% block footer %}<div id="footer"><iframe style="width: 100%; height: 2000px;" src="http://127.0.0.1:8000/reportes" frameborder="0"></iframe></div>{% endblock %}
     {%endif%}
