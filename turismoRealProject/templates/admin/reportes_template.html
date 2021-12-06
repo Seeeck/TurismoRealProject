@@ -50,12 +50,105 @@
             <form class="col-3" action="" method="POST">
                 {%csrf_token%}
                 <input type="month" name="month" required>
-                <button class="btn btn-primary" type="submit">Obtener reporte mensual</button>
+                <button onclick="removeDummy()"  id="btnReporteMensual" class="btn btn-primary" type="submit">Obtener reporte mensual</button>
             </form>
 
-
+           
         </div>
-        {%if is_reporte %}
+        <!-- 1 -->
+    {%if is_reporte %}
+
+        
+        {%if reporte_day%}
+        <div style="background-color: white;"  id="reporteToPDF">
+            
+            
+            <div class="row justify-content-center">
+
+                <h1 class="col-6">Reporte de ventas respecto al dia anterior</h1>
+                <h1 class="col-6">Dia: {{dia}}</h1>
+
+            
+        </div>
+        
+
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-6">
+                    <ul class="list-group">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+
+                            <h4>Cantidad de reservas realizadas</h4>
+                            <h2><span class="badge bg-success">{{cantidad_reservas_dia}}</span></h2>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+
+                            <h4>Total por dia</h4>
+                            <h2><span class="badge bg-success">${{total_dia}}</span></h2>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <h4>Total final por dias de reservas</h4>
+                            <h2><span class="badge bg-success">{{total_reserva_dias_departamento}}</span></h2>
+                        </li>
+
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            {%if is_aumento_total %}
+                            <h4>Aumento de ventas totales</h4>
+                            <h2><span class="badge bg-success">{{aumento_total}}</span></h2>
+                            {%else%}
+                            <h4>Disminución de ventas totales</h4>
+                            <h2><span class="badge bg-danger">{{aumento_total}}</span></h2>
+                            {%endif%}
+                        </li>
+
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            {%if is_aumento_total_porcentaje %}
+                            <h4>Porcentaje de aumento de ventas totales</h4>
+                            <h2><span class="badge bg-success">+{{porcentaje_aumento_total}}</span></h2>
+                            {%else%}
+                            <h4>Porcentaje de disminución de ventas totales</h4>
+                            <h2><span class="badge bg-danger">{{porcentaje_aumento_total}}</span></h2>
+                            {%endif%}
+                        </li>
+
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <h4>Total de tours</h4>
+                            <h2><span class="badge bg-success">{{total_tour_dia}}</span></h2>
+                        </li>
+
+
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            {%if is_aumento_total_tour %}
+                            <h4>Aumento del ventas totales de tour</h4>
+                            <h2><span class="badge bg-success">{{aumento_tour}}</span></h2>
+                            {%else%}
+                            <h4>Disminucion de ventas totales de tour</h4>
+                            <h2><span class="badge bg-danger">{{aumento_tour}}</span></h2>
+                            {%endif%}
+                        </li>
+
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <h4>Total de transportes</h4>
+                            <h2><span class="badge bg-success">{{total_transporte_dia}}</span></h2>
+                        </li>
+
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            {%if is_aumento_total_transporte %}
+                            <h4>Aumento del ventas totales de transporte</h4>
+                            <h2><span class="badge bg-success">{{aumento_transporte}}</span></h2>
+                            {%else%}
+                            <h4>Disminucion de ventas totales de transporte</h4>
+                            <h2><span class="badge bg-danger">{{aumento_transporte}}</span></h2>
+                            {%endif%}
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+           
+        </div>
+        {%endif%}
+
         {%if  reporte_week%}
         <div style="background-color: white;"  id="reporteToPDF">
             
@@ -137,198 +230,17 @@
                         </li>
                     </ul>
                 </div>
-                <div class="row justify-content-center">
-                    <div class="col-6">
-                        <ul class="list-group">
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-
-                                <h4>Cantidad de reservas realizadas</h4>
-                                <h2><span class="badge bg-success">{{cantidad_reservas_semanal}}</span></h2>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-
-                                <h4>Total semanal</h4>
-                                <h2><span class="badge bg-success">${{total_semanal}}</span></h2>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <h4>Total semanal por dias de reservas</h4>
-                                <h2><span class="badge bg-success">{{total_reserva_dias_departamento}}</span></h2>
-                            </li>
-
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                {%if is_aumento_total %}
-                                <h4>Aumento de ventas totales</h4>
-                                <h2><span class="badge bg-success">{{aumento_total}}</span></h2>
-                                {%else%}
-                                <h4>Disminución de ventas totales</h4>
-                                <h2><span class="badge bg-danger">{{aumento_total}}</span></h2>
-                                {%endif%}
-                            </li>
-
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                {%if is_aumento_total_porcentaje %}
-                                <h4>Porcentaje de aumento de ventas totales</h4>
-                                <h2><span class="badge bg-success">+{{porcentaje_aumento_total}}</span></h2>
-                                {%else%}
-                                <h4>Porcentaje de disminución de ventas totales</h4>
-                                <h2><span class="badge bg-danger">{{porcentaje_aumento_total}}</span></h2>
-                                {%endif%}
-                            </li>
-
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <h4>Total de tours</h4>
-                                <h2><span class="badge bg-success">{{total_tour_semanal}}</span></h2>
-                            </li>
-
-
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                {%if is_aumento_total_tour %}
-                                <h4>Aumento del ventas totales de tour</h4>
-                                <h2><span class="badge bg-success">{{aumento_tour}}</span></h2>
-                                {%else%}
-                                <h4>Disminucion de ventas totales de tour</h4>
-                                <h2><span class="badge bg-danger">{{aumento_tour}}</span></h2>
-                                {%endif%}
-                            </li>
-
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <h4>Total de transportes</h4>
-                                <h2><span class="badge bg-success">{{total_transporte_semanal}}</span></h2>
-                            </li>
-
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                {%if is_aumento_total_transporte %}
-                                <h4>Aumento del ventas totales de transporte</h4>
-                                <h2><span class="badge bg-success">{{aumento_transporte}}</span></h2>
-                                {%else%}
-                                <h4>Disminucion de ventas totales de transporte</h4>
-                                <h2><span class="badge bg-danger">{{aumento_transporte}}</span></h2>
-                                {%endif%}
-                            </li>
-                        </ul>
-                    </div>
-
-                </div>
+                
             </div>
             <br>
             <br>
             <div id="editor"></div>
-            <div class=" mb-4 row justify-content-center">
-                <div class="col-2">
-                    <button id="generatePDF" class="btn btn-success">Importar a PDF</button>
-                </div>
-            </div>
+            
             
         </div>
-        {%endif%}
-        {%if reporte_day%}
-        <div style="background-color: white;"  id="reporteToPDF">
-            
-            
-            <div class="row justify-content-center">
-
-                <h1 class="col-6">Reporte de ventas respecto al dia anterior</h1>
-                <h1 class="col-6">Dia: {{dia}}</h1>
-
-
-            <script type="text/javascript">
-                var doc = new jsPDF();
-                var specialElementHandlers = {
-                    '#editor': function (element, renderer) {
-                        return true;
-                    }
-                };
-
-
-                $('#generatePDF').click(function () {
-                    doc.fromHTML($('#importarPDFweek').html(), 15, 15, {
-                        'width': 700,
-                        'elementHandlers': specialElementHandlers
-                    });
-                    doc.save('ejemplo.pdf');
-                });
-
-            </script>
-            
-        </div>
+        
         {%endif%}
 
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-6">
-                    <ul class="list-group">
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-
-                            <h4>Cantidad de reservas realizadas</h4>
-                            <h2><span class="badge bg-success">{{cantidad_reservas_dia}}</span></h2>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-
-                            <h4>Total por dia</h4>
-                            <h2><span class="badge bg-success">${{total_dia}}</span></h2>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <h4>Total final por dias de reservas</h4>
-                            <h2><span class="badge bg-success">{{total_reserva_dias_departamento}}</span></h2>
-                        </li>
-
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            {%if is_aumento_total %}
-                            <h4>Aumento de ventas totales</h4>
-                            <h2><span class="badge bg-success">{{aumento_total}}</span></h2>
-                            {%else%}
-                            <h4>Disminución de ventas totales</h4>
-                            <h2><span class="badge bg-danger">{{aumento_total}}</span></h2>
-                            {%endif%}
-                        </li>
-
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            {%if is_aumento_total_porcentaje %}
-                            <h4>Porcentaje de aumento de ventas totales</h4>
-                            <h2><span class="badge bg-success">+{{porcentaje_aumento_total}}</span></h2>
-                            {%else%}
-                            <h4>Porcentaje de disminución de ventas totales</h4>
-                            <h2><span class="badge bg-danger">{{porcentaje_aumento_total}}</span></h2>
-                            {%endif%}
-                        </li>
-
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <h4>Total de tours</h4>
-                            <h2><span class="badge bg-success">{{total_tour_dia}}</span></h2>
-                        </li>
-
-
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            {%if is_aumento_total_tour %}
-                            <h4>Aumento del ventas totales de tour</h4>
-                            <h2><span class="badge bg-success">{{aumento_tour}}</span></h2>
-                            {%else%}
-                            <h4>Disminucion de ventas totales de tour</h4>
-                            <h2><span class="badge bg-danger">{{aumento_tour}}</span></h2>
-                            {%endif%}
-                        </li>
-
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <h4>Total de transportes</h4>
-                            <h2><span class="badge bg-success">{{total_transporte_dia}}</span></h2>
-                        </li>
-
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            {%if is_aumento_total_transporte %}
-                            <h4>Aumento del ventas totales de transporte</h4>
-                            <h2><span class="badge bg-success">{{aumento_transporte}}</span></h2>
-                            {%else%}
-                            <h4>Disminucion de ventas totales de transporte</h4>
-                            <h2><span class="badge bg-danger">{{aumento_transporte}}</span></h2>
-                            {%endif%}
-                        </li>
-                    </ul>
-                </div>
-
-            </div>
-           
-        </div>
-        {%endif%}
         {%if reporte_month%}
         <div style="background-color: white;" id="reporteToPDF">
             
@@ -416,6 +328,7 @@
         </div>
 
         {%endif%}
+        
         <br>
         <br>
         <div class="row mb-4 justify-content-center">
@@ -424,7 +337,7 @@
         
        
         
-
+    {%endif%}
         {%if sin_reservas%}
         {{mensaje}}
         {%endif%}
@@ -446,6 +359,8 @@
             };
             pdf.addHTML(section, page);
         })
+
+        
     </script>
 </body>
 
